@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Scratch Holograms"
-category: 
-tags: []
+category: Projects
+tags: [holograms]
 ---
 {% include JB/setup %}
 
