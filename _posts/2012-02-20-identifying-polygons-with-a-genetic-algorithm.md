@@ -40,7 +40,7 @@ What you see in the image is essentially a messy pentagon, composed of all the s
 Recording all of those sensor points was easy, but how to identify the shape and size of the real object those dots correspond to? This is, essentially, an example of "point cloud" analysis. We have a collection of dots which represent the outline of some shape, along with a lot of noise and error, and we need to extract the most likely shape from that cloud of points.
 
 Now, extracting just a single line from a set of points is easy. We can just find the single line that minimizes the sum of the squared distance from each point to that line, using orthogonal regression, as shown in this image lovingly ripped off from Wikipedia:
-<center><img src="img/2012-02-20/500px-Total_least_squares.png" width="50%"></center>
+<center><img src="/img/2012-02-20/500px-Total_least_squares.png" width="50%"></center>
 
 [Source](http://en.wikipedia.org/wiki/Total_least_squares)
 
@@ -50,7 +50,7 @@ What do we do?
 
 Well, this idea of linear regression is still pretty appealing. In fact, if we could take all the points from the sonar data and figure out which ones corresponded to each edge of the obstacle, then we could just do regression on each set of points, which would give us the position of each of the edges. Then we can just find the intersection points of each of the edges to find the corners of the obstacle. Check it out:
 
-<center><img src="img/2012-02-20/point_cloud_segmentation.png"
+<center><img src="/img/2012-02-20/point_cloud_segmentation.png"
 width="100%"></center>
 
 Cool. But this just creates another problem: How do we know how many edges there are, and which points correspond to which edge?
@@ -64,7 +64,7 @@ The way I chose involves dividing the sonar points up by their angle relative to
 For a three-sided shape I just choose three angles around the centroid, and use those angles to divide up the points. I can then do my orthogonal regression on the points in each section and re-derive the original shape. Of course, this relies on choosing the correct angles to divide up the shape. You can see two examples of choice of angles, one that divides the points up badly and gives us the wrong output shape, and one that divides them up well and gives us an excellent approximation of the original shape, here:
 
 
-<center><img src="img/2012-02-20/GA_segmentation.png" width="100%"></center>
+<center><img src="/img/2012-02-20/GA_segmentation.png" width="100%"></center>
 
 This hasn't solved our polygon identification problem, but it's further reduced it. Now we just need a way to choose three angles that give us the shape that best matches the sonar data.
 
@@ -101,9 +101,9 @@ This is based on a pretty simple observation, which is that 4 sides fit a rectan
 As it happened, we didn't have time to do more than a couple of tests on the real robot. You can see two of them here:
 
 
-<center><img src="img/2012-02-20/2011_Team4_Lab5_5-sided-fit.png" width="75%"></center>
+<center><img src="/img/2012-02-20/2011_Team4_Lab5_5-sided-fit.png" width="75%"></center>
 
-<center><img src="img/2012-02-20/2011_Team4_Lab5_4-sided-fit.png" width="75%"></center>
+<center><img src="/img/2012-02-20/2011_Team4_Lab5_4-sided-fit.png" width="75%"></center>
 
 The blue points are all the sonar points (minus the ones the robot ignored, and the colored lines are the polygon sides that the GA determined. The gaps in the sonar data are the places where the robot crashed into the wall and had to re-align itself, and the sonar points don't quite line up with each other due to error in the robot's odometry data.
 
