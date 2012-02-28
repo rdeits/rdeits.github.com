@@ -6,7 +6,7 @@ tags: [Vim, MacVim, Rope, Python]
 ---
 {% include JB/setup %}
 
-I'm trying to get rope to work with omnicomplete in Vim. To do this, I want to use [https://github.com/rygwdn/rope-omni](https://github.com/rygwdn/rope-omni) to provide the omnifunc.
+I'm trying to get rope to work with omnicomplete in Vim. To do this, I want to use [rope-omni](https://github.com/rygwdn/rope-omni) to provide the omnifunc.
 
 	easy_install ropevim
 

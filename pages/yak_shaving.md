@@ -6,7 +6,7 @@ title: "Yak Shaving"
 
 From [wiktionary](http://en.wiktionary.org/wiki/yak_shaving)
 
-><b>yak shaving</b>:
+><b>yak shaving:</b>
 >
 >1. (idiomatic) Any apparently useless activity which, by allowing you to overcome intermediate difficulties, allows you to solve a larger problem.<br>
 >_I was doing a bit of yak shaving this morning, and it looks like it might have paid off._
