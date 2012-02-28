@@ -4,7 +4,7 @@ title: Playing with Legos, and other activities
 ---
 {% include JB/setup %}
 
-<img src="/img/header.jpg" width="100%">
+<a href="http://www.flickr.com/photos/26769928@N02/sets/72157627194290064/" target="_blank"><img src="/img/header.jpg" width="100%"></a>
 
 <br>
 <ul class="posts">
