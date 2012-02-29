@@ -13,12 +13,13 @@ This post is about the process of creating a genetic algorithm-based system for 
 
 Last year, as part of a robotics class I was taking, my teammates and I were given a small robot equipped with a pair of touch sensors and sonar rangefinders (little devices that measure the distance to the nearest wall by recording the time it takes for a sonar pulse from the device to bounce back). Our job was to use the sonars to drive around an unknown obstacle and identify the number and length of each of the sides of that obstacle, in order to find out what shape it was. The algorithm that we were supposed to follow was, roughly, as follows:
 
-Drive at the obstacle until you crash
-When you hit the obstacle, use the touch sensors to line up the front of the robot to the side of the object
-Back up, turn 90 degrees.
-Using the sonars, scan backwards to the first corner of the obstacle you can find, then scan forward to the next corner.
-Follow the corner around until you crash into the obstacle again.
-Repeat until you've been all the way around the obstacle.
+1. Drive at the obstacle until you crash
+2. When you hit the obstacle, use the touch sensors to line up the front of the robot to the side of the object
+3. Back up, turn 90 degrees.
+4. Using the sonars, scan backwards to the first corner of the obstacle you can find, then scan forward to the next corner.
+5. Follow the corner around until you crash into the obstacle again.
+6. Repeat until you've been all the way around the obstacle.
+
 This seemed…inelegant for a number of reasons. First, the only method the robot had for determining its own position was odometry, that is, counting the number of turns of each of its wheels. Crashing into a wall tends to result in wheels slipping, which means that counting the number of wheel turns no longer tells you anything useful. Second, the whole crash-reverse-scan process was slow, and could take ten minutes or more for an obstacle only a few times the size of the robot. And finally, it just looked silly.
 
 # A Better Way
