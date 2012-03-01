@@ -7,6 +7,7 @@ title: "About"
 # Me
 My name is Robin Deits. I'm a
 physicist/programmer/photographer/pianist/engineer. 
+[CV](/assets/Robin_Deits_CV.pdf)
 
 ## Things I do:
 * Photos: [Flickr](http://www.flickr.com/photos/26769928@N02/)
