@@ -40,8 +40,7 @@ module JB
 end #JB
 
 task :cv do
-	system("git submodule foreach git pull")
-	system("cp CV/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
+	system("cp ~/Documents/Resume/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
 end
 
 # Usage: rake post title="A Title"
