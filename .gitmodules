@@ -1,3 +1,6 @@
 [submodule "assets/jquery-plugin"]
 	path = assets/jquery-plugin
 	url = git://github.com/TapirGo/jquery-plugin.git
+[submodule "CV"]
+	path = CV
+	url = git@bitbucket.org:rdeits/cv.git
