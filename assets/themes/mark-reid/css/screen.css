@@ -64,6 +64,18 @@ hr {
 
 sup { line-height: 1ex; }
 
+/* Search box */
+#searchForm {
+	/* width: 300px;*/
+	/* float:right;*/
+	/* overflow:auto;*/
+}
+
+#searchResults {
+}
+
+
+
 #site {
 	max-width: 46em;
 	margin: 1.5em auto 3em auto;
