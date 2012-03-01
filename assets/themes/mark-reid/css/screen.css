@@ -223,7 +223,6 @@ ul.compact li a {
 	line-height: 1.6em;
 	display: block;
 	margin: 0;
-	width: 50%;
 	text-align: right;
 }
 #header ul li { display: inline; }
@@ -245,13 +244,8 @@ ul.compact li a {
 
 #header form {
 	position:absolute;
-	border: 1px solid #aaaaaa;
-	background:white;
 	top: 0;
 	right: 0;
-	box-shadow: 2px 0px 8px #aaa;
-	-webkit-box-shadow: 2px 0px 8px #aaa;
-	-moz-box-shadow: 2px 0px 8px #aaa;	
 }
 
 /* @group Twitter */
