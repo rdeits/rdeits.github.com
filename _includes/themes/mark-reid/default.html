@@ -26,33 +26,6 @@
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" />
 
-	 <!-- Google APIs-->
-	 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
-		<script language="Javascript" type="text/javascript">
-			
-			google.load("search", "1");
-			
-			function OnLoad() {
-				// Create a search control
-				var searchControl = new google.search.SearchControl();
-				var options = new google.search.DrawOptions();
-				options.setSearchFormRoot(document.getElementById("searchForm"));
-				
-				// Add in a WebSearch
-				var webSearch = new google.search.WebSearch();
-				
-				// Restrict our search to pages from this site
-				webSearch.setSiteRestriction('rdeits.github.com');
-				
-				// Add the searcher to the SearchControl
-				searchControl.addSearcher(webSearch);
-				
-				// tell the searcher to draw itself and tell it where to attach
-				searchControl.draw(document.getElementById("search"));
-			}
-			google.setOnLoadCallback(OnLoad);
-  
-</script>
 
 </head>
 <body id="{{ page.section }}">
@@ -69,7 +42,6 @@
       <li><a  href="/archive.html">Archive</a></li>
       <li><a  href="/pages.html">Pages</a></li>
       <li><a  href="/categories.html">Categories</a></li>
-			<li> <div id="searchForm"> </div>	</li>
 			
       <!-- <li><a  href="/tags.html">Tags</a></li>-->
     </ul>
