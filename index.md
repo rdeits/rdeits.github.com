@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Playing with Legos, and other activities
+title: Playing with Legos (and other activities)
 ---
 {% include JB/setup %}
 
