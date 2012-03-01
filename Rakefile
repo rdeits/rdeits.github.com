@@ -39,6 +39,11 @@ module JB
   end #Path
 end #JB
 
+task :cv do
+	system("git submodule foreach git pull")
+	system("cp CV/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
+end
+
 # Usage: rake post title="A Title"
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
