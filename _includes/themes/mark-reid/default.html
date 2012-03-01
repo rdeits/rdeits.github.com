@@ -37,14 +37,16 @@
     	<span class="byline">&larr; <a href="{{ HOME_PATH }}">{{ site.author.name }}</a></span>
     </h1>
     <ul class="nav">
-      <li><a class="home" href="{{ HOME_PATH }}">Home</a></li>
+      <!-- <li><a class="home" href="{{ HOME_PATH }}">Home</a></li>-->
 	  <li><a href="/pages/about.html">About</a></li>
       <li><a  href="/archive.html">Archive</a></li>
       <li><a  href="/pages.html">Pages</a></li>
       <li><a  href="/categories.html">Categories</a></li>
-			
       <!-- <li><a  href="/tags.html">Tags</a></li>-->
     </ul>
+				<form action="/pages/search_results.html" method="get">
+					<input type="search" name="query" placeholder="Search"/>
+				</form>
   </div>
 
   {{ content }}

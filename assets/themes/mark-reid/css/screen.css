@@ -64,14 +64,6 @@ hr {
 
 sup { line-height: 1ex; }
 
-/* Search box */
-#searchForm {
-	/* width: 300px;*/
-	/* float:right;*/
-	/* overflow:auto;*/
-}
-
-
 #site {
 	max-width: 46em;
 	margin: 1.5em auto 3em auto;
@@ -217,15 +209,16 @@ ul.compact li a {
 #header h1 {
 	font-family: Palatino, georgia, "times new roman", serif;
 	margin-bottom: 0;
+	margin-right:129px;
 	line-height: 0.9em;
 	display: block;
 	font-weight: normal;
 }
 
 #header ul {
-	position: absolute;
+	position:absolute;
 	top: 0;
-	right: 0;
+	right: 135px;
 	font-size: 100%;
 	line-height: 1.6em;
 	display: block;
@@ -249,6 +242,17 @@ ul.compact li a {
 }
 #header:hover .byline a { color: silver; text-shadow: none; }
 #header:hover .byline a:hover { color: black; text-shadow: #aaa 1px 1px 2px;}
+
+#header form {
+	position:absolute;
+	border: 1px solid #aaaaaa;
+	background:white;
+	top: 0;
+	right: 0;
+	box-shadow: 2px 0px 8px #aaa;
+	-webkit-box-shadow: 2px 0px 8px #aaa;
+	-moz-box-shadow: 2px 0px 8px #aaa;	
+}
 
 /* @group Twitter */
 #twitter_update_list { display: inline; margin: 0; }
