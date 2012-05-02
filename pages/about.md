@@ -4,8 +4,10 @@ title: "About"
 ---
 {% include JB/setup %}
 
-## Me
-My name is Robin Deits. I'm a
+<img src="http://www.gravatar.com/avatar/1ae757387e4f961dca8e5dc91fb83d57?s=150" style="float:right;padding-left:10px" />
+My name is Robin Deits.
+
+I'm a
 physicist/programmer/photographer/pianist/engineer. 
 Here's my [CV](/assets/Robin_Deits_CV.pdf).
 

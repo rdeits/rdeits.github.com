@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My Dad's New Lights"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}
