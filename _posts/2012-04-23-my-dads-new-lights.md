@@ -17,6 +17,7 @@ Last January, my crazy MIT (East Campus, 1E) friends and I designed and built a 
 
 Naturally, I wanted my own system for my apartment. But, since the original cost about $1000 and took the combined force of a dozen MIT students to produce, I figured re-implementing the hardware wasn't a good idea. Fortunately, darco of [deepdarc.com](http://www.deepdarc.com/) reverse-engineered the communication protocol for the GE Color Effects LED Christmas lights, which provided me with a reasonably cheap set of hackable hardware. I took some of his software and adapted it to be compatible with the control code for our hallway lights. The result is a fully-programmable LED light string with easily customized, animated patterns for my very own room, all for less than $150. 
 
+
 # Building lights for my dad
 
 When Christmas came around this was the obvious gift for my dad, who I knew would love to have a new toy to play with. I bought another string of GE lights and an Arduino Uno to control them. My dad, though, had the brilliant idea of a father-son adventure constructing a tasteful case for the lights (they did look a bit tacky on their own). And so began the adventure, documented here:
@@ -81,7 +82,9 @@ The dead light, after removal.
 
 After that, I made sure to turn off everything before connecting any cables, and no further problems were had. 
 
+# Building your own
 
+This is definitely a very doable project if you're interested in making your own set. Darco's hacking instructions are at [deepdarc.com](http://www.deepdarc.com/2010/11/27/hacking-christmas-lights/), but the only hardware modifications to the lights that were necessary were cutting off the original control box and connecting a data line from an Arduino board. The software I used is at [github.com/mboyd/Bemis-100](https://github.com/mboyd/Bemis-100) under Firmware/ge_arduino, all running on an Arduino Uno. The lights I bought are here on [amazon](http://www.amazon.com/gp/product/B004A354B8/ref=wms_ohs_product) but are currently unavailable. However, these ["Multi Function GE Christmas Lights"](http://www.amazon.com/Changing-Multi-Function-Christmas-Lights-Remote/dp/B005KKHO8G/ref=sr_1_2?s=hi&ie=UTF8&qid=1336054451&sr=1-2) look like the same product, but it's hard to be sure. Also, Costco was carrying the lights last Christmas season, and they may have them again this year. Good luck!
 
 
 
