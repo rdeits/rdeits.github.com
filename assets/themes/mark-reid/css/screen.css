@@ -215,10 +215,22 @@ ul.compact li a {
 	font-weight: normal;
 }
 
+#header img {
+	filter: url(img/grayscale_filter.svg#grayscale); /* Firefox 3.5+ */
+    filter: gray; /* IE5+ */
+    -webkit-filter: grayscale(1); /* Webkit */
+    /* This trick taken from http://stackoverflow.com/questions/609273/convert-an-image-to-grayscale-in-html-css */
+}
+
+#header:hover img {
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+
 #header ul {
 	position:absolute;
 	top: 0;
-	right: 135px;
+	right: 151px;
 	font-size: 100%;
 	line-height: 1.6em;
 	display: block;
@@ -239,13 +251,17 @@ ul.compact li a {
 	font-size: 10pt;
 	line-height: 75%
 }
-#header:hover .byline a { color: silver; text-shadow: none; }
-#header:hover .byline a:hover { color: black; text-shadow: #aaa 1px 1px 2px;}
 
 #header form {
 	position:absolute;
 	top: 0;
-	right: 0;
+	right: 0px;
+}
+
+#atom a {
+	position: absolute;
+	right: 132px;
+	top: 3px;
 }
 
 /* @group Twitter */
