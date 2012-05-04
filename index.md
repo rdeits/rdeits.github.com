@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Playing with Legos (and other activities)
+feed: http://blog.robindeits.com/atom.xml
 ---
 {% include JB/setup %}
 
