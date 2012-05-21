@@ -242,7 +242,7 @@ ul.compact li a {
 	padding: 0.4em 0.3em 0 0.3em;
 	display: inline;
 }
-#header ul li a:hover {
+#header ul li a:hover, #header span:hover, #header h1 a:hover {
 	color: blue;
 	border-bottom: 2px solid blue;
 }
