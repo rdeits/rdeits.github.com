@@ -26,6 +26,24 @@
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" />
 
+   <!-- MathJax for LaTeX rendering -->
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript">
+  // Instructions from http://cwoebker.com/posts/latex-math-magic/
+  MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+  MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+  </script>
 
 </head>
 <body id="{{ page.section }}">
