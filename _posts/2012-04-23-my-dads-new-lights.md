@@ -86,6 +86,16 @@ After that, I made sure to turn off everything before connecting any cables, and
 
 This is definitely a very doable project if you're interested in making your own set. Darco's hacking instructions are at [deepdarc.com](http://www.deepdarc.com/2010/11/27/hacking-christmas-lights/), but the only hardware modifications to the lights that were necessary were cutting off the original control box and connecting a data line from an Arduino board. The software I used is at [github.com/mboyd/Bemis-100](https://github.com/mboyd/Bemis-100) under Firmware/ge_arduino, all running on an Arduino Uno. The lights I bought are here on [amazon](http://www.amazon.com/gp/product/B004A354B8/ref=wms_ohs_product) but are currently unavailable. However, these ["Multi Function GE Christmas Lights"](http://www.amazon.com/Changing-Multi-Function-Christmas-Lights-Remote/dp/B005KKHO8G/ref=sr_1_2?s=hi&ie=UTF8&qid=1336054451&sr=1-2) look like the same product, but it's hard to be sure. Also, Costco was carrying the lights last Christmas season, and they may have them again this year. Happy hacking!
 
+# Update: June 6th, 2012
 
+My dad decided to do a little more work on the lights. Here's his description:
 
+> I decided that having the lights and cords visible meant more work was needed.   Fortunately, I was able to find some 0.05" polystyrene at Home Depot that, if carefully cut for width, could be inserted in the channel we had previously cut for the highly unsuccessful fluorescent light diffuser plastic.  Finding that thickness was key, because some 0.08" acrylic I had was too thick to be inserted on the diagonal and still leave enough width to slot securely in the track on both sides.  It would have been nice to have some bigger stock, but I had to make do with 10" long pieces.  I scuffed it up on both sides with my random orbit sander and 220 grit sandpaper, which made it nicely frosty.  The fitting was pretty straightforward except at the plug end I had to do a touch of trimming.  I cut a 1" diameter half circle in the end of the final piece so I could get it out again if needed - clever to have figured that out before permanently sealing the apparatus.  I have attached a couple of pictures of the finished product.  I did some testing and convinced myself that the diffuser didn't significantly affect the light output on the wall behind the unit, so I figure it's a win all around.
 
+Here are his results:
+
+<img src="/img/2012-04-23/box_diffuser.jpg" width="50%">
+The light box, with the diffuser installed. 
+
+<img src="/img/2012-04-23/box_diffuser_lit.jpg" width="50%">
+And the final product.
