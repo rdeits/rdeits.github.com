@@ -221,4 +221,4 @@ I won't go through the math here, but we can (not surprisingly) do all of this j
 \]`
 
 # Coming up: Homogeneous Matrices and You
-Stay tuned for the next installment, in which we reveal why all this lovely rotation stuff is only half of the picture, and in which all our matrices get 78% bigger. 
+Stay tuned for the [next installment](http://blog.robindeits.com/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/), in which we reveal why all this lovely rotation stuff is only half of the picture, and in which all our matrices get 78% bigger. 

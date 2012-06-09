@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="robot_with_arm_and_frame_1.svg">
+   sodipodi:docname="robot_with_arm_and_frame_1_d.svg">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -66,13 +66,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.4405503"
-     inkscape:cx="186.15253"
+     inkscape:cx="110.34995"
      inkscape:cy="149.25794"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1381"
-     inkscape:window-height="1006"
+     inkscape:window-width="1595"
+     inkscape:window-height="1008"
      inkscape:window-x="90"
      inkscape:window-y="0"
      inkscape:window-maximized="0" />
@@ -84,7 +84,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
