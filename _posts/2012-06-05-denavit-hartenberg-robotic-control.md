@@ -8,7 +8,13 @@ tags: []
 
 # Introduction
 
-A couple months ago, I taught myself coordinate frame transformations and the Denavit-Hartenberg parameters for inverse kinematics in robotics, primarily from [this lecture from Duke](http://www.cs.duke.edu/brd/Teaching/Bio/asmb/current/Papers/chap3-forward-kinematics.pdf) and [this lecture from MIT](http://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-2009/lecture-notes/MIT16_07F09_Lec03.pdf). But one does not truly understand something until one can teach it, so here goes. This should make sense to you if you know how to use the dot product and how to multiply matrices. 
+A couple months ago, I taught myself coordinate frame transformations and the Denavit-Hartenberg parameters for inverse kinematics in robotics, primarily from Chapter 3 of [Robot Modeling and Control by Spong et. al](http://www.amazon.com/Robot-Modeling-Control-Mark-Spong/dp/0471649902) and [this lecture from MIT](http://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-2009/lecture-notes/MIT16_07F09_Lec03.pdf). But one does not truly understand something until one can teach it, so here goes. This should make sense to you if you know how to use the dot product and how to multiply matrices. 
+
+Part 1 (this page)
+
+[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)
+
+[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)
 
 # Motivation
 
@@ -33,11 +39,11 @@ We'll call the angle his arm makes to the horizontal `\(\theta\)`. Now we can al
 
 Why do we bother?
 
-Well, having a coordinate frame at the end of the robot's arm lets us figure out where things in the world are relative to that point, which is where we would put the robot's hand or gripper or death saw. For example, to grab an object, we need to move the arm until the object is at position `\(x' = 0\)`, `\(y' = 0\)`, like so:
+Well, having a coordinate frame at the end of the robot's arm lets us figure out where things in the world are relative to that point, which is where we would put the robot's hand or gripper or death saw. For example, to grab an object, we need to move the arm until the object is at position `\(x_1 = 0\)`, `\(y_1 = 0\)`, like so:
 
 <img src="/img/2012-06-05/robot_with_arm_and_frame_1_and_ball.png">
 
-This is great, but not very useful by itself. When we're controlling the robot, we can use the motor his shoulder to change the angle `\(\theta\)`, but it's not obvious in general what angle we want to get the ball to `\(x' = 0\)`, `\(y' = 0\)`. What we want is an [inverse kinematics](http://en.wikipedia.org/wiki/Inverse_kinematics), a way to go from a desired orientation for the business end of our arm to the angle of the arm's joints. That's what we're going to develop, over the course of a few pages of math. But there will be pictures, so hang in there. 
+This is great, but not very useful by itself. When we're controlling the robot, we can use the motor his shoulder to change the angle `\(\theta\)`, but it's not obvious in general what angle we want to get the ball to `\(x_1 = 0\)`, `\(y_1 = 0\)`. What we want is an [inverse kinematics](http://en.wikipedia.org/wiki/Inverse_kinematics), a way to go from a desired orientation for the business end of our arm to the angle of the arm's joints. That's what we're going to develop, over the course of a few pages of math. But there will be pictures, so hang in there. 
 
 # Background: Coordinate Frame Transforms
 
@@ -50,7 +56,7 @@ The vector from the origin (at the 0) to the ball is `\(\begin{bmatrix} x_1 = 4 
 
 Now let's add another coordinate frame, rotated by an angle `\(\theta\)`:
 
-<img src="img/2012-06-05/ball_frame_0_and_1.png">
+<img src="/img/2012-06-05/ball_frame_0_and_1.png">
 
 How do we represent the vector pointing to the ball in the primed (`\(x_1', x_2'\)`) frame? Simple: that's what the dot product is for. When we ask the question "How do we represent a vector `\(\vec{v}\)` in a coordinate system?" we're really just asking for the *projection* of `\(\vec{v}\)` onto the unit vectors (`\(i_1'\)` and `\(i_2'\)`) of the coordinate system. That is to say, we're looking for this representation of `\(\vec{v}\)`:
 
@@ -220,5 +226,28 @@ I won't go through the math here, but we can (not surprisingly) do all of this j
 \end{bmatrix}\, \vec{v}
 \]`
 
+If we want to describe rotation about just one axis, like in this cartoon:
+
+<img src="/img/2012-06-05/3d_rotation_example.png">
+
+then this is pretty simple. We can see that `\(x_3 = x_3'\)`, so `\(\theta_{3 3} = 0\)`, and `\(\theta_{3 i} \text{ and } \theta_{i 3}\)` are both `\(\frac{\pi}{2}\)` for `\(i = 1 \text{ or } 2\)`. Similarly, `\(\theta_{1 1} \text{ and } \theta_{2 2}\)` are just equal to `\(\alpha\)`. 
+
+Using some basic [trig identities](http://en.wikipedia.org/wiki/List_of_trigonometric_identities#Symmetry) we can see that `\(\theta_{2 1} = -\left( \frac{\pi}{2} + \alpha \right)\)` means that 
+`\[
+\cos{\theta_{2 1}} = \cos{-\left( \frac{\pi}{2} + \alpha \right)} = \cos{\frac{\pi}{2} + \alpha} = -\sin{\alpha}
+\]`. 
+And likewise
+`\[
+\cos{\theta_{2 1}} = \sin{\alpha}
+\]`
+Thus, our whole rotation matrix becomes this fairly simple form:
+`\[
+\begin{bmatrix}
+\cos{\alpha} & -\sin{\alpha} & 0 \\
+\sin{\alpha} & \cos{\alpha} & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\]`
+
 # Coming up: Homogeneous Matrices and You
-Stay tuned for the [next installment](http://blog.robindeits.com/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/), in which we reveal why all this lovely rotation stuff is only half of the picture, and in which all our matrices get 78% bigger. 
+Stay tuned for the [next installment](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/), in which we reveal why all this lovely rotation stuff is only half of the picture, and in which all our matrices get 78% bigger. 

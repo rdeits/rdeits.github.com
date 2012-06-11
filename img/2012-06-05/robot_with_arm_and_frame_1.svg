@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="298.18741"
+   width="299.02972"
    height="261.87759"
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="robot_with_arm_and_frame_1_d.svg">
+   sodipodi:docname="robot_with_arm_and_frame_1.svg">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -57,6 +57,13 @@
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
          transform="matrix(-0.2,0,0,-0.2,-1.2,0)" />
     </marker>
+    <inkscape:perspective
+       id="perspective5409"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -66,13 +73,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.4405503"
-     inkscape:cx="110.34995"
-     inkscape:cy="149.25794"
+     inkscape:cx="77.570458"
+     inkscape:cy="132.86819"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1595"
-     inkscape:window-height="1008"
+     inkscape:window-height="1006"
      inkscape:window-x="90"
      inkscape:window-y="0"
      inkscape:window-maximized="0" />
@@ -189,68 +196,24 @@
          x="428.59186"
          y="450.86411"
          id="tspan5381" /></text>
-    <g
-       transform="translate(2.6580802,-1.815866)"
-       id="g5425">
-      <path
-         id="path3753"
-         d="m 334.92004,377.39917 c 0,0 0,0 0,52.85693 l 46.71078,0"
-         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)" />
-      <text
-         id="text5091"
-         y="437.63147"
-         x="386.36862"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="437.63147"
-           x="386.36862"
-           id="tspan5093"
-           sodipodi:role="line">x</tspan></text>
-      <text
-         id="text5095"
-         y="385.01495"
-         x="341.84415"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="385.01495"
-           x="341.84415"
-           id="tspan5097"
-           sodipodi:role="line">y</tspan></text>
-      <text
-         id="text5108"
-         y="445.41663"
-         x="318.76093"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="445.41663"
-           x="318.76093"
-           id="tspan5110"
-           sodipodi:role="line">0</tspan></text>
-    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)"
+       d="m 337.57812,375.5833 c 0,0 0,0 0,52.85693 l 46.71078,0"
+       id="path3753" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="321.41901"
+       y="443.60077"
+       id="text5108"><tspan
+         sodipodi:role="line"
+         id="tspan5110"
+         x="321.41901"
+         y="443.60077">0</tspan></text>
     <path
        id="path5491"
        d="m 394.5077,322.61444 c 0,0 0,0 30.35996,43.26809 l 38.23692,-26.82973"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)" />
-    <text
-       id="text5493"
-       y="347.72073"
-       x="467.28772"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-       xml:space="preserve"><tspan
-         y="347.72073"
-         x="467.28772"
-         id="tspan5495"
-         sodipodi:role="line">x'</tspan></text>
-    <text
-       id="text5497"
-       y="322.55704"
-       x="380.55966"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-       xml:space="preserve"><tspan
-         y="322.55704"
-         x="380.55966"
-         id="tspan5499"
-         sodipodi:role="line">y'</tspan></text>
     <text
        id="text5501"
        y="378.86127"
@@ -270,5 +233,155 @@
        width="117.18668"
        id="rect6365"
        style="fill:none;stroke:#646464;stroke-width:3;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="466.35321"
+       y="340.70154"
+       id="text5015"><tspan
+         sodipodi:role="line"
+         id="tspan5017"
+         x="466.35321"
+         y="340.70154">x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="476.55777"
+       y="344.68381"
+       id="text5019"><tspan
+         sodipodi:role="line"
+         id="tspan5021"
+         x="476.55777"
+         y="344.68381"
+         style="font-size:10px">1</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5432"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       transform="translate(182.28391,285.97494)"><flowRegion
+         id="flowRegion5434"><rect
+           id="rect5436"
+           width="40.154877"
+           height="39.335392"
+           x="272.88928"
+           y="29.552942" /></flowRegion><flowPara
+         id="flowPara5438"></flowPara></flowRoot>    <text
+       id="text5440"
+       y="318.57538"
+       x="375.79987"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       xml:space="preserve"><tspan
+         y="318.57538"
+         x="375.79987"
+         id="tspan5442"
+         sodipodi:role="line">y</tspan></text>
+    <text
+       id="text5444"
+       y="322.55765"
+       x="386.00443"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       xml:space="preserve"><tspan
+         style="font-size:10px"
+         y="322.55765"
+         x="386.00443"
+         id="tspan5446"
+         sodipodi:role="line">1</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5448"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       transform="translate(182.28391,285.97494)"><flowRegion
+         id="flowRegion5450"><rect
+           id="rect5452"
+           width="35.647697"
+           height="33.59898"
+           x="183.15541"
+           y="15.621657" /></flowRegion><flowPara
+         id="flowPara5454"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5456"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       transform="translate(182.28391,285.97494)"><flowRegion
+         id="flowRegion5458"><rect
+           id="rect5460"
+           width="27.043081"
+           height="29.501543"
+           x="187.6626"
+           y="17.260632" /></flowRegion><flowPara
+         id="flowPara5462"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5464"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       transform="translate(182.28391,285.97494)"><flowRegion
+         id="flowRegion5466"><rect
+           id="rect5468"
+           width="24.174875"
+           height="29.501543"
+           x="183.9749"
+           y="12.343708" /></flowRegion><flowPara
+         id="flowPara5470"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5472"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       transform="translate(182.28391,285.97494)"><flowRegion
+         id="flowRegion5474"><rect
+           id="rect5476"
+           width="34.008724"
+           height="34.008724"
+           x="188.89183"
+           y="16.850889" /></flowRegion><flowPara
+         id="flowPara5478"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="319.66498"
+       y="372.2518"
+       id="text5495"><tspan
+         sodipodi:role="line"
+         id="tspan5497"
+         x="319.66498"
+         y="372.2518">y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="329.86954"
+       y="376.23407"
+       id="text5499"><tspan
+         sodipodi:role="line"
+         id="tspan5501"
+         x="329.86954"
+         y="376.23407"
+         style="font-size:10px">0</tspan></text>
+    <text
+       id="text5507"
+       y="376.23407"
+       x="329.86954"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       xml:space="preserve"><tspan
+         style="font-size:10px"
+         y="376.23407"
+         x="329.86954"
+         id="tspan5509"
+         sodipodi:role="line" /></text>
+    <text
+       id="text5525"
+       y="446.30023"
+       x="388.05313"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       xml:space="preserve"><tspan
+         style="font-size:10px"
+         y="446.30023"
+         x="388.05313"
+         id="tspan5527"
+         sodipodi:role="line">0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="377.84857"
+       y="442.31796"
+       id="text5529"><tspan
+         sodipodi:role="line"
+         id="tspan5531"
+         x="377.84857"
+         y="442.31796">x</tspan></text>
   </g>
 </svg>

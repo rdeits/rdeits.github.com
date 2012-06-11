@@ -8,7 +8,7 @@ tags: []
 
 # The Problem
 
-In [Part 1](http://blog.robindeits.com/2012/06/05/denavit-hartenberg-robotic-control/) of this series, in which I attempt to explain the Denavit-Hartenberg convention for inverse kinematics I talked about coordinate frames and rotational transformations using matrices. This left open a pretty obvious question, though: turning coordinate frames is great and all, but how do we *move* them? If we want to describe the transformation from Frame 1 to Frame 0 here:
+In [Part 1](/2012/06/05/denavit-hartenberg-robotic-control/) of this series, in which I attempt to explain the Denavit-Hartenberg convention for inverse kinematics I talked about coordinate frames and rotational transformations using matrices. This left open a pretty obvious question, though: turning coordinate frames is great and all, but how do we *move* them? If we want to describe the transformation from Frame 1 to Frame 0 here:
  
 <img src="/img/2012-06-05/robot_with_arm_and_frame_1_d.png">
 
@@ -178,4 +178,4 @@ Where R represents the rotation component and T represents the translation compo
 
 # Next time: putting it all together
 
-In the next installment, we'll use all of this coordinate transformation business to build a system that will let us figure out how to control our robot's arm. 
+In the [next installment](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/), we'll use all of this coordinate transformation business to build a system that will let us figure out how to control our robot's arm. 
