@@ -6,7 +6,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3 (this page)](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)
+[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)/[Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames/)
 
 In [Part 1](/2012/06/05/denavit-hartenberg-robotic-control/) and [Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/) of this series, we talked about why inverse kinematics could be useful, and did some background on coordinate transformations and homogeneous matrices. Now we're going to put that together to start understanding the Denavit-Hartenberg parameters. 
 
