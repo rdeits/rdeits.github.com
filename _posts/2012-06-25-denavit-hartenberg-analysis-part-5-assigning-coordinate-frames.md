@@ -188,3 +188,7 @@ A_i = \begin{bmatrix}
 `\[
 T_n^0 = A_1 A_2 \dots A_{n-1} A_n
 \]`
+
+# Conclusion
+
+That's it! We've covered the entire theory behind Denavit-Hartenberg analysis. In the next and final post, we'll go through a few examples and talk about non-standard joints (joints which aren't simply revolute or prismatic). Enjoy!
