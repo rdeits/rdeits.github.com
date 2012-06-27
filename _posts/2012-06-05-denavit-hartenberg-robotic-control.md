@@ -16,28 +16,33 @@ A couple months ago, I taught myself coordinate frame transformations and the De
 
 Let's say we have a robot:
 
-<img src="/img/2012-06-05/robot.png">
+<object data="/img/2012-06-05/robot.svg" type="image/svg+xml">
+</object>
 "Hello, world!"
 
 Now let's say we want to control our robot. Broadly speaking, this means that we want to decide *where* parts of him are at particular times. In order to define where something is, we need a frame of reference, so let's staple a coordinate system called "Frame 0" to his shoulder:
 
-<img src="/img/2012-06-05/robot_with_frame_0.png">
+<object data="/img/2012-06-05/robot_with_frame_0.svg" type="image/svg+xml">
+</object>
 
 Great! Now we can describe our robot's location and orientation in Frame 0. It's at `\(x = 0\)`, `\(y = 0\)`. Fascinating.
 
 To make things more interesting, let's add an arm to our robot friend:
 
-<img src="/img/2012-06-05/robot_with_arm.png">
+<object data="/img/2012-06-05/robot_with_arm.svg" type="image/svg+xml">
+</object>
 
 We'll call the angle his arm makes to the horizontal `\(\theta\)`. Now we can also attach a coordinate frame to the end of his arm, which we'll clevely call Frame 1:
 
-<img src="/img/2012-06-05/robot_with_arm_and_frame_1.png">
+<object data="/img/2012-06-05/robot_with_arm_and_frame_1.svg" type="image/svg+xml">
+</object>
 
 Why do we bother?
 
 Well, having a coordinate frame at the end of the robot's arm lets us figure out where things in the world are relative to that point, which is where we would put the robot's hand or gripper or death saw. For example, to grab an object, we need to move the arm until the object is at position `\(x_1 = 0\)`, `\(y_1 = 0\)`, like so:
 
-<img src="/img/2012-06-05/robot_with_arm_and_frame_1_and_ball.png">
+<object data="/img/2012-06-05/robot_with_arm_and_frame_1_and_ball.svg" type="image/svg+xml">
+</object>
 
 This is great, but not very useful by itself. When we're controlling the robot, we can use the motor his shoulder to change the angle `\(\theta\)`, but it's not obvious in general what angle we want to get the ball to `\(x_1 = 0\)`, `\(y_1 = 0\)`. What we want is an [inverse kinematics](http://en.wikipedia.org/wiki/Inverse_kinematics), a way to go from a desired orientation for the business end of our arm to the angle of the arm's joints. That's what we're going to develop, over the course of a few pages of math. But there will be pictures, so hang in there. 
 
@@ -45,14 +50,17 @@ This is great, but not very useful by itself. When we're controlling the robot, 
 
 Imagine a ball and a fixed coordinate frame:
 
-<img src="/img/2012-06-05/ball_frame_0.png">
+<object data="/img/2012-06-05/ball_frame_0.svg" type="image/svg+xml">
+</object>
+
 We're going to use `\(x_1 \text{and } x_2 \)` instead of x and y here just so that the notation is a bit easier to generalize, but there's no reason you couldn't do this all in x, y, z if you preferred.
 
 The vector from the origin (at the 0) to the ball is `\(\begin{bmatrix} x_1 = 4 \\ x_2 = 3 \end{bmatrix}\)` or just `\(\begin{bmatrix} 4 \\ 3 \end{bmatrix}\)` in this coordinate system (which we'll call Frame 0). 
 
 Now let's add another coordinate frame, rotated by an angle `\(\theta\)`:
 
-<img src="/img/2012-06-05/ball_frame_0_and_1.png">
+<object data="/img/2012-06-05/ball_frame_0_and_1.svg" type="image/svg+xml">
+</object>
 
 How do we represent the vector pointing to the ball in the primed (`\(x_1', x_2'\)`) frame? Simple: that's what the dot product is for. When we ask the question "How do we represent a vector `\(\vec{v}\)` in a coordinate system?" we're really just asking for the *projection* of `\(\vec{v}\)` onto the unit vectors (`\(i_1'\)` and `\(i_2'\)`) of the coordinate system. That is to say, we're looking for this representation of `\(\vec{v}\)`:
 
@@ -224,7 +232,8 @@ I won't go through the math here, but we can (not surprisingly) do all of this j
 
 If we want to describe rotation about just one axis, like in this cartoon:
 
-<img src="/img/2012-06-05/3d_rotation_example.png">
+<object data="/img/2012-06-05/3d_rotation_example.svg" type="image/svg+xml">
+</object>
 
 then this is pretty simple. We can see that `\(x_3 = x_3'\)`, so `\(\theta_{3 3} = 0\)`, and `\(\theta_{3 i} \text{ and } \theta_{i 3}\)` are both `\(\frac{\pi}{2}\)` for `\(i = 1 \text{ or } 2\)`. Similarly, `\(\theta_{1 1} \text{ and } \theta_{2 2}\)` are just equal to `\(\alpha\)`. 
 
