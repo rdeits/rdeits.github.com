@@ -6,7 +6,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)/[Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames/)
+[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)/[Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames/)/[Part 6](/2012/06/27/denavit-hartenberg-analysis-part-6-examples/)
 
 Last time, we showed that we can use a sequence of four particular transformations to uniquely describe the transformation between two coordinate systems which satisfy the following two properties:
 
@@ -76,7 +76,7 @@ Then the assignment of coordinate frames:
 
 ## Case 2: `\(z_{i-1}\)` and `\(z_i\)` are parallel
 
-Two parallel vectors have infinitely many common normals (vectors `\(\vec{v}\)` which are perpendicular to both of them), so we can choose any one of these to be the direction of `\(x_{i}\)`. For convenience, we'll pick `\(x_{i}`\) so that it passes through `\(O_{i-1}\)`. So, our procedure is:
+Two parallel vectors have infinitely many common normals (vectors `\(\vec{v}\)` which are perpendicular to both of them), so we can choose any one of these to be the direction of `\(x_{i}\)`. For convenience, we'll pick `\(x_{i}\)` so that it passes through `\(O_{i-1}\)`. So, our procedure is:
 
 1. Find the vector `\(\vec{v}\)` which is perpendicular to `\(z_{i-1}\)` and `\(z_{i}\)` and which passes through `\(O_{i-1}\)`. Call it `\(\vec{v}\)`. 
 

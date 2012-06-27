@@ -10,7 +10,7 @@ tags: []
 
 A couple months ago, I taught myself coordinate frame transformations and the Denavit-Hartenberg parameters for inverse kinematics in robotics, primarily from Chapter 3 of [Robot Modeling and Control by Spong et. al](http://www.amazon.com/Robot-Modeling-Control-Mark-Spong/dp/0471649902) and [this lecture from MIT](http://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-2009/lecture-notes/MIT16_07F09_Lec03.pdf). But one does not truly understand something until one can teach it, so here goes. This should make sense to you if you know how to use the dot product and how to multiply matrices. 
 
-[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)/[Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames/)
+[Part 1](/2012/06/05/denavit-hartenberg-robotic-control/)/[Part 2](/2012/06/09/denavit-hartenberg-for-robotics-part-2-homogeneous-matrices/)/[Part 3](/2012/06/10/denavit-hartenberg-for-robotics-part-3-the-d-h-parameters/)/[Part 4](/2012/06/19/denavit-hartenberg-parameters-part-4-existence-and-uniqueness/)/[Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames/)/[Part 6](/2012/06/27/denavit-hartenberg-analysis-part-6-examples/)
 
 # Motivation
 
