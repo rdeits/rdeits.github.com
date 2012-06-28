@@ -72,7 +72,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8944821"
-     inkscape:cx="52.926326"
+     inkscape:cx="-11.161132"
      inkscape:cy="142.00188"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -90,7 +90,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -171,42 +171,44 @@
          id="tspan5106"
          x="48.759495"
          y="272.94067"> </tspan></text>
-    <g
-       id="g5425">
-      <path
-         id="path3753"
-         d="m 334.92004,377.39917 c 0,0 0,0 0,52.85693 l 46.71078,0"
-         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow1Sstart);marker-end:url(#Arrow1Send)" />
-      <text
-         id="text5091"
-         y="437.63147"
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="386.36862"
+       y="437.63147"
+       id="text5091"><tspan
+         sodipodi:role="line"
+         id="tspan5093"
          x="386.36862"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="437.63147"
-           x="386.36862"
-           id="tspan5093"
-           sodipodi:role="line">x</tspan></text>
-      <text
-         id="text5095"
-         y="385.01495"
+         y="437.63147">x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="341.84415"
+       y="385.01495"
+       id="text5095"><tspan
+         sodipodi:role="line"
+         id="tspan5097"
          x="341.84415"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="385.01495"
-           x="341.84415"
-           id="tspan5097"
-           sodipodi:role="line">y</tspan></text>
-      <text
-         id="text5108"
-         y="445.41663"
+         y="385.01495">y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
+       x="318.76093"
+       y="445.41663"
+       id="text5108"><tspan
+         sodipodi:role="line"
+         id="tspan5110"
          x="318.76093"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Cambria Math;-inkscape-font-specification:Cambria Math"
-         xml:space="preserve"><tspan
-           y="445.41663"
-           x="318.76093"
-           id="tspan5110"
-           sodipodi:role="line">0</tspan></text>
-    </g>
+         y="445.41663">0</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Send);stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 81.188963,145.45673 50.095317,0"
+       id="path2841"
+       transform="translate(253.61166,285.97494)" />
+    <path
+       id="path3821"
+       d="m 335.55288,432.18393 0,-50.09532"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)" />
   </g>
 </svg>
