@@ -216,7 +216,7 @@ ul.compact li a {
 }
 
 #header img {
-	filter: url(img/grayscale_filter.svg#grayscale); /* Firefox 3.5+ */
+	filter: url("/img/grayscale_filter.svg#grayscale"); /* Firefox 3.5+ */
     filter: gray; /* IE5+ */
     -webkit-filter: grayscale(1); /* Webkit */
     /* This trick taken from http://stackoverflow.com/questions/609273/convert-an-image-to-grayscale-in-html-css */
@@ -252,10 +252,11 @@ ul.compact li a {
 	line-height: 75%
 }
 
-#header form {
+#header input {
 	position:absolute;
 	top: 0;
 	right: 0px;
+	width: 125px;
 }
 
 #atom a {
