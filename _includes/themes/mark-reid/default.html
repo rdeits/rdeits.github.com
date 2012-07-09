@@ -50,22 +50,28 @@
 <div id="site">
   
   <div id="header">
-    <h1>
-    	<a href="{{ HOME_PATH }}" title="{{ site.title }}">{{ site.title }}</a>
-    	<span class="byline">&larr; <a href="/pages/about.html">{{ site.author.name }}</a></span>
-    </h1>
-    <ul class="nav">
-	  <!-- <li><a href="/pages/about.html">About</a></li> -->
-      <li><a  href="/archive.html">Archive</a></li>
-      <li><a  href="/pages.html">Pages</a></li>
-      <li><a  href="/categories.html">Categories</a></li>
-    </ul>
+    <div id="search">
+      <form action="/pages/search_results.html" method="get">
+        <input type="search" name="query" placeholder="Search"/>
+      </form>
+    </div>
     <div id="atom">
       <a href="/atom.xml"><img src="/assets/feed_icon_16px.png"></a>
     </div>
-				<form action="/pages/search_results.html" method="get">
-					<input type="search" name="query" placeholder="Search"/>
-				</form>
+    <div id="nav">
+      <ul>
+      <!-- <li><a href="/pages/about.html">About</a></li> -->
+        <li><a  href="/archive.html">Archive</a></li>
+        <li><a  href="/pages.html">Pages</a></li>
+        <li><a  href="/categories.html">Categories</a></li>
+      </ul>
+    </div>
+    <div id="title">
+      <h1>
+        <a href="{{ HOME_PATH }}" title="{{ site.title }}">{{ site.title }}</a>
+        <span class="byline">&larr; <a href="/pages/about.html">{{ site.author.name }}</a></span>
+      </h1>
+    </div>
   </div>
 
   {{ content }}

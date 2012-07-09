@@ -11,7 +11,6 @@ tags: []
 # Example 1: Planar Elbow Manipulator
 
 <object data="/img/2012-06-27/planar_elbow_manipulator.svg" type="image/svg+xml" style="height:275px">
-	<img src="/img/2012-06-27/planar_elbow_manipulator.png"/>
 </object>
 
 Let's first look at a simple arm with two links and two joints. Following the procedure from [last time](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames#solving_the_entire_arm), we first identify the joint axes and assign `\(z_0 \dots z_n\)` to them:

@@ -192,6 +192,11 @@ ul.compact li a {
 	width: 70%;
 }
 /* @end */
+#nav {
+	float: right;
+	width: 230px;
+
+}
 
 /* @group Header */
 #header, #header a { color: silver; }
@@ -200,7 +205,6 @@ ul.compact li a {
 #header:hover a:hover { text-decoration: none; }
 #header a:hover .hover { color: silver; }
 #header {
-	position: relative;
 	font-variant: small-caps;
 	line-height: 1em;
 	margin-top: .5em;
@@ -209,7 +213,6 @@ ul.compact li a {
 #header h1 {
 	font-family: Palatino, georgia, "times new roman", serif;
 	margin-bottom: 0;
-	margin-right:129px;
 	line-height: 0.9em;
 	display: block;
 	font-weight: normal;
@@ -220,6 +223,7 @@ ul.compact li a {
     filter: gray; /* IE5+ */
     -webkit-filter: grayscale(1); /* Webkit */
     /* This trick taken from http://stackoverflow.com/questions/609273/convert-an-image-to-grayscale-in-html-css */
+    padding: 0.2em 0.3em 0em 0.3em;
 }
 
 #header:hover img {
@@ -228,14 +232,12 @@ ul.compact li a {
 }
 
 #header ul {
-	position:absolute;
 	top: 0;
-	right: 151px;
-	font-size: 100%;
 	line-height: 1.6em;
 	display: block;
 	margin: 0;
 	text-align: right;
+	padding: 0;
 }
 #header ul li { display: inline; }
 #header ul li a {
@@ -250,19 +252,32 @@ ul.compact li a {
 	color: silver;
 	font-size: 10pt;
 	line-height: 75%
+	width: 120px;
 }
 
 #header input {
-	position:absolute;
+	/*position:absolute;*/
 	top: 0;
-	right: 0px;
+	/*right: 0px;*/
 	width: 125px;
 }
 
+#title a,span {
+	white-space:nowrap;
+}
+
+
+
+#search {
+	float:right; 
+	width:130px;
+}
+
 #atom a {
-	position: absolute;
-	right: 133px;
+	/*position: absolute;*/
+	/*right: 133px;*/
 	top: 3px;
+	float:right;
 }
 
 /* @group Twitter */
