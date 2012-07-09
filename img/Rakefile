@@ -1,0 +1,9 @@
+task :default => [:generate_pdfs]
+
+task :generate_pdfs do
+	FileList['**/*.svg'].each do |fn|
+		out_fn = fn.sub(/\.svg/, '.pdf')
+		sh "svg2pdf #{fn} #{out_fn}"
+	end
+end
+
