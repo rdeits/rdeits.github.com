@@ -50,7 +50,7 @@ The first issue is that this will work perfectly for a point light source (a ide
 <object data="/img/2012-05-21/DLP_holo_point_wide.svg" type="image/svg+xml" style="height:350px">
 </object>
 
-See how the ray from the leftmost mirror just goes off into space? That's a problem. The solution to this is to use a _wide_ light source. We'll still treat our mirrors as infinitely tiny (they're only a few micrometers across in a real DLP chip, so this is a good approximation), but we'll make our lamp much bigger, perhaps more like the size of one of the long fluorescent tubes. This means that each mirror will create a wide beam of reflected light, like so:
+See how the ray from the leftmost mirror just goes off into space? That's a problem. The solution to this is to use a _wide_ light source. We'll still treat our mirrors as infinitely tiny (they're only a few micrometers across in a real DLP chip, so this is a good approximation), but we'll make our lamp much bigger, perhaps more like the size of a long fluorescent tube. This means that each mirror will create a wide beam of reflected light, like so:
 
 <object data="/img/2012-05-21/wide_lamp_1_mirror.svg" type="image/svg+xml" style="height:350px">
 </object>
@@ -125,3 +125,4 @@ Now we can display pixels to just the right eye, just the left eye, or turn them
 
 Ah well, nobody's perfect...
 
+If you're interested, you can download the IPython Notebook I used to make this graph from my [ScratchHolograms](https://github.com/rdeits/ScratchHolograms/tree/master/DLP_holograms) github repository.
