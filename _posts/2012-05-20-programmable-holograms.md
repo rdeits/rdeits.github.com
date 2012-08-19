@@ -120,7 +120,8 @@ However, there's a (sort of) solution to this as well. Remember from the beginni
 Now we can display pixels to just the right eye, just the left eye, or turn them off at will. This is the essence of a 3D display, and one that doesn't even require glasses! It does, however, have a _few_ lingring issues:
 
 1. The display is _tiny_ (about an inch across)
-2. There is only one possible depth value, since the mirror angles are fixed. So, we can't create 3D shapes, we can just display flat objects in a 3D space.
+2. <strike>There is only one possible depth value, since the mirror angles are fixed. So, we can't create 3D shapes, we can just display flat objects in a 3D space.</strike> 
+This is incorrect, as I explain in a [later post](/2012/08/19/improved-dlp-holograms/)
 3. The viewer can't move her head more than an inch or two without completely ruining the effect. 
 
 Ah well, nobody's perfect...
