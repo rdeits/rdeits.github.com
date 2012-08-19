@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Improved DLP Holograms"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}

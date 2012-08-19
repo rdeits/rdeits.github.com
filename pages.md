@@ -7,6 +7,7 @@ group: navigation
 {% include JB/setup %}
 
 * [Home](index.html)
+* [About](pages/about.html)
 * [Archive](archive.html)
 * [Yak Shaving](pages/yak_shaving.html)
 
