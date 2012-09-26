@@ -21,3 +21,22 @@ From the [git book](http://book.git-scm.com/5_submodules.html):
 
 	git submodule init
 	git submodule update
+
+## git-svn
+Clone a repository:
+	
+	git svn clone https://example.com/my_repo local_dir
+
+Useful flags:
+
+	-s standard layout (trunk branches tags)
+	-r 1000:HEAD specific revisions
+
+Create ignore files:
+
+	echo ".gitignore" >> .git/info/exclude
+	git svn create-ignore
+
+Commit back to SVN:
+
+	git svn dcommit
