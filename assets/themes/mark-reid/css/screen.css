@@ -194,16 +194,16 @@ ul.compact li a {
 /* @end */
 #nav {
 	float: right;
-	width: 230px;
+	width: 240px;
 
 }
 
 /* @group Header */
-#header, #header a { color: silver; }
-#header .hover { color: transparent; }
-#header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}
+#header, #header a { color: black;}
+/*#header .hover { color: transparent; }*/
+/*#header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}*/
 #header:hover a:hover { text-decoration: none; }
-#header a:hover .hover { color: silver; }
+/*#header a:hover .hover { color: silver; }*/
 #header {
 	font-variant: small-caps;
 	line-height: 1em;
