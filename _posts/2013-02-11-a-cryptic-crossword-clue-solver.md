@@ -76,7 +76,9 @@ To solve a clue, the solver first determines all possible ways to combine words 
 
 Next, the definition of the clue is chosen to be the first or last phrase (both possibilities are fully explored by the solver). Finally, the remaining words are passed into the wordplay context-free grammar to determine all of the ways that each word could be used. The CFG used is one that I developed based on my observations about cryptic clues. It encodes various rules which are commonly followed, such as that we almost never take an anagram of anything except a literal word from the clue, but we might insert that anagram into another word. 
 
-For each phrasing, we use the CFG to generate all possible syntactic structures for those words. For example, a structure for ["initially", "babies", "are", "naked] is:
+For each phrasing, we use the CFG to generate all possible syntactic structures for those words. The CFG is very lenient about allowing words to have a variety of meanings, but it does have lists of common function indicators, which it uses to eliminate unlikely parses. For example, "initially" is almost always a substring indicator, so it will almost certainly not act as an anagram or reversal indicator. 
+
+Such a structure for ["initially", "babies", "are", "naked] is:
 
 	('top', 
 	  (sub, 
