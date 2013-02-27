@@ -18,8 +18,7 @@ The answer is STASIS. How did we get there? Well, this was a Down clue, so "Sat 
 
 After spending many, many hours doing cryptic crosswords, I began to notice patterns in the way the wordplays and definitions worked, and I realized that I might be able to create an automatic solver for cryptic clues. A few months later, I have a working version that can solve many cryptic clues very effectively. It's often faster and smarter than I am, and it makes a fun tool to play with while I'm solving. Here are its answers for the two clues given above:
  
-	Take a synonym of 'babies' to get BABE. 
-	'initially' means to take a substring of 'babe' to get B. 
+	'initially' means to take a substring of 'babies' to get B. 
 	'naked' is the definition. 
 	Combine 'b' and 'are' to get BARE. 
 	BARE matches 'naked' with confidence score 100%. 
