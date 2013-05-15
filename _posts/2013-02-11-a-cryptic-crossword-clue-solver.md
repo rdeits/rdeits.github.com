@@ -32,7 +32,7 @@ and
 	STASIS matches 'balance' with confidence score 100%. 
 
 
-If you just want to play with it, check it out here: [https://github.com/rdeits/cryptics](https://github.com/rdeits/cryptics). Otherwise, read on. 
+If you just want to play with it, you can try it out at [cryptic-solver.appspot.com](http://cryptic-solver.appspot.com/), and you can see the source code here: [https://github.com/rdeits/cryptics](https://github.com/rdeits/cryptics). Otherwise, read on. 
 
 #Background
  Each cryptic clue consists of two parts: a definition and a wordplay, but the distinction between those two parts is intentionally obscured. Both parts of the clue, however, describe the same word, so we can be very confident in our answer if it matches the wordplay and the definition well. Here are a few more examples:
@@ -298,5 +298,5 @@ Correct answer: STASIS
 
 
 # Try It!
-All the source code for the solver is available on [github.com/rdeits/cryptics](https://github.com/rdeits/cryptics). I'd be very interested to hear if this tool ends up being useful for anyone. 
+All the source code for the solver is available on [github.com/rdeits/cryptics](https://github.com/rdeits/cryptics). I also have an experimental version hosted through Google AppSpot at [cryptic-solver.appspot.com](http://cryptic-solver.appspot.com/) (the hosted solver takes a minute or two to start up, so please be patient). I'd be very interested to hear if this tool ends up being useful for anyone. 
 	
