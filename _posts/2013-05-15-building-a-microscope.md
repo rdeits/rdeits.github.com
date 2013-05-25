@@ -74,5 +74,7 @@ And a single grain of salt (I had quite a lot of trouble focusing on this one, s
 
 This certainly isn't a perfect microscope setup. The magnification is as advertised, but the image quality is quite low. Even without the difficulty in focusing, there is a great deal of chromatic aberration and other distortion caused by the many, many pieces of glass that the image has to travel through. The real problem is that I'm using two zoom lenses for this task, both of which are sacrificing image quality for flexibility in focal length. If I can find a 10mm lens with a fixed focal length, I may be able to get much higher quality images from this setup. 
 
+Still, this was tons of fun to play with, and I'm excited to find out what else I can see with my new toy.
+
 
 
