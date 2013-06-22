@@ -72,7 +72,8 @@ I spent a while thinking about the best way to bring power and data to the light
 1. It should be easy for my dad to get or make a longer cable if he moves the lights or control box
 1. It should look good
 
-<br><br>
+<br>
+
 My first (incredibly bad) idea was to use a 3-prong power cable. This had a lot of advantages: it had the right number of conductors, would be easy to use, and would allow the user to extend the reach of the cable with standard extension cords. Unfortunately, it would also allow an unwary user to accidentally plug his USB port into a 120V wall socket, which would be extremely bad. 
 
 After much debate, I settled on 1/4 inch audio cable from [monoprice](http://www.monoprice.com/products/product.asp?c_id=102&cp_id=10244&cs_id=1024406&p_id=4795&seq=1&format=2). This looked fantastic, would be easy to buy in longer lengths if necessary, and had jacks which were easy to install into my control box. Unfortunately, I failed to think of one problem: the design of the cable is such that when plugging in the cable the third conductor (the one at the very tip) touches the contact for the first conductor in the jack. This means that if the circuit is powered when the cable is plugged in, we can end up with a short or an inverse voltage being supplied to the lights. I believe this is what temporarily killed the entire strand of lights while I was testing. Fortunately, the cure to this failure was fairly simple: since the lights are entirely modular, I saved the day by cutting the first light out:

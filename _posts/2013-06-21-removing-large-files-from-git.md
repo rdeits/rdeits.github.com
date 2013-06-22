@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Removing Large Files from Git"
-category:
+category: Yak Shaving
 tags: []
 ---
 {% include JB/setup %}
