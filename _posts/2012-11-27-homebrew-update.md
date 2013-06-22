@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Homebrew Update"
-category: 
+category:
 tags: []
 ---
 {% include JB/setup %}

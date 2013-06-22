@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Cryptic Crossword Clue Solver"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}

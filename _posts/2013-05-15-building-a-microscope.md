@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Microscope"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}
