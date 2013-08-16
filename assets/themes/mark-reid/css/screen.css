@@ -73,7 +73,7 @@ sup { line-height: 1ex; }
 #page, #disqus_thread {
 	background: white;
 /*	background-image: url(grid.png); */
-	padding: 3em 3em 1.5em 3em;
+	padding: 2em 3em 1.5em 3em;
 	border: 1px solid #ccc;
 }
 
@@ -216,6 +216,17 @@ ul.compact li a {
 	line-height: 0.9em;
 	display: block;
 	font-weight: normal;
+}
+#blog-title {
+	font-family: Palatino, georgia, "times new roman", serif;
+	font-weight: normal;
+	font-variant: small-caps;
+	font-size: 150%;
+	float: right;
+}
+
+#splash {
+	padding-bottom: 1em;
 }
 
 #header img {
