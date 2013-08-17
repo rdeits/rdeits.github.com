@@ -1,17 +1,44 @@
 <div id="page">
 
 <div id="splash">	
-	<div id="banner">
+	<div id="banner" style="width:640px; height:238px;">
 	</div>
 	<span id="blog-title">Playing with Legos (and other activities)</span>
 </div>
 <!-- <a href="http://www.flickr.com/photos/26769928@N02/sets/72157627194290064/" target="_blank"><img src="/img/header.jpg" width="100%"></a> -->
 
 <script type="text/javascript">
-var num_banners = 22;
-var banner = document.querySelector("#banner");
-var selected_banner = Math.floor(Math.random() * num_banners) + 1;
-banner.innerHTML='<img src="/img/banners/' + selected_banner + '.jpg">';
+
+function getPhotoURL(photo) {
+	// get the "medium" size (640px long edge) direct link for a particular photo
+	// see: http://www.flickr.com/services/api/misc.urls.html
+	return 'http://farm' + photo.getAttribute('farm') + '.staticflickr.com/' + photo.getAttribute('server') + '/' + photo.getAttribute('id') + '_' + photo.getAttribute('secret') + '_z.jpg';
+}
+
+function getPhotoPageURL(photo) {
+	// get the URL for the full photo page on flickr
+	// see: http://www.flickr.com/services/api/misc.urls.html
+	return 'http://www.flickr.com/photos/26769928@N02/' + photo.getAttribute('id');
+}
+
+function reqListener() {
+	// grab the list of photos and choose one randomly to use as the banner
+	resp = this.responseXML;
+	photoset = resp.getElementsByTagName('photoset')[0];
+	photos = photoset.getElementsByTagName('photo');
+	num_banners = photos.length;
+	var banner = document.querySelector("#banner");
+	var selected_banner = Math.floor(Math.random() * num_banners);
+	console.log(selected_banner);
+	console.log(photos[selected_banner]);
+	banner.innerHTML='<a href="' + getPhotoPageURL(photos[selected_banner]) + '" target="_blank"><img src="' + getPhotoURL(photos[selected_banner]) + '"></a>';
+	// banner.innerHTML='<img src="/img/banners/' + selected_banner + '.jpg">';
+}
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+// see: http://www.flickr.com/services/api/flickr.photosets.getPhotos.html
+oReq.open("get", "http://ycpi.api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=cbed8e1544fcd2527499e3b3581e5b83&photoset_id=72157635087791567");
+oReq.send();
 </script>
 
 <!-- <h1 class="emphnext">{{ page.title }}</h1> -->
