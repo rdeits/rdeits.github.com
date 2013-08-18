@@ -597,5 +597,10 @@ img.maruku-png { }
 	color:#FFF;
 }
 
+#banner {
+	width: 640px;
+	height: 238px;
+}
+
 /* MathJax Settings */
 code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
