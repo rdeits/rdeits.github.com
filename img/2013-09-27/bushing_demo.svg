@@ -89,8 +89,8 @@
      inkscape:label="Layer 1">
     <g
        id="g4644"
-       transform="matrix(0.50888003,0,0,0.50888003,-56.247152,-269.80964)"
-       style="stroke:#00a100;stroke-width:0.98254984999999995;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill:#00be00;fill-opacity:1">
+       transform="matrix(0.50888003,0,0,0.50888003,-39.862743,100.478)"
+       style="fill:#00be00;fill-opacity:1;stroke:#00a100;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
       <rect
          transform="translate(0,737.35975)"
          y="28.837494"
@@ -98,7 +98,7 @@
          height="54.451977"
          width="9.2684212"
          id="rect4640"
-         style="fill:#00be00;fill-opacity:1;stroke:#00a100;stroke-width:0.98254984999999995;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#00be00;fill-opacity:1;stroke:#00a100;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          inkscape:transform-center-y="-4.9371414"
          transform="translate(16.219736,722.87784)"
@@ -114,19 +114,19 @@
          sodipodi:cx="119.9102"
          sodipodi:sides="3"
          id="path4642"
-         style="fill:#00be00;fill-opacity:1;fill-rule:nonzero;stroke:#00a100;stroke-width:0.98254984999999995;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#00be00;fill-opacity:1;fill-rule:nonzero;stroke:#00a100;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          sodipodi:type="star" />
     </g>
     <rect
-       y="-409.47653"
-       x="297.06958"
+       y="-39.188896"
+       x="313.45401"
        height="312.67062"
        width="28.897852"
        id="use4676"
        style="fill:#a5a5a5;fill-opacity:1;fill-rule:nonzero;stroke:none" />
     <rect
-       y="-321.69254"
-       x="-49.51767"
+       y="48.598248"
+       x="-33.204502"
        height="48.163078"
        width="337.65414"
        id="use4678"
@@ -135,22 +135,22 @@
     <path
        inkscape:connector-curvature="0"
        id="use4680"
-       d="m 295.7104,-269.57275 -0.0113,-58.99982 -31.306,0.006 10e-4,6.82312 23.68019,-0.005 0.01,52.17669 z"
+       d="m 312.09481,100.71489 -0.0113,-58.999821 -31.306,0.006 10e-4,6.82312 23.68019,-0.005 0.01,52.176691 z"
        style="fill:#268adb;fill-opacity:1;stroke:none" />
     <rect
        style="fill:#444444;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="use4682"
        width="104.51251"
        height="48.163078"
-       x="334.27448"
-       y="-321.69254"
+       x="350.58762"
+       y="48.598248"
        transform="matrix(0.99999998,-1.9239449e-4,1.9239449e-4,0.99999998,0,0)" />
     <use
        x="0"
        y="0"
        xlink:href="#use4680"
        id="use4696"
-       transform="matrix(-1,0,0,1,622.66534,-7.465874e-6)"
+       transform="matrix(-1,0,0,1,655.43416,-2.8197737e-6)"
        width="450"
        height="315" />
     <use
@@ -158,12 +158,12 @@
        y="0"
        xlink:href="#use4676"
        id="use4748"
-       transform="translate(-4.1908957e-7,388.16396)"
+       transform="translate(-2.8022637e-7,388.16396)"
        width="450"
        height="315" />
     <g
        id="use4750"
-       transform="matrix(0.99916312,0.04090309,-0.04090309,0.99916312,-9.3898294,-379.72449)">
+       transform="matrix(0.99916312,0.04090309,-0.04090309,0.99916312,6.9945794,-9.4368511)">
       <g
          id="g4758">
         <rect
@@ -193,7 +193,7 @@
         <use
            height="315"
            width="450"
-           transform="matrix(-1,0,0,1,651.33806,758.85199)"
+           transform="matrix(-1,0,0,1,667.72247,388.56435)"
            id="use4768"
            xlink:href="#use4680"
            y="0"
@@ -202,7 +202,7 @@
     </g>
     <g
        style="stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       transform="matrix(-0.1263487,0.9800262,-0.9800262,-0.1263487,1066.403,84.143767)"
+       transform="matrix(-0.1263487,0.9800262,-0.9800262,-0.1263487,1082.7874,454.4314)"
        id="use4648">
       <rect
          style="fill:#ff0000;fill-opacity:1;stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -232,7 +232,7 @@
     </g>
     <g
        style="stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       transform="matrix(0.28633897,1.1334151,1.1334151,-0.28633897,-577.78181,121.70829)"
+       transform="matrix(0.28633897,1.1334151,1.1334151,-0.28633897,-561.3974,491.99593)"
        id="use4650">
       <rect
          style="fill:#ff0000;fill-opacity:1;stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -265,12 +265,12 @@
        y="0"
        xlink:href="#use4676"
        id="use4752"
-       transform="translate(-4.1908957e-7,755.32126)"
+       transform="translate(-2.8022637e-7,755.32126)"
        width="450"
        height="315" />
     <g
        id="g4827"
-       transform="matrix(0.99986394,0.01649557,-0.01649557,0.99986394,-7.5278834,-762.36047)">
+       transform="matrix(0.99986394,0.01649557,-0.01649557,0.99986394,8.8565251,-392.07283)">
       <g
          transform="translate(0,755.32125)"
          id="use4754">
@@ -305,7 +305,7 @@
              y="0"
              xlink:href="#use4680"
              id="use4782"
-             transform="matrix(-1,0,0,1,651.33806,758.85199)"
+             transform="matrix(-1,0,0,1,667.72247,388.56435)"
              width="450"
              height="315" />
         </g>
@@ -317,7 +317,7 @@
            y="0"
            xlink:href="#use4696"
            id="use4796"
-           transform="matrix(1,0,0,-1,28.672715,1045.8419)"
+           transform="matrix(1,0,0,-1,12.288306,1416.1295)"
            width="450"
            height="315" />
         <rect
@@ -336,7 +336,7 @@
            y="0"
            xlink:href="#use4680"
            id="use4794"
-           transform="matrix(1,0,0,-1,28.672715,1045.8419)"
+           transform="matrix(1,0,0,-1,12.288306,1416.1295)"
            width="450"
            height="315" />
         <use
@@ -370,12 +370,12 @@
        y="0"
        xlink:href="#g4644"
        id="use4850"
-       transform="translate(-4.1908957e-7,373.05396)"
+       transform="translate(-2.8022637e-7,373.05396)"
        width="450"
        height="315" />
     <g
        style="stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       transform="matrix(-0.07663295,0.6410606,-0.6410606,-0.07663295,809.65132,586.08263)"
+       transform="matrix(-0.07663295,0.6410606,-0.6410606,-0.07663295,826.03573,956.37027)"
        id="use4852">
       <rect
          style="fill:#ff0000;fill-opacity:1;stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -405,7 +405,7 @@
     </g>
     <g
        id="use4854"
-       transform="matrix(0.17762056,0.74215672,0.76174818,-0.17750169,-288.23575,458.67728)"
+       transform="matrix(0.17762056,0.74215672,0.76174818,-0.17750169,-271.85134,828.96492)"
        style="stroke:#d00000;stroke-width:0.98254985;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none">
       <rect
          transform="translate(0,737.35975)"
@@ -436,43 +436,43 @@
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville;-inkscape-font-specification:Baskerville"
-       x="194.1873"
-       y="-130.98903"
+       x="210.5717"
+       y="239.29861"
        id="text4935"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4937"
-         x="194.1873"
-         y="-130.98903">Aluminum rod</tspan></text>
+         x="210.5717"
+         y="239.29861">Aluminum rod</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4939"
-       y="-248.00276"
-       x="38.941246"
+       y="122.28489"
+       x="55.325657"
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville;-inkscape-font-specification:Baskerville"
        xml:space="preserve"><tspan
-         y="-248.00276"
-         x="38.941246"
+         y="122.28489"
+         x="55.325657"
          id="tspan4941"
          sodipodi:role="line">Sample stage</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Baskerville;-inkscape-font-specification:Baskerville"
-       x="143.3241"
-       y="-381.92844"
+       x="159.7085"
+       y="-11.640797"
        id="text4943"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4945"
-         x="143.3241"
-         y="-381.92844">Nylon </tspan><tspan
+         x="159.7085"
+         y="-11.640797">Nylon </tspan><tspan
          sodipodi:role="line"
-         x="143.3241"
-         y="-341.92844"
+         x="159.7085"
+         y="28.359203"
          id="tspan4947">bushing</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 238.39314,-367.60314 c 16.28542,9.40239 37.06973,19.25168 37.06973,37.06973"
+       d="m 254.77755,2.684499 c 16.28542,9.40239 37.06973,19.25168 37.06973,37.06973"
        id="path4949"
        inkscape:connector-curvature="0" />
   </g>
