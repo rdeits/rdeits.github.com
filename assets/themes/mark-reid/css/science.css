@@ -1,0 +1,13 @@
+.onecol-figure {
+	width: 75%;
+}
+
+.twocol-figure {
+	width: 45%;
+	margin: 0;
+	float:left;
+}
+
+figcaption {
+	text-align: center;
+}
