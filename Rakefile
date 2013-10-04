@@ -39,6 +39,7 @@ module JB
   end #Path
 end #JB
 
+desc "Copy over the most recent PDF of my CV"
 task :cv do
 	system("cp ~/Documents/Resume/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
 end
