@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "More Microscope, or How not to Build a Linear Bearing"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}
