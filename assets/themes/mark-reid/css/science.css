@@ -11,3 +11,7 @@
 figcaption {
 	text-align: center;
 }
+
+.text_cell_render p a img {
+	width: 100%;
+}
