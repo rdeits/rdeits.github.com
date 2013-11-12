@@ -44,6 +44,22 @@ task :cv do
 	system("cp ~/Documents/Resume/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
 end
 
+file "_includes/posts/2013-11-11-coasters/graphs.html" => "/Users/rdeits/Projects/RollerCoasters/graphs.ipynb" do
+  sh "ipython nbconvert --to html --template basic /Users/rdeits/Projects/RollerCoasters/graphs.ipynb"
+  mv "graphs.html", "_includes/posts/2013-11-11-coasters/graphs.html"
+end
+
+desc "Copy over files from the roller coasters project"
+task :coasters => ["_includes/posts/2013-11-11-coasters/graphs.html"] do
+  f = FileList["/Users/rdeits/Projects/RollerCoasters/data/2013-09-28-cedar-point/**/accel_polar.*"]
+  f.each do |fname|
+    puts fname
+    outfname = fname.gsub(/.*cedar\-point\//, File.dirname(__FILE__) + "/img/2013-11-11-coasters/")
+    mkdir_p File.dirname(outfname)
+    cp fname, outfname
+  end
+end
+
 # Usage: rake post title="A Title"
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
