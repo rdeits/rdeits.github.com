@@ -1,0 +1,897 @@
+
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[1]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pycryptics.grammar.clue_parse</span> <span class="kn">import</span> <span class="n">generate_clues</span>
+<span class="kn">from</span> <span class="nn">pycryptics.solve_clue</span> <span class="kn">import</span> <span class="n">Constraints</span>
+<span class="kn">from</span> <span class="nn">pycryptics.grammar.clue_tree</span> <span class="kn">import</span> <span class="n">ClueUnsolvableError</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Loading synonyms from file...
+...done.
+Loading ngrams from file...
+...done.
+Loading indicators from file...
+...done.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="solving-a-single-clue">Solving a single clue</h2>
+<p>Let's demonstrate what we can do with a simple cryptic clue. Here's our clue, broken up into a list of words:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">phrases</span> <span class="o">=</span> <span class="s">&#39;spin broken shingle&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We also have constraints on the final answer, namely that it will have 7 letters and the answer won't be any of the words which directly appear in the clue.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">con</span> <span class="o">=</span> <span class="n">Constraints</span><span class="p">(</span><span class="n">phrases</span><span class="o">=</span><span class="n">phrases</span><span class="p">,</span>
+                  <span class="n">lengths</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,),</span>
+                  <span class="n">pattern</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+                  <span class="n">known_answer</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can generate all possible clue interpretations of those phrases:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">clues</span> <span class="o">=</span> <span class="n">generate_clues</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="n">clues</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c"># sort the clues list so that we can reliably find </span>
+<span class="c"># specific clues for this demo. You won&#39;t need to do this.</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For example, here's one interpretation:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (first broken)) (clue_arg (first shingle)))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And another:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[6]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (ana (ana_arg (lit broken)) (ana_ shingle))))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here are all the possible ways 'spin broken shingle' could be interpreted:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clues</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">c</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (first broken)) (clue_arg (first shingle)))
+(top (d spin) (clue_arg (first broken)) (clue_arg (lit shingle)))
+(top (d spin) (clue_arg (first broken)) (clue_arg (syn shingle)))
+(top (d spin) (clue_arg (lit broken)) (clue_arg (first shingle)))
+(top (d spin) (clue_arg (lit broken)) (clue_arg (lit shingle)))
+(top (d spin) (clue_arg (lit broken)) (clue_arg (syn shingle)))
+(top (d spin) (clue_arg (syn broken)) (clue_arg (first shingle)))
+(top (d spin) (clue_arg (syn broken)) (clue_arg (lit shingle)))
+(top (d spin) (clue_arg (syn broken)) (clue_arg (syn shingle)))
+(top (d spin) (clue_arg (ana (ana_ broken) (ana_arg (lit shingle)))))
+(top (d spin) (clue_arg (ana (ana_arg (lit broken)) (ana_ shingle))))
+(top (clue_arg (sub (sub_ spin) (sub_arg (lit broken)))) (d shingle))
+(top (clue_arg (sub (sub_ spin) (sub_arg (syn broken)))) (d shingle))
+(top (clue_arg (first spin)) (clue_arg (first broken)) (d shingle))
+(top (clue_arg (first spin)) (clue_arg (lit broken)) (d shingle))
+(top (clue_arg (first spin)) (clue_arg (syn broken)) (d shingle))
+(top (clue_arg (ana (ana_ spin) (ana_arg (lit broken)))) (d shingle))
+(top (clue_arg (ana (ana_arg (lit spin)) (ana_ broken))) (d shingle))
+(top (clue_arg (lit spin)) (clue_arg (first broken)) (d shingle))
+(top (clue_arg (lit spin)) (clue_arg (lit broken)) (d shingle))
+(top (clue_arg (lit spin)) (clue_arg (syn broken)) (d shingle))
+(top (clue_arg (syn spin)) (clue_arg (first broken)) (d shingle))
+(top (clue_arg (syn spin)) (clue_arg (lit broken)) (d shingle))
+(top (clue_arg (syn spin)) (clue_arg (syn broken)) (d shingle))
+(top (clue_arg (sub_init (sub_init_ spin) (sub_arg (lit broken)))) (d shingle))
+(top (clue_arg (sub_init (sub_init_ spin) (sub_arg (syn broken)))) (d shingle))
+(top (clue_arg (sub_final (sub_final_ spin) (sub_arg (lit broken)))) (d shingle))
+(top (clue_arg (sub_final (sub_final_ spin) (sub_arg (syn broken)))) (d shingle))
+(top (clue_arg (rev (rev_ spin) (rev_arg (lit broken)))) (d shingle))
+(top (clue_arg (rev (rev_ spin) (rev_arg (syn broken)))) (d shingle))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's try solving one of these clues:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answers</span>
+<span class="k">except</span> <span class="n">ClueUnsolvableError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">e</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+This clue has no solutions under the given constraints: Constraints(phrases=[&apos;spin&apos;, &apos;broken&apos;, &apos;shingle&apos;], lengths=(7,), pattern=&apos;&apos;, known_answer=None)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That clue had no answers which matched our constraints. This raises an exception so that when we're solving a clue, any of its subparts being unsolvable will trigger the exception and let us skip out of solving the other subparts.</p>
+<p>Let's look at the subparts of a clue. Each clue is a tree, and we can access the children of any node in the tree using the [] notation.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (clue_arg (rev (rev_ spin) (rev_arg (syn broken)))) (d shingle))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(clue_arg (rev (rev_ spin) (rev_arg (syn broken))))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(rev (rev_ spin) (rev_arg (syn broken)))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answers</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+{&apos;emat&apos;: [&apos;&apos;, &apos;tame&apos;], &apos;detsub&apos;: [&apos;&apos;, &apos;busted&apos;], &apos;deyortsed&apos;: [&apos;&apos;, &apos;destroyed&apos;], &apos;tespu&apos;: [&apos;&apos;, &apos;upset&apos;], &apos;degluvid&apos;: [&apos;&apos;, &apos;divulged&apos;], &apos;tpeknu&apos;: [&apos;&apos;, &apos;unkept&apos;], &apos;detcarfni&apos;: [&apos;&apos;, &apos;infracted&apos;], &apos;luftif&apos;: [&apos;&apos;, &apos;fitful&apos;], &apos;depoleved&apos;: [&apos;&apos;, &apos;developed&apos;], &apos;detomed&apos;: [&apos;&apos;, &apos;demoted&apos;], &apos;desuap&apos;: [&apos;&apos;, &apos;paused&apos;], &apos;degamad&apos;: [&apos;&apos;, &apos;damaged&apos;], &apos;nevig&apos;: [&apos;&apos;, &apos;given&apos;], &apos;dettod&apos;: [&apos;&apos;, &apos;dotted&apos;], &apos;deliaf&apos;: [&apos;&apos;, &apos;failed&apos;], &apos;wol&apos;: [&apos;&apos;, &apos;low&apos;], &apos;dehguor&apos;: [&apos;&apos;, &apos;roughed&apos;], &apos;deid&apos;: [&apos;&apos;, &apos;died&apos;], &apos;depmub&apos;: [&apos;&apos;, &apos;bumped&apos;], &apos;demat&apos;: [&apos;&apos;, &apos;tamed&apos;], &apos;detaloiv&apos;: [&apos;&apos;, &apos;violated&apos;], &apos;delaever&apos;: [&apos;&apos;, &apos;revealed&apos;], &apos;dehsad&apos;: [&apos;&apos;, &apos;dashed&apos;], &apos;depparwnu&apos;: [&apos;&apos;, &apos;unwrapped&apos;], &apos;dedneffo&apos;: [&apos;&apos;, &apos;offended&apos;], &apos;detageler&apos;: [&apos;&apos;, &apos;relegated&apos;], &apos;depmad&apos;: [&apos;&apos;, &apos;damped&apos;], &apos;tilps&apos;: [&apos;&apos;, &apos;split&apos;], &apos;deggur&apos;: [&apos;&apos;, &apos;rugged&apos;], &apos;desufnoc&apos;: [&apos;&apos;, &apos;confused&apos;], &apos;dehcaerb&apos;: [&apos;&apos;, &apos;breached&apos;], &apos;tcefrepmi&apos;: [&apos;&apos;, &apos;imperfect&apos;], &apos;dehsurc&apos;: [&apos;&apos;, &apos;crushed&apos;], &apos;denepmad&apos;: [&apos;&apos;, &apos;dampened&apos;], &apos;detarapes&apos;: [&apos;&apos;, &apos;separated&apos;], &apos;detrap&apos;: [&apos;&apos;, &apos;parted&apos;], &apos;dehsams&apos;: [&apos;&apos;, &apos;smashed&apos;], &apos;desolcsid&apos;: [&apos;&apos;, &apos;disclosed&apos;], &apos;despalloc&apos;: [&apos;&apos;, &apos;collapsed&apos;], &apos;enog&apos;: [&apos;&apos;, &apos;gone&apos;], &apos;detlah&apos;: [&apos;&apos;, &apos;halted&apos;], &apos;htoomsnu&apos;: [&apos;&apos;, &apos;unsmooth&apos;], &apos;derutcarf&apos;: [&apos;&apos;, &apos;fractured&apos;], &apos;deniur&apos;: [&apos;&apos;, &apos;ruined&apos;], &apos;denekaew&apos;: [&apos;&apos;, &apos;weakened&apos;], &apos;derednuof&apos;: [&apos;&apos;, &apos;foundered&apos;], &apos;deppots&apos;: [&apos;&apos;, &apos;stopped&apos;], &apos;denetfos&apos;: [&apos;&apos;, &apos;softened&apos;], &apos;deriapmi&apos;: [&apos;&apos;, &apos;impaired&apos;], &apos;delbmuh&apos;: [&apos;&apos;, &apos;humbled&apos;], &apos;nrow&apos;: [&apos;&apos;, &apos;worn&apos;], &apos;detpure&apos;: [&apos;&apos;, &apos;erupted&apos;], &apos;tsrub&apos;: [&apos;&apos;, &apos;burst&apos;]}
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>.answers</code> property returns the clue's possible answers or raises a <code>ClueUnsolvableException</code> if there are no answers. The first time a clue's <code>.answers</code> is requested, it automatically calls ClueTree.solve() and caches that answer so that subsequent requests for <code>.answers</code> will be instananeous.</p>
+<p>The format of a clue's answers is a dictionary in which each key is a possible answer and the corresponding value is the answers to the children of that clue which yielded the given answer. For example, the first answer given above is 'emat', with corresponding child answers of '' and 'tame'. The ordering of these sub-answers corresponds to the ordering in the <code>(rev (rev_ spin) (rev_arg (syn broken)))</code>, so the <code>rev_</code> reversal marker produced an empty string ('') and the <code>syn</code> synonym operator acting on 'broken' produced 'tame'. Reversing 'tame' gave the answer 'emit'.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also ask any clue how it got a particular answer:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[13]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">derivation</span><span class="p">(</span><span class="s">&#39;emat&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(rev (rev_ &quot;spin&quot;) (syn &quot;broken&quot; -&gt; TAME) -&gt; EMAT)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If it's not clear what this means, we can also ask for a human-readible derivation:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">(</span><span class="s">&#39;emat&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+
+Take a synonym of &apos;broken&apos; to get TAME.
+&apos;spin&apos; means to reverse &apos;tame&apos; to get EMAT.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can ask for the derivation or long derivation of any of this sub-clue's answers:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">(</span><span class="s">&#39;tsrub&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+
+Take a synonym of &apos;broken&apos; to get BURST.
+&apos;spin&apos; means to reverse &apos;burst&apos; to get TSRUB.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, let's find a clue that actually produces a final answer. How about this one:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Answers:&quot;</span><span class="p">,</span> <span class="n">clues</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">answers</span>
+<span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">(</span><span class="s">&#39;english&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (ana (ana_ broken) (ana_arg (lit shingle)))))
+
+Answers: {&apos;english&apos;: [&apos;&apos;, &apos;english&apos;]}
+
+&apos;spin&apos; is the definition.
+&apos;broken&apos; means to anagram &apos;shingle&apos; to get ENGLISH.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In general, it would seem like generating all of these different clue interpretations and then solving them separately would be terribly inefficient. However, the way our parser is constructed ensures that identical sub-clues actually refer to the same python object, so solving one sub-clue solves all of its instances contained in other clues. We can check this easily:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[17]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (first broken)) (clue_arg (first shingle)))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(top (d spin) (clue_arg (first broken)) (clue_arg (lit shingle)))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[19]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(clue_arg (first broken))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[20]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">clues</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+(clue_arg (first broken))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[21]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">clues</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="n">clues</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c"># &#39;is&#39; tests whether two variables refer to the same python object</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[21]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="scoring-answers">Scoring Answers</h2>
+<p>Now let's try actually searching for the <em>best</em> answer. For this, we'll need the full <code>CrypticClueSolver</code></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[22]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pycryptics.solve_clue</span> <span class="kn">import</span> <span class="n">CrypticClueSolver</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">solver</span> <span class="o">=</span> <span class="n">CrypticClueSolver</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[24]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">annotated_answers</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve_constraints</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[25]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annotated_answers</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">a</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[&apos;english&apos;, 1, &apos;(top (d &quot;spin&quot;) (ana (ana_ &quot;broken&quot;) (lit &quot;shingle&quot;) -&gt; ENGLISH))&apos;]
+[&apos;violate&apos;, 0, &apos;(top (sub_init (sub_init_ &quot;spin&quot;) (syn &quot;broken&quot; -&gt; VIOLATED) -&gt; VIOLATE) (d &quot;shingle&quot;))&apos;]
+[&apos;reached&apos;, 0, &apos;(top (sub_final (sub_final_ &quot;spin&quot;) (syn &quot;broken&quot; -&gt; BREACHED) -&gt; REACHED) (d &quot;shingle&quot;))&apos;]
+[&apos;divulge&apos;, 0, &apos;(top (sub_init (sub_init_ &quot;spin&quot;) (syn &quot;broken&quot; -&gt; DIVULGED) -&gt; DIVULGE) (d &quot;shingle&quot;))&apos;]
+[&apos;confuse&apos;, 0, &apos;(top (sub_init (sub_init_ &quot;spin&quot;) (syn &quot;broken&quot; -&gt; CONFUSED) -&gt; CONFUSE) (d &quot;shingle&quot;))&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>annotated_answers</code> contains a list of possible solutions, including the actual answer, its confidence score (between 0 and 1), and its short derivation, and it's automatically sorted to put the best answers first. We can also check the long derivation of any answer:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[26]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">annotated_answers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+
+&apos;spin&apos; is the definition.
+&apos;broken&apos; means to anagram &apos;shingle&apos; to get ENGLISH.
+ENGLISH matches &apos;spin&apos; with confidence score 100%.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="combining-phrases">Combining Phrases</h2>
+<p>Now let's try a slightly harder clue:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[27]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">phrases</span> <span class="o">=</span> <span class="s">&#39;couch unfinished until now&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">Constraints</span><span class="p">(</span><span class="n">phrases</span><span class="o">=</span><span class="n">phrases</span><span class="p">,</span>
+                  <span class="n">lengths</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,),</span>
+                  <span class="n">pattern</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+                  <span class="n">known_answer</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, let's just try solving this the same way as before:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[28]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">ann</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve_constraints</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[29]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">ann</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+
+&apos;couch&apos; is the definition.
+Take a synonym of &apos;until&apos; to get BEFORE.
+&apos;unfinished&apos; means to take an initial substring of &apos;before&apos; to get BE.
+Take a synonym of &apos;now&apos; to get AD.
+Combine &apos;BE&apos; and &apos;AD&apos;  to get BEAD.
+BEAD matches &apos;couch&apos; with confidence score 56%.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is not a very good answer, since it only matches with 56% confidence. In fact, the correct answer is SOFA, which we get by taking a synonym of &quot;until now&quot; to get &quot;SO FAR&quot; and then removing the last letter to get SOFA. So what went wrong? Well, the solver treated &quot;until&quot; and &quot;now&quot; as separate phrases, so it looked for synonyms of both of them, but not for the phrase &quot;until now&quot;. To make sure we get the right combinations of phrases, the solver can actually search over all possible combinations of phrases to find the best answer:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[30]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">ann</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve_all_phrasings</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">ann</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">long_derivation</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[&apos;couch&apos;, &apos;unfinished&apos;, &apos;until&apos;, &apos;now&apos;]
+[&apos;couch&apos;, &apos;unfinished&apos;, &apos;until_now&apos;]
+[&apos;couch&apos;, &apos;unfinished_until&apos;, &apos;now&apos;]
+[&apos;couch&apos;, &apos;unfinished_until_now&apos;]
+[&apos;couch_unfinished&apos;, &apos;until&apos;, &apos;now&apos;]
+[&apos;couch_unfinished&apos;, &apos;until_now&apos;]
+[&apos;couch_unfinished_until&apos;, &apos;now&apos;]
+
+&apos;couch&apos; is the definition.
+Take a synonym of &apos;until_now&apos; to get SO_FAR.
+&apos;unfinished&apos; means to take an initial substring of &apos;so_far&apos; to get SOFA.
+SOFA matches &apos;couch&apos; with confidence score 100%.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The lists which are printed above show all the combinations of phrases that the solver tried. We can see that it got the correct answer by combining &quot;until now&quot; into a single phrase, which we've shown by joining those words with an underscore.</p>
+</div>
