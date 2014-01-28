@@ -13,8 +13,12 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf).
 ## Things I do
 * Photos: [Flickr](http://www.flickr.com/photos/26769928@N02/)
 * Software: [Github](https://github.com/rdeits)
-* Science: [Mendeley](http://www.mendeley.com/profiles/robin-deits/)
+* Science: [Publications](#publications)
 * Projects: [Blog](../..)
+
+## Publications
+{% include posts/publications/deits-fixed.html %}
+
 
 ## This Site
 This website was created using [Jekyll](https://github.com/mojombo/jekyll/) and is hosted as a [github:pages](http://pages.github.com/) site. It's a super cool way to create a blog without all the overhead of something like Wordpress. This site was built using the instructions at [Jekyll Bootstrap](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)

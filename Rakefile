@@ -44,6 +44,18 @@ task :cv do
 	system("cp ~/Documents/Resume/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
 end
 
+desc "Compile an HTML list of publications from my .bib library"
+task :publications do
+  Dir.chdir('_includes/posts/publications') do
+    system('cp ~/Documents/Resume/Latex/IEEEtran.bst .')
+    system("export TMPDIR=. && bibtex2html -d -r -nodoc -s IEEEtran ~/Documents/Resume/Latex/deits.bib")
+    system('sed "s/^\<p\>$/\<p\>\<\/p\>/g" <deits.html >deits-fixed.html')
+    system('ghead -n -2 deits-fixed.html > tmp.html')
+    system('mv tmp.html deits-fixed.html')
+    system('echo "</table>" >> deits-fixed.html')
+  end
+end
+
 file "_includes/posts/2013-11-11-coasters/graphs.html" => "/Users/rdeits/Projects/RollerCoasters/graphs.ipynb" do
   sh "ipython nbconvert --to html --template basic /Users/rdeits/Projects/RollerCoasters/graphs.ipynb"
   mv "graphs.html", "_includes/posts/2013-11-11-coasters/graphs.html"
