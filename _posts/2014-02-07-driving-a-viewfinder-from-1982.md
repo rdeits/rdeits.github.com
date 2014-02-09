@@ -6,7 +6,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-Last summer I managed to come across a fantastic new toy: a 1982 JVC video camera, with a pretty excellent 10-100mm f/1.6 lens, which became part of [my microscope project](/2013/05/15/building-a-microscope/).
+Last summer I managed to come across a fantastic new toy: a 1982 JVC video camera, with a pretty excellent 10-100mm f/1.6 lens, which became part of [my microscope project](/2013/05/15/building-a-microscope).
 
 <figure class="onecol-figure">
 	<img src="/img/2013-05-15/DSC_1839.jpg" width="100%">
@@ -15,6 +15,7 @@ Last summer I managed to come across a fantastic new toy: a 1982 JVC video camer
 Recently, I decided to play around with the remaining pieces of the camera, to see if I could learn any more from it. Specifically, I decided to see if I could drive the viewfinder as a tiny analog television screen. 
 
 Separating the viewfinder from the camera was easy (praise be to 1980s electronics!), as was opening it up to take a look at the innards:
+
 <figure class="onecol-figure">
 	<img src="/img/2014-02-07-viewfinder/DSC_3293.jpg" width="100%">
 	<img src="/img/2014-02-07-viewfinder/DSC_3296.jpg" width="100%">
@@ -27,7 +28,7 @@ Powering and controlling the viewfinder could have involved a mess of cutting, s
 	<img src="/img/2014-02-07-viewfinder/DSC_3309.jpg" width="100%">
 </figure>
 
-But, of course, the camera came with a perfectly compatible connector, which was trivial to remove once I'd opened up the case, and which even broke out into a standard 0.1" female header:
+But, of course, the camera came with a perfectly compatible connector, which was trivial to remove once I'd opened up the case, and which even broke out into a standard 0.1 inch female header:
 
 <figure class="onecol-figure">
 	<img src="/img/2014-02-07-viewfinder/DSC_3313.jpg" width="100%">
