@@ -48,7 +48,7 @@ desc "Compile an HTML list of publications from my .bib library"
 task :publications do
   Dir.chdir('_includes/posts/publications') do
     system('cp ~/Documents/Resume/Latex/IEEEtran.bst .')
-    system("export TMPDIR=. && bibtex2html --sort-by-date --reverse-sort --style IEEEtran --no-header --nodoc --html-entities --unicode --nobibsource ~/Documents/Resume/Latex/deits.bib")
+    system("export TMPDIR=. && bibtex2html --sort-by-date --reverse-sort --style IEEEtran --no-header --nodoc --html-entities --unicode --nobibsource -nokeywords ~/Documents/Resume/Latex/deits.bib")
     system('sed "s/^\<p\>$/\<p\>\<\/p\>/g" <deits.html >deits-fixed.html')
     system('ghead -n -2 deits-fixed.html > tmp.html')
     system('mv tmp.html deits-fixed.html')
