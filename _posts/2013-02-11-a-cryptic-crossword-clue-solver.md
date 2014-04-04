@@ -6,6 +6,8 @@ tags: []
 ---
 {% include JB/setup %}
 
+Updated: December 26, 2013 » [More Cryptic Crosswords](/2013/12/26/more-cryptic-crosswords/)
+
 I really enjoy crosswords, and over the last year I've come to enjoy cryptic (or British-style) crosswords even more. Each cryptic clue consists of a _definition_ part, which behaves a lot like a regular crossword clue, and _wordplay_ part, which might consist of anagrams, initials, synonyms, reversals, acrostics, and other tricks. For example, here's a pretty easy cryptic clue:
 
 	Initially babies are naked. (4)
