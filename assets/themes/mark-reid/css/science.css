@@ -15,3 +15,7 @@ figcaption {
 .text_cell_render p a img {
 	width: 100%;
 }
+
+.output_display_data img {
+	max-width: 100%;
+}

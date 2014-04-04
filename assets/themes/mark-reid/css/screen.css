@@ -217,7 +217,7 @@ ul.compact li a {
 	display: block;
 	font-weight: normal;
 }
-#blog-title {
+.blog-title {
 	font-family: Palatino, georgia, "times new roman", serif;
 	font-weight: normal;
 	font-variant: small-caps;
@@ -597,14 +597,18 @@ img.maruku-png { }
 	color:#FFF;
 }
 
-#banner {
+/*#banner {
 	width: 640px;
 	height: 238px;
 }
-
+*/
 /* MathJax Settings */
 code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
 
 .bibtexnumber {
 	display:none;
+}
+
+.homepage-banner {
+	width: 100%;
 }

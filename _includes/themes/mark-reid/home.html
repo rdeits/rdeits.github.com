@@ -3,7 +3,9 @@
 <div id="splash">	
 	<div id="banner">
 	</div>
-	<span id="blog-title">Playing with Legos (and other activities)</span>
+	<div class="blog-title">
+	Playing with Legos (and other activities)
+	</div>
 </div>
 <!-- <a href="http://www.flickr.com/photos/26769928@N02/sets/72157627194290064/" target="_blank"><img src="/img/header.jpg" width="100%"></a> -->
 
@@ -11,7 +13,7 @@
 var num_banners = 22;
 var banner = document.querySelector("#banner");
 var selected_banner = Math.floor(Math.random() * num_banners) + 1;
-banner.innerHTML='<img src="/img/banners/' + selected_banner + '.jpg">';
+banner.innerHTML='<img class="homepage-banner" src="/img/banners/' + selected_banner + '.jpg">';
 </script>
 
 <!-- <h1 class="emphnext">{{ page.title }}</h1> -->
