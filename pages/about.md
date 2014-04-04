@@ -4,7 +4,8 @@ title: "About"
 ---
 {% include JB/setup %}
 
-<img src="http://www.gravatar.com/avatar/1ae757387e4f961dca8e5dc91fb83d57?s=250" style="" />
+<img src="http://www.gravatar.com/avatar/1ae757387e4f961dca8e5dc91fb83d57?s=250" style="">
+
 My name is Robin Deits. I'm a graduate student at MIT working on a PhD in the Robot Locomotion group, at least until the position of starship chief engineer opens up. 
 
 I'm a physicist/ programmer/ photographer/ pianist/ engineer. 
