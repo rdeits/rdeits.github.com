@@ -615,3 +615,12 @@ code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inher
 .homepage-banner {
 	width: 100%;
 }
+
+.svg-figure {
+	max-width: 100%;
+}
+
+/*#page object {
+	max-width: 100%;
+}
+*/

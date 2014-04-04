@@ -19,27 +19,27 @@ Last time, we showed that we can use a sequence of four particular transformatio
 
 For example, these two frames:
 
-<object data="/img/2012-06-19/d-h_axes2.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-19/d-h_axes2.svg">
+
 
 This is great, but it's only generally useful if we can show that we can always describe the joints and arms of our robot in a way that satisfies these two constraints. We'll show just how to do that now by considering the three possible arrangements ([1](#case_1__and__are_not_coplanar), [2](#case_2__and__are_parallel), [3](#case_3__intersects_)) of joint axes. We'll then explain how to [compute the link parameters](#computing_the_link_parameters) and thus construct the transformation matrix.
 
 To do it, let's first bring back our robot from [Part 1](/2012/06/05/denavit-hartenberg-robotic-control/):
 
-<object data="/img/2012-06-05/robot_with_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-05/robot_with_arm.svg">
+
 
 To make him a little more useful, let's add another joint to each arm and number the links and joints in one arm:
 
-<object data="/img/2012-06-25/robot_2_joints.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/robot_2_joints.svg">
+
 
 As we did before, we've named the <font color="ff3c3c">joints</font> and links so that when joint `\(i\)` is activated, link `\(i\)` will move.
 
 Let's simplify this drawing for now:
 
-<object data="/img/2012-06-25/simple_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/simple_arm.svg">
+
 
 Now we begin assigning coordinate frames. Let's first choose something intuitive for `\(z_0\)`. Specifically, let's choose the axis of rotation of joint 1. In general, we will will say the following:
 `\[
@@ -47,16 +47,16 @@ Now we begin assigning coordinate frames. Let's first choose something intuitive
 \]`
 We can then choose `\(O_0\)` (the origin of coordinate system 0) anywhere we like along `\(z_0\)` and place `\(x_0\)` wherever we want (we'll make it horizontal just for convenience here). Once we have `\(z_0\)` and `\(x_0\)`, the [right hand rule](http://en.wikipedia.org/wiki/Cartesian_coordinate_system#In_three_dimensions) dictates where `\(y_0\)` must go. Let's add this to the simplified robot arm (`\(z_0\)` comes right out of the page, so it isn't shown here):
 
-<object data="/img/2012-06-25/simple_arm_frame0.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/simple_arm_frame0.svg">
+
 
 Now that we have somewhere to start, we will define each new frame `\(i\)` using the position and orientation of the previous frame `\(i-1\)`. Remember that we've defined each `\(z_i\)` as the axis of rotation or translation for joint `\(i+1\)`. There are three cases that we'll need to address to decide how to chose the origins `\(O_i\)` and the other unit vectors `\(x_i\)` and `\(y_i\)`.
 
 ## Case 1: `\(z_{i-1}\)` and `\(z_i\)` are not coplanar
 Two vectors in three dimensional space are _non-coplanar_ if they can't lie in the same flat plane. For example, consider these two vectors:
 
-<object data="/img/2012-06-25/non-coplanar_vectors.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/non-coplanar_vectors.svg">
+
 
 An interesting property of non-coplanar vectors is that we can show that there is exactly one line segment which is perpendicular to both vectors and which connects them with the shortest length. We've labeled that line segment `\(a\)` above. If our robot has two adjacent joints whose axes are non-coplanar, then we will use the following procedure to assign the new frame `\(i\)`:
 
@@ -70,13 +70,13 @@ An interesting property of non-coplanar vectors is that we can show that there i
 
 You can see this procedure in action here. First, the joint setup, with the axes marked:
 
-<object data="/img/2012-06-25/non-coplanar_with_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/non-coplanar_with_arm.svg">
+
 
 Then the assignment of coordinate frames:
 
-<object data="/img/2012-06-25/non-coplanar.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/non-coplanar.svg">
+
 
 ## Case 2: `\(z_{i-1}\)` and `\(z_i\)` are parallel
 
@@ -92,13 +92,13 @@ Two parallel vectors have infinitely many common normals (vectors `\(\vec{v}\)` 
 
 You can see this procedure in action here. First, the joint setup, with the axes marked:
 
-<object data="/img/2012-06-25/parallel_with_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/parallel_with_arm.svg">
+
 
 Then the assignment of coordinate frames:
 
-<object data="/img/2012-06-25/parallel_with_axes.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/parallel_with_axes.svg">
+
 
 ## Case 3: `\(z_{i-1}\)` intersects `\(z_i\)`
 
@@ -112,13 +112,13 @@ If `\(z_{i-1}\)` and `\(z_i\)` intersect, then we just choose `\(x_{i}\)` to be 
 
 Once more, the joint setup, with the axes marked:
 
-<object data="/img/2012-06-25/intersect_with_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/intersect_with_arm.svg">
+
 
 Then the assignment of coordinate frames:
 
-<object data="/img/2012-06-25/intersect_with_axes.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/intersect_with_axes.svg">
+
 
 # Computing the Link Parameters
 
@@ -148,8 +148,8 @@ Our final coordinate frame is called the "tool frame," and it goes at the very e
 
 By convention, we align the tool frame so that the origin is between the fingers of the gripper or at the point of the tool. We orient `\(z_n\)` to the direction of approach and `\(y_n\)` to the direction along which the fingers of the gripper move. This defines the orientation of `\(x_n\)`. You can see an example of this here:
 
-<object data="/img/2012-06-25/tool_with_arm.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-25/tool_with_arm.svg">
+
 
 The calculation of the link parameters for this pair of frames is done exactly the same as with every other pair.
 

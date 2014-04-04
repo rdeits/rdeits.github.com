@@ -42,8 +42,8 @@ Now, let's suppose that these two frames have the following two properties. Thes
 
 You can see what this might look like here:
 
-<object data="/img/2012-06-19/d-h_axes2.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-19/d-h_axes2.svg">
+
 
 You can see that this satisfies our two requirements about `\(z_0\)` and `\(x_1\)`. We claim that given these two conditions, there exist *unique* numbers `\(a, d, \theta, \beta\)` such that
 `\[
@@ -151,8 +151,8 @@ To show that we also have unique values for our two translation parameters, `\(a
 \]`
 I'll repeat the diagram of our two frames here for convenience:
 
-<object data="/img/2012-06-10/manipulator_links.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-10/manipulator_links.svg">
+
 
 As you can see from the diagram, traveling from the origin of Frame 0 (which we'll call `\(O_0\)`) to the origin of Frame 1 (which we'll call `\(O_1\)`) can be done by just moving along `\(z_0\)` and then `\(x_1\)`. Writing this out, we get
 `\[

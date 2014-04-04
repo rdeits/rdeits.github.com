@@ -12,8 +12,8 @@ tags: []
 
 In [Part 1](/2012/06/05/denavit-hartenberg-robotic-control/) of this series, in which I attempt to explain the Denavit-Hartenberg convention for inverse kinematics I talked about coordinate frames and rotational transformations using matrices. This left open a pretty obvious question, though: turning coordinate frames is great and all, but how do we *move* them? If we want to describe the transformation from Frame 1 to Frame 0 here:
  
-<object data="/img/2012-06-05/robot_with_arm_and_frame_1_d.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-05/robot_with_arm_and_frame_1_d.svg">
+
 
 Then we need to express the rotation by the angle `\(\theta\)` (which we figured out last time) *and* the translation by the distance `\(d\)` (which we don't know how to do yet). 
 

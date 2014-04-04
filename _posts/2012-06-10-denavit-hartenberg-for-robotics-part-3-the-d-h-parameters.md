@@ -14,8 +14,8 @@ In [Part 1](/2012/06/05/denavit-hartenberg-robotic-control/) and [Part 2](/2012/
 
 First, let's establish the particular jargon we'll be using for this explanation. Imagine a robot arm with `\(n\)` joints and `\(n+1\)` links, like so:
 
-<object data="/img/2012-06-10/manipulator_links.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-10/manipulator_links.svg">
+
 
 In this case, `\(n=2\)` and we've labeled the joints in <font color="ff3c3c">red</font> and the links in black. The naming convention here means that when join `\(i\)` is actuated, link `\(i\)` moves. In this example, joint 1 is *revolute*, meaning that it rotate *around* a single axis when actuated, and joint 2 is *prismatic* meaning that it slides *along* a single axis. The real world has lots of other kinds of joints (like a ball-and-socket, which can turn in all directions), but we're going to figure out a way to represent all possible joints as a combination of these two simple types. 
 
@@ -30,8 +30,8 @@ d_i \text{ if joint i is prismatic}
 
 Now, let's attach a coordinate system to each link such that every point on a link `\(i\)` is fixed in Frame `\(i\)`:
 
-<object data="/img/2012-06-10/manipulator_links_frames.svg" type="image/svg+xml">
-</object>
+<img class="svg-figure" src="/img/2012-06-10/manipulator_links_frames.svg">
+
 
 Since there is no joint 0, Frame 0 consisting of `\(O_0, x_0, y_0, z_0\)` cannot move (`\(O_0\)` is just our notation for the Origin of Frame 0).
 

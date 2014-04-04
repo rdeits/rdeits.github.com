@@ -15,13 +15,13 @@ The fundamental technology that we'll be looking at is called a [Digital Micromi
 #Background on DLP
 The basic principle of DLP can be seen in this pair of cartoons:
 
-<object data="/img/2012-05-21/DLP_cartoon_1_on.svg" type="image/svg+xml" style="height:302px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/DLP_cartoon_1_on.svg" style="height:302px">
+
 
 A DLP micromirror chip, with one mirror "on" and one "off".
 
-<object data="/img/2012-05-21/DLP_cartoon_2_on.svg" type="image/svg+xml" style="height:302px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/DLP_cartoon_2_on.svg" style="height:302px">
+
 
 A DLP micromirror chip, with both mirrors in the "on" state.
 
@@ -39,35 +39,35 @@ DLP displays get around this by rapidly switching the effective color of the lam
 #Using a DLP Chip to Create Holograms
 The micromirror chip's ability to control the direction of reflected light makes it extremely interesting as a holographic display device. To create a holographic effect, we must use the angled mirrors to direct some of our source light to the right eye and some to the left, so that each eye sees a different image. For example, if we had two mirrors and a single light source, we could create the illusion of a single point hovering below the mirrors:
 
-<object data="/img/2012-05-21/DLP_holo_point.svg" type="image/svg+xml" style="height:350px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/DLP_holo_point.svg" style="height:350px">
+
 
 This is cool, but it introduces several problems we need to solve, which I'll approach now.
 
 ## Problem 1: Seeing All the Mirrors
 The first issue is that this will work perfectly for a point light source (a ideal light source with no width, like a flashlight with an infinitely tiny opening), as long as we have exactly two mirrors. If we have more than two mirrors, the light from some of the mirrors won't make it to either eye, like so:
 
-<object data="/img/2012-05-21/DLP_holo_point_wide.svg" type="image/svg+xml" style="height:350px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/DLP_holo_point_wide.svg" style="height:350px">
+
 
 See how the ray from the leftmost mirror just goes off into space? That's a problem. The solution to this is to use a _wide_ light source. We'll still treat our mirrors as infinitely tiny (they're only a few micrometers across in a real DLP chip, so this is a good approximation), but we'll make our lamp much bigger, perhaps more like the size of a long fluorescent tube. This means that each mirror will create a wide beam of reflected light, like so:
 
-<object data="/img/2012-05-21/wide_lamp_1_mirror.svg" type="image/svg+xml" style="height:350px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/wide_lamp_1_mirror.svg" style="height:350px">
+
 
 (Actually, the light from the lamp goes off in all directions, rather than being focused onto the mirror. But, since none of the light that isn't directed at the mirror gets reflected, we will ignore it for now).
 
 If we figure out the right size and distance for the lamp, we can ensure that the reflected beams from our mirrors have some overlap. For example, with two mirrors set up like this:
 
-<object data="/img/2012-05-21/wide_lamp_2_mirrors.svg" type="image/svg+xml" style="height:350px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/wide_lamp_2_mirrors.svg" style="height:350px">
+
 
 we create a region of overlap between the beams of light (indicated by the arrow). If we put an eye or camera in that region, it will see light reflected from both mirrors. 
 
 This seems great in theory, but can it work in practice? To find out, we need to work out the math for a wide light source and tiny mirrors and then plug in some reasonable values. This is what our setup looks like:
 
-<object data="/img/2012-05-21/wide_lamp_angles.svg" type="image/svg+xml" style="height:500px">
-</object>
+<img class="svg-figure" src="/img/2012-05-21/wide_lamp_angles.svg" style="height:500px">
+
 
 We have a lamp of width `\(2 w_1 \)` and a DLP chip of width `\(2 w_2\)`. The lamp is a distance `\(d\)` above the chip. One eye is located at point E, `\(y_e\)` above the chip and `\(x_e\)` away from the centerline of the lamp and chip. A single ray of light is emitted from a point `\(x_1\)` along the width of the lamp and reflects off a mirror at a distance `\(x_2\)` from the center of the chip. The ray of light ends at a distance `\(x_3\)` from the centerline. By varying `\(x_1\)` and `\(x_2\)`, we can consider light from any point on the lamp reflecting off any point on the chip.
 
@@ -105,7 +105,7 @@ This is hard to wrap your head around (or, at least it was for me), so we're goi
 
 You can see the results in the following graph:
 
-<img src="/img/2012-05-21/DLP_hologram_results.png"/>
+<img width="100%" src="/img/2012-05-21/DLP_hologram_results.png"/>
 
 The x-axis shows `\(x_2\)` and the y-axis shows `\(x_3\)`. The shaded blue region is all the values for `\(x_3\)` for all possible values of `\(x_1\)` between `\(-w_1\)` and `\(w_1\)`. And the two dashed lines are the right and left eyes, located at `\(x_e\)` and `\(-x_e\)`, respectively. The difference between the top and bottom graph is just the mirror angle `\(\theta\)` being switched between `\(+10^o\)` and `\(-10^o\)`. 
 

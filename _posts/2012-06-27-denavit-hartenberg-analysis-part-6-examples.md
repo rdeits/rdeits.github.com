@@ -10,29 +10,29 @@ tags: []
 
 # Example 1: Planar Elbow Manipulator
 
-<object data="/img/2012-06-27/planar_elbow_manipulator.svg" type="image/svg+xml" style="height:275px">
-</object>
+<img class="svg-figure" src="/img/2012-06-27/planar_elbow_manipulator.svg" style="height:275px">
+
 
 Let's first look at a simple arm with two links and two joints. Following the procedure from [last time](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames#solving_the_entire_arm), we first identify the joint axes and assign `\(z_0 \dots z_n\)` to them:
 
-<object data="/img/2012-06-27/planar_elbow_manipulator_z.svg" type="image/svg+xml" style="height:275px">
-</object>
+<img class="svg-figure" src="/img/2012-06-27/planar_elbow_manipulator_z.svg" style="height:275px">
+
 The single dot for the axes indicates that they come directly out of the page.
 
 Next, we establish the base frame with a convenient orientation and position along `\(z_0\)`:
 
-<object data="/img/2012-06-27/planar_elbow_manipulator_base.svg" type="image/svg+xml" style="height:275px">
-</object>
+<img class="svg-figure" src="/img/2012-06-27/planar_elbow_manipulator_base.svg" style="height:275px">
+
 
 We can see that `\(z_0\)` and `\(z_1\)` are parallel (both coming out of the page), so we use the parallel axes method from [Part 5](/2012/06/25/denavit-hartenberg-analysis-part-5-assigning-coordinate-frames#case_2__and__are_parallel) and choose `\(x_1\)` to be the vector perpendicular to `\(z_0\)` and `\(z_1\)` which passes through `\(O_0\)`. This also defines `\(y_1\)`:
 
-<object data="/img/2012-06-27/planar_elbow_manipulator_frame1.svg" type="image/svg+xml" style="height:275px">
-</object>
+<img class="svg-figure" src="/img/2012-06-27/planar_elbow_manipulator_frame1.svg" style="height:275px">
+
 
 Our last set of axes is the tool frame. We'll skip our normal rule of aligning z to the direction of approach in order to keep all of our x and y axes in the same plane (alternately, we'll pretend that our direction of approach is out of the page).
 
-<object data="/img/2012-06-27/planar_elbow_manipulator_frame_n.svg" type="image/svg+xml" style="height:275px">
-</object>
+<img class="svg-figure" src="/img/2012-06-27/planar_elbow_manipulator_frame_n.svg" style="height:275px">
+
 
 We now have all the axes we need in order to calculate our transformation matrix. Let's create a table of our link parameters:
 `\[
