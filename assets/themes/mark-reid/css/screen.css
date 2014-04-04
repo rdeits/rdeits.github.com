@@ -197,18 +197,15 @@ ul.compact li a {
 	width: 70%;
 }
 /* @end */
-#nav {
-	float: right;
-	width: 240px;
 
-}
 
 /* @group Header */
+#header {
+	display: table;
+	width:100%;
+}
 #header, #header a { color: black;}
-/*#header .hover { color: transparent; }*/
-/*#header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}*/
 #header:hover a:hover { text-decoration: none; }
-/*#header a:hover .hover { color: silver; }*/
 #header {
 	font-variant: small-caps;
 	line-height: 1em;
@@ -272,28 +269,29 @@ ul.compact li a {
 }
 
 #header input {
-	/*position:absolute;*/
 	top: 0;
-	/*right: 0px;*/
 	width: 125px;
 }
 
-#title a,span {
-	white-space:nowrap;
+.header-title {
+	float:left;
 }
 
-
+#nav {
+	float:left;
+}
 
 #search {
-	float:right; 
-	width:130px;
+	float:left;
 }
 
-#atom a {
-	/*position: absolute;*/
-	/*right: 133px;*/
+#atom {
 	top: 3px;
-	float:right;
+	float:left;
+}
+
+.header-right {
+	float: right;
 }
 
 /* @group Twitter */
