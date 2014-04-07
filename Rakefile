@@ -41,7 +41,7 @@ end #JB
 
 desc "Copy over the most recent PDF of my CV"
 task :cv do
-	system("cp ~/Documents/Resume/CV/Robin_Deits_CV.pdf assets/Robin_Deits_CV.pdf")
+	system("cp ~/Documents/Resume/CV/Robin_Deits_CV_public.pdf assets/Robin_Deits_CV.pdf")
 end
 
 desc "Compile an HTML list of publications from my .bib library"
