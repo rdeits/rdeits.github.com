@@ -22,9 +22,13 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf). You can contact me at mail at robind
 	* Roller coaster visualizations | [blog](/2013/11/11/roller-coaster-visualizations/) | [code](https://github.com/rdeits/coasters)
 	* Scratch holograms (specular holography) | [blog](/2012/02/20/more-scratch-holograms/) | [code](https://github.com/rdeits/ScratchHolograms)
 
-## Publications
+<div id="publications">
+
+<h2>Publications</h2>
 
 {% include posts/publications/deits.html %}
+
+</div>
 
 
 ## This Site
