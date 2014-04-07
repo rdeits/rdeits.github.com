@@ -24,7 +24,7 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf). You can contact me at mail at robind
 
 ## Publications
 
-{% include posts/publications/deits-fixed.html %}
+{% include posts/publications/deits.html %}
 
 
 ## This Site
