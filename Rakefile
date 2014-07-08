@@ -67,6 +67,22 @@ task :coasters => ["_includes/posts/2013-11-11-coasters/graphs.html"] do
   end
 end
 
+file "_includes/posts/2014-07-08-coasters2/graphs2.html" => "/Users/rdeits/Projects/RollerCoasters/graphs2.ipynb" do
+  sh "ipython nbconvert --to html --template basic /Users/rdeits/Projects/RollerCoasters/graphs2.ipynb"
+  mv "graphs2.html", "_includes/posts/2014-07-08-coasters2/graphs2.html"
+end
+
+desc "More roller coasters"
+task :coasters2 => ["_includes/posts/2014-07-08-coasters2/graphs2.html"] do
+  f = FileList["/Users/rdeits/Projects/RollerCoasters/data/2009-05-08-Roger-Meike-Sun-SPOT/**/accel_polar.*", "/Users/rdeits/Projects/RollerCoasters/data/2014-05-02-Gulf-Coast-Data-Concepts/**/accel_polar.*", "/Users/rdeits/Projects/RollerCoasters/data/2014-06-22-Ann-Marie-Pendrill/**/accel_polar.*"]
+  f.each do |fname|
+    puts fname
+    outfname = fname.gsub(/.*\/data\/[^\/]*\//, File.dirname(__FILE__) + "/img/2014-07-08-coasters2/")
+    mkdir_p File.dirname(outfname)
+    cp fname, outfname
+  end
+end
+
 # Usage: rake post title="A Title"
 desc "Begin a new post in #{CONFIG['posts']}"
 task :post do
