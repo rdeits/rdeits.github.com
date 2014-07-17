@@ -47,7 +47,8 @@ end
 desc "Compile an HTML list of publications from my .bib library"
 task :publications do
   Dir.chdir('_includes/posts/publications') do
-    system("export TMPDIR=. && bibtex2html --sort-by-date --reverse-sort --style plain --no-header --nodoc --html-entities --unicode --nobibsource -nokeywords ~/Documents/Resume/Latex/deits.bib")
+    system("cp ~/Documents/Resume/Latex/deits.bib ../../../assets/robin_deits_publications.bib")
+    system("export TMPDIR=. && bibtex2html --sort-by-date --reverse-sort --style plain --no-header --nodoc --html-entities --unicode --nobibsource -nokeywords ../../../assets/robin_deits_publications.bib")
   end
 end
 

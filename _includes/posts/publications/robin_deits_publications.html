@@ -22,17 +22,19 @@ Estimates based on the strength, size, and shape of the Atlantic razor clam (Ens
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_computing_2014">2</a>]
+[<a name="fallon_architecture_2014">2</a>]
 </td>
 <td class="bibtexitem">
-Robin&nbsp;L.H. Deits and Russ Tedrake.
- Computing large convex regions of obstacle-free space through
-  semidefinite programming.
- In <em>Submitted to: Workshop on the Algorithmic Fundamentals of
-  Robotics</em>, August 2014.
-[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14.pdf">.pdf</a>&nbsp;]
+Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
+  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
+  Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
+  Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
+ An architecture for online affordance-based perception and whole-body
+  planning.
+ <em>Submitted to: Journal of Field Robotics</em>, 2014.
+[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
 <blockquote><font size="-1">
-This paper presents IRIS (Iterative Regional Inflation by Semi-definite programming), a new method for efficiently computing large polytopic and ellipsoidal regions of obstacle-free space through a series of convex optimizations. These regions can be used, for example, to efficiently optimize an objective over collision-free positions in space for a robot manipulator. The algorithm alternates between two convex optimizations: (1) a quadratic program to generate a set of hyperplanes which separate a convex region of space from the set of obstacles and (2) a semidefinite program which finds a maximum-volume ellipsoid inside the polytopic intersection of the obstacle-free half-spaces defined by those hyperplanes. Both the hyperplanes and the ellipsoid are refined over several iterations to monotonically increase the volume of the contained ellipsoid, resulting in a large convex polytope in free space. Practical applications of the algorithm are presented in 2D and 3D, and extensions to N-dimensional configuration spaces are discussed. Experiments demonstrate that the algorithm has a computation time which is linear in the number of obstacles, and our MATLAB implementation converges in seconds for environments with millions of obstacles.
+The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
 </font></blockquote>
 <p>
 </td>
@@ -41,20 +43,16 @@ This paper presents IRIS (Iterative Regional Inflation by Semi-definite programm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="fallon_architecture_2014">3</a>]
+[<a name="deits_computing_2014">3</a>]
 </td>
 <td class="bibtexitem">
-Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
-  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt
-  DiCicco, Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres
-  Valenzuela, Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth
-  Teller.
- An architecture for online affordance-based perception and whole-body
-  planning.
- <em>Submitted to: Journal of Field Robotics</em>, March 2014.
-[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
+Robin&nbsp;L.H. Deits and Russ Tedrake.
+ Computing large convex regions of obstacle-free space through
+  semidefinite programming.
+ In <em>Workshop on the Algorithmic Foundations of Robotics</em>, 2014.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
-The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
+This paper presents IRIS (Iterative Regional Inflation by Semi-definite programming), a new method for efficiently computing large polytopic and ellipsoidal regions of obstacle-free space through a series of convex optimizations. These regions can be used, for example, to efficiently optimize an objective over collision-free positions in space for a robot manipulator. The algorithm alternates between two convex optimizations: (1) a quadratic program to generate a set of hyperplanes which separate a convex region of space from the set of obstacles and (2) a semidefinite program which finds a maximum-volume ellipsoid inside the polytopic intersection of the obstacle-free half-spaces defined by those hyperplanes. Both the hyperplanes and the ellipsoid are refined over several iterations to monotonically increase the volume of the contained ellipsoid, resulting in a large convex polytope in free space. Practical applications of the algorithm are presented in 2D and 3D, and extensions to N-dimensional configuration spaces are discussed. Experiments demonstrate that the algorithm has a computation time which is linear in the number of obstacles, and our MATLAB implementation converges in seconds for environments with millions of obstacles.
 </font></blockquote>
 <p>
 </td>
@@ -136,23 +134,7 @@ that scales linearly with depth rather than with depth squared.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="lang_radial_2012">8</a>]
-</td>
-<td class="bibtexitem">
-Matthias Lang and Robin L&nbsp;H Deits.
- Radial magnetic bearing for the magnetic bearing of a rotor, 2012.
-[&nbsp;<a href="http://patentscope.wipo.int/search/en/WO2012084590">http</a>&nbsp;]
-<blockquote><font size="-1">
-German Patent WO 2012/084590 A1, 28 June
-</font></blockquote>
-<p>
-</td>
-</tr>
-
-
-<tr valign="top">
-<td align="right" class="bibtexnumber">
-[<a name="tellex_toward_2012">9</a>]
+[<a name="tellex_toward_2012">8</a>]
 </td>
 <td class="bibtexitem">
 Stefanie Tellex, Pratiksha Thaker, Robin L&nbsp;H Deits, Dimitar Simeonov, Thomas
@@ -170,12 +152,12 @@ Our goal is to build robots that can robustly interact with humans using natural
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_multi-substrate_2010">10</a>]
+[<a name="winter_multi-substrate_2010">9</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, and Anette&nbsp;E Hosoi.
  Multi-substrate burrowing performance and constitutive modeling of
-  RoboClam: a biomimetic robot based on razor clams.
+  RoboClam: A biomimetic robot based on razor clams.
  In <em>ASME 2010 International Design Engineering Technical
   Conferences &amp; Computers and Information in Engineering Conference</em>, 2010.
 [&nbsp;<a href="http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5654364">http</a>&nbsp;]
@@ -189,7 +171,7 @@ The Atlantic razor clam (Ensis directus) reduces burrowing drag by using motions
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_teaching_2010">11</a>]
+[<a name="winter_teaching_2010">10</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, Anette&nbsp;E Hosoi, and
@@ -209,11 +191,11 @@ Razor clams (Ensis directus) are one of nature’s most adept burrowing organism
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_design_2009">12</a>]
+[<a name="winter_design_2009">11</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Anette&nbsp;E Hosoi, Alexander&nbsp;H. Slocum, and Robin L&nbsp;H Deits.
- The design and testing of RoboClam: a machine used to investigate
+ The design and testing of RoboClam: A machine used to investigate
   and optimize razor clam-inspired burrowing mechanisms for engineering
   applications.
  In <em>ASME 2009 International Design Engineering Technical

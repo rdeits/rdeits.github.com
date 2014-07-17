@@ -24,7 +24,7 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf). You can contact me at mail at robind
 
 <div id="publications">
 
-<h2>Publications</h2>
+<h2>Publications <a href="/assets/robin_deits_publications.bib">(BibTeX)</a></h2>
 
 {% include posts/publications/deits.html %}
 
