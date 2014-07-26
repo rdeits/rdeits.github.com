@@ -44,6 +44,8 @@ As a result, I was highly motivated to try to get the microcontroller out of the
 	<figcaption>Wiring diagram for the connection between the Raspberry Pi and the ColorEffects lights. The 74HC14N is a 5 Volt logic inverter, which I'm using here just to raise the output voltage of the Raspberry Pi's signal from 3.3V to 5V and to isolate the Pi in case there is a short circuit in the lights. MOSI (for "master out slave in") is the output of the SPI port.</figcaption>
 </figure>
 
+If you want to build this yourself, you'll need a way to wire up to the Pi's IO pins. The easiest way to do that is with a ["Pi Cobbler" from Adafruit](http://www.adafruit.com/products/914), but you can also do it yourself with a piece of ribbon cable. You'll also need a 74HC14 or similar, like [this one](http://www.digikey.com/product-detail/en/SN74HC14N/296-1577-5-ND/277223) on digikey ([datasheet](http://www.ti.com/lit/ds/symlink/sn74hc14.pdf)) and a small breadboard to hold everything. 
+
 
 The SPI interface on the Pi is very cool, but it doesn't solve our problem right away. It can't be directly configured to send data in the format that the lights want (with a 0 as 10µs low, 20µs high, etc.); instead, it can only send a byte consisting of 8 high or low values, at a bit rate of 125kHz or 250kHz or 500kHz or 1MHz or 2MHz and so on. In addition, in between every byte, the output of the SPI line goes low for exactly one clock cycle. 
 
