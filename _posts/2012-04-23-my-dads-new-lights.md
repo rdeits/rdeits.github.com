@@ -7,6 +7,7 @@ tags: []
 {% include JB/setup %}
 
 <img src="/img/2012-04-23/DSC_0283.jpg" width="75%">
+
 The finished product.
 
 # Background
@@ -96,7 +97,12 @@ My dad decided to do a little more work on the lights. Here's his description:
 Here are his results:
 
 <img src="/img/2012-04-23/box_diffuser.jpg" width="50%">
+
 The light box, with the diffuser installed. 
 
 <img src="/img/2012-04-23/box_diffuser_lit.jpg" width="50%">
+
 And the final product.
+
+# Update: July 26, 2014
+I've upgraded and simplified the electronics driving the lights. You can read all about it in [Christmas Lights 2: Serial Protocol Adventures](/2014/07/25/christmas-lights-2-serial-protocol-adventures).
