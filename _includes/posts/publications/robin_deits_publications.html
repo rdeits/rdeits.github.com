@@ -3,7 +3,47 @@
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_razor_2014">1</a>]
+[<a name="deits_footstep_2014">1</a>]
+</td>
+<td class="bibtexitem">
+Robin Deits and Russ Tedrake.
+ Footstep planning on uneven terrain with mixed-integer convex
+  optimization.
+ <em>Submitted to: IEEE-RAS International Conference on Humanoid
+  Robots</em>, November 2014.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14a.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+We present a new method for planning footstep placements for a robot walking on uneven terrain with obstacles, using a mixed-integer quadratically-constrained quadratic program (MIQCQP). Our approach is unique in that it handles obstacle avoidance, kinematic reachability, and rotation of footstep placements, which typically have required non-convex constraints, in a single mixed-integer optimization that can be efficiently solved to its global optimum. Reachability is enforced through a convex inner approximation of the reachable space for the robot’s feet. Rotation of the footsteps is handled by a piecewise linear approximation of sine and cosine, designed to ensure that the approximation never overestimates the robot’s reachability. Obstacle avoidance is ensured by decomposing the environment into convex regions of obstacle-free configuration space and assigning each footstep to one such safe region. We demonstrate this technique in simple 2D and 3D environments and with real environments sensed by a humanoid robot. We also discuss computational performance of the algorithm, which is currently capable of planning short sequences of a few steps in under one second or longer sequences of 10-30 footsteps in tens of seconds to minutes on common laptop computer hardware. Our implementation is available within the Drake MATLAB toolbox.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="fallon_architecture_2014">2</a>]
+</td>
+<td class="bibtexitem">
+Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
+  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
+  Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
+  Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
+ An architecture for online affordance-based perception and whole-body
+  planning.
+ <em>Journal of Field Robotics</em>, September 2014.
+[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
+<blockquote><font size="-1">
+The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="winter_razor_2014">3</a>]
 </td>
 <td class="bibtexitem">
 A.&nbsp;G. Winter, V, R.&nbsp;L.&nbsp;H. Deits, D.&nbsp;S. Dorsch, A.&nbsp;H. Slocum, and A.&nbsp;E. Hosoi.
@@ -22,34 +62,14 @@ Estimates based on the strength, size, and shape of the Atlantic razor clam (Ens
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="fallon_architecture_2014">2</a>]
+[<a name="deits_computing_2014">4</a>]
 </td>
 <td class="bibtexitem">
-Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
-  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
-  Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
-  Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
- An architecture for online affordance-based perception and whole-body
-  planning.
- <em>Submitted to: Journal of Field Robotics</em>, 2014.
-[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
-<blockquote><font size="-1">
-The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
-</font></blockquote>
-<p>
-</td>
-</tr>
-
-
-<tr valign="top">
-<td align="right" class="bibtexnumber">
-[<a name="deits_computing_2014">3</a>]
-</td>
-<td class="bibtexitem">
-Robin&nbsp;L.H. Deits and Russ Tedrake.
+Robin Deits and Russ Tedrake.
  Computing large convex regions of obstacle-free space through
   semidefinite programming.
- In <em>Workshop on the Algorithmic Foundations of Robotics</em>, 2014.
+ In <em>Workshop on the Algorithmic Foundations of Robotics</em>,
+  Istanbul, Turkey, 2014.
 [&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 This paper presents IRIS (Iterative Regional Inflation by Semi-definite programming), a new method for efficiently computing large polytopic and ellipsoidal regions of obstacle-free space through a series of convex optimizations. These regions can be used, for example, to efficiently optimize an objective over collision-free positions in space for a robot manipulator. The algorithm alternates between two convex optimizations: (1) a quadratic program to generate a set of hyperplanes which separate a convex region of space from the set of obstacles and (2) a semidefinite program which finds a maximum-volume ellipsoid inside the polytopic intersection of the obstacle-free half-spaces defined by those hyperplanes. Both the hyperplanes and the ellipsoid are refined over several iterations to monotonically increase the volume of the contained ellipsoid, resulting in a large convex polytope in free space. Practical applications of the algorithm are presented in 2D and 3D, and extensions to N-dimensional configuration spaces are discussed. Experiments demonstrate that the algorithm has a computation time which is linear in the number of obstacles, and our MATLAB implementation converges in seconds for environments with millions of obstacles.
@@ -61,10 +81,10 @@ This paper presents IRIS (Iterative Regional Inflation by Semi-definite programm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_radial_2014">4</a>]
+[<a name="deits_radial_2014">5</a>]
 </td>
 <td class="bibtexitem">
-Robin L&nbsp;H Deits and Matthias Lang.
+Robin Deits and Matthias Lang.
  Radial magnetic bearing for magnetic support of a rotor, 2014.
 [&nbsp;<a href="http://www.freepatentsonline.com/20130293051.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
@@ -77,7 +97,7 @@ A radial magnetic bearing for magnetic bearing of a rotor has a stator which inc
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_critical_2013">5</a>]
+[<a name="winter_critical_2013">6</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Daniel&nbsp;S Dorsch.
@@ -97,10 +117,10 @@ The Atlantic razor clam (Ensis directus) burrows into underwater soil by using m
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_clarifying_2013">6</a>]
+[<a name="deits_clarifying_2013">7</a>]
 </td>
 <td class="bibtexitem">
-Robin L&nbsp;H Deits, Stefanie Tellex, Pratiksha Thaker, Dimitar Simeonov, Thomas
+Robin Deits, Stefanie Tellex, Pratiksha Thaker, Dimitar Simeonov, Thomas
   Kollar, and Nicholas Roy.
  Clarifying commands with information-theoretic human-robot dialog.
  <em>Journal of Human-Robot Interaction</em>, 2(2):58&ndash;79, 2013.
@@ -115,7 +135,7 @@ Our goal is to improve the efficiency and effectiveness of natural language comm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_localized_2012">7</a>]
+[<a name="winter_localized_2012">8</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Anette&nbsp;E Hosoi.
@@ -134,10 +154,26 @@ that scales linearly with depth rather than with depth squared.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tellex_toward_2012">8</a>]
+[<a name="lang_radial_2012">9</a>]
 </td>
 <td class="bibtexitem">
-Stefanie Tellex, Pratiksha Thaker, Robin L&nbsp;H Deits, Dimitar Simeonov, Thomas
+Matthias Lang and Robin Deits.
+ Radial magnetic bearing for the magnetic bearing of a rotor, 2012.
+[&nbsp;<a href="http://patentscope.wipo.int/search/en/WO2012084590">http</a>&nbsp;]
+<blockquote><font size="-1">
+The invention relates to a radial magnetic bearing for magnetic bearing of a rotor, wherein the radial magnetic bearing has a stator, wherein the stator has a magnetically conductive stator element, arranged circulating around the rotor, wherein the stator element has recesses running in the axial direction of the stator element in which electrical lines from coils are arranged, wherein magnetic fields can be generated by the coils which hold the rotor suspended in an air gap arranged between the rotor and stator, wherein a softer progression of the components of magnetic flow density in the radial direction is achieved by design measures on the transitions from one magnetic pole to the next magnetic pole, which results in a reduction of the eddy currents induced in the rotor.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="tellex_toward_2012">10</a>]
+</td>
+<td class="bibtexitem">
+Stefanie Tellex, Pratiksha Thaker, Robin Deits, Dimitar Simeonov, Thomas
   Kollar, and Nicholas Roy.
  Toward information theoretic human-robot dialog.
  In <em>Robotics: Science and Systems Conference</em>, 2012.
@@ -152,7 +188,7 @@ Our goal is to build robots that can robustly interact with humans using natural
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_multi-substrate_2010">9</a>]
+[<a name="winter_multi-substrate_2010">11</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, and Anette&nbsp;E Hosoi.
@@ -171,11 +207,11 @@ The Atlantic razor clam (Ensis directus) reduces burrowing drag by using motions
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_teaching_2010">10</a>]
+[<a name="winter_teaching_2010">12</a>]
 </td>
 <td class="bibtexitem">
-Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, Anette&nbsp;E Hosoi, and
-  Alexander&nbsp;H. Slocum.
+Amos&nbsp;G. Winter, Robin Deits, Daniel&nbsp;S Dorsch, Anette&nbsp;E Hosoi, and Alexander&nbsp;H.
+  Slocum.
  Teaching RoboClam to dig: The design, testing, and genetic
   algorithm optimization of a biomimetic robot.
  In <em>International Conference on Intelligent Robots and Systems
@@ -191,7 +227,7 @@ Razor clams (Ensis directus) are one of nature’s most adept burrowing organism
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_design_2009">11</a>]
+[<a name="winter_design_2009">13</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Anette&nbsp;E Hosoi, Alexander&nbsp;H. Slocum, and Robin L&nbsp;H Deits.
