@@ -7,7 +7,6 @@
 	urldate = {2014-03-17},
 	journal = {Journal of Field Robotics},
 	author = {Fallon, Maurice and Kuindersma, Scott and Karumanchi, Sisir and Antone, Matthew and Schneider, Toby and Dai, Hongkai and Perez D'Arpino, Claudia and Deits, Robin and DiCicco, Matt and Fourie, Dehann and Koolen, Twan and Marion, Pat and Posa, Michael and Valenzuela, Andres and Yu, Kuan-Ting and Shah, Julie and Iagnemma, Karl and Tedrake, Russ and Teller, Seth},
-	month = sep,
 	year = {2014},
 	keywords = {{CV}, humanoids2014, masters, wafr14},
 	file = {Fallon et al_2014_An Architecture for Online Affordance-based Perception and Whole-body Planning.pdf:/Users/rdeits/Library/Application Support/Zotero/Profiles/5x41ulse.default/zotero/storage/HFSAP8SE/Fallon et al_2014_An Architecture for Online Affordance-based Perception and Whole-body Planning.pdf:application/pdf;Snapshot:/Users/rdeits/Library/Application Support/Zotero/Profiles/5x41ulse.default/zotero/storage/HRE3B4P2/85690.html:text/html}
@@ -160,11 +159,25 @@ that scales linearly with depth rather than with depth squared.},
 	file = {Tellex et al_2012_Toward Information Theoretic Human-Robot Dialog.pdf:/Users/rdeits/Library/Application Support/Zotero/Profiles/5x41ulse.default/zotero/storage/WAQDIUKR/Tellex et al_2012_Toward Information Theoretic Human-Robot Dialog.pdf:application/pdf}
 }
 
+@phdthesis{deits_convex_2014,
+	address = {Cambridge, {MA}},
+	type = {Science master's thesis},
+	title = {Convex Segmentation and Mixed-Integer Footstep Planning for a Walking Robot},
+	url = {http://groups.csail.mit.edu/robotics-center/public_papers/Deits14b.pdf},
+	abstract = {This work presents a novel formulation of the footstep planning problem as a mixed-integer convex optimization. The footstep planning problem involves choosing a set of footstep locations which a walking robot can follow to safely reach a goal through an environment with obstacles. Rather than attempting to avoid the obstacles, which would require non-convex constraints, we use integer variables to assign each footstep to a convex region of obstacle-free terrain, while simultaneously optimizing its pose within that safe region. Since existing methods for generating convex obstacle-free regions were ill-suited to this task, we also present {IRIS} (Iterative Regional Inflation by Semidefinite programming), a new method to generate such regions through a series of convex optimizations. Combining {IRIS} with the mixed-integer optimization gives a complete footstep planning architecture, which can produce complex footstep plans on heightmap data constructed from onboard sensors. We demonstrate the footstep planner in simulated environments and with real data sensed by the Atlas humanoid, and we discuss future applications to running robots, aerial vehicles, and robots with more than two legs.},
+	school = {Massachusetts Institute of Technology},
+	author = {Deits, Robin},
+	month = sep,
+	year = {2014},
+	keywords = {{CV}},
+	file = {rdeits_masters_thesis.pdf:/Users/rdeits/Library/Application Support/Zotero/Profiles/5x41ulse.default/zotero/storage/Q9H73G33/rdeits_masters_thesis.pdf:application/pdf}
+}
+
 @article{deits_footstep_2014,
 	title = {Footstep Planning on Uneven Terrain with Mixed-Integer Convex Optimization},
 	url = {http://groups.csail.mit.edu/robotics-center/public_papers/Deits14a.pdf},
 	abstract = {We present a new method for planning footstep placements for a robot walking on uneven terrain with obstacles, using a mixed-integer quadratically-constrained quadratic program ({MIQCQP}). Our approach is unique in that it handles obstacle avoidance, kinematic reachability, and rotation of footstep placements, which typically have required non-convex constraints, in a single mixed-integer optimization that can be efficiently solved to its global optimum. Reachability is enforced through a convex inner approximation of the reachable space for the robot’s feet. Rotation of the footsteps is handled by a piecewise linear approximation of sine and cosine, designed to ensure that the approximation never overestimates the robot’s reachability. Obstacle avoidance is ensured by decomposing the environment into convex regions of obstacle-free configuration space and assigning each footstep to one such safe region. We demonstrate this technique in simple 2D and 3D environments and with real environments sensed by a humanoid robot. We also discuss computational performance of the algorithm, which is currently capable of planning short sequences of a few steps in under one second or longer sequences of 10-30 footsteps in tens of seconds to minutes on common laptop computer hardware. Our implementation is available within the Drake {MATLAB} toolbox.},
-	journal = {Submitted to: {IEEE}-{RAS} International Conference on Humanoid Robots},
+	journal = {{IEEE}-{RAS} International Conference on Humanoid Robots},
 	author = {Deits, Robin and Tedrake, Russ},
 	month = nov,
 	year = {2014},

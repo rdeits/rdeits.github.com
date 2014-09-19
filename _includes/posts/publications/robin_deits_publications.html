@@ -9,8 +9,8 @@
 Robin Deits and Russ Tedrake.
  Footstep planning on uneven terrain with mixed-integer convex
   optimization.
- <em>Submitted to: IEEE-RAS International Conference on Humanoid
-  Robots</em>, November 2014.
+ <em>IEEE-RAS International Conference on Humanoid Robots</em>,
+  November 2014.
 [&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14a.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 We present a new method for planning footstep placements for a robot walking on uneven terrain with obstacles, using a mixed-integer quadratically-constrained quadratic program (MIQCQP). Our approach is unique in that it handles obstacle avoidance, kinematic reachability, and rotation of footstep placements, which typically have required non-convex constraints, in a single mixed-integer optimization that can be efficiently solved to its global optimum. Reachability is enforced through a convex inner approximation of the reachable space for the robot’s feet. Rotation of the footsteps is handled by a piecewise linear approximation of sine and cosine, designed to ensure that the approximation never overestimates the robot’s reachability. Obstacle avoidance is ensured by decomposing the environment into convex regions of obstacle-free configuration space and assigning each footstep to one such safe region. We demonstrate this technique in simple 2D and 3D environments and with real environments sensed by a humanoid robot. We also discuss computational performance of the algorithm, which is currently capable of planning short sequences of a few steps in under one second or longer sequences of 10-30 footsteps in tens of seconds to minutes on common laptop computer hardware. Our implementation is available within the Drake MATLAB toolbox.
@@ -22,28 +22,7 @@ We present a new method for planning footstep placements for a robot walking on 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="fallon_architecture_2014">2</a>]
-</td>
-<td class="bibtexitem">
-Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
-  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
-  Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
-  Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
- An architecture for online affordance-based perception and whole-body
-  planning.
- <em>Journal of Field Robotics</em>, September 2014.
-[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
-<blockquote><font size="-1">
-The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
-</font></blockquote>
-<p>
-</td>
-</tr>
-
-
-<tr valign="top">
-<td align="right" class="bibtexnumber">
-[<a name="winter_razor_2014">3</a>]
+[<a name="winter_razor_2014">2</a>]
 </td>
 <td class="bibtexitem">
 A.&nbsp;G. Winter, V, R.&nbsp;L.&nbsp;H. Deits, D.&nbsp;S. Dorsch, A.&nbsp;H. Slocum, and A.&nbsp;E. Hosoi.
@@ -62,7 +41,47 @@ Estimates based on the strength, size, and shape of the Atlantic razor clam (Ens
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_computing_2014">4</a>]
+[<a name="deits_convex_2014">3</a>]
+</td>
+<td class="bibtexitem">
+Robin Deits.
+ <em>Convex Segmentation and Mixed-Integer Footstep Planning for a
+  Walking Robot</em>.
+ Science master's thesis, Massachusetts Institute of Technology,
+  Cambridge, MA, September 2014.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14b.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+This work presents a novel formulation of the footstep planning problem as a mixed-integer convex optimization. The footstep planning problem involves choosing a set of footstep locations which a walking robot can follow to safely reach a goal through an environment with obstacles. Rather than attempting to avoid the obstacles, which would require non-convex constraints, we use integer variables to assign each footstep to a convex region of obstacle-free terrain, while simultaneously optimizing its pose within that safe region. Since existing methods for generating convex obstacle-free regions were ill-suited to this task, we also present IRIS (Iterative Regional Inflation by Semidefinite programming), a new method to generate such regions through a series of convex optimizations. Combining IRIS with the mixed-integer optimization gives a complete footstep planning architecture, which can produce complex footstep plans on heightmap data constructed from onboard sensors. We demonstrate the footstep planner in simulated environments and with real data sensed by the Atlas humanoid, and we discuss future applications to running robots, aerial vehicles, and robots with more than two legs.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="fallon_architecture_2014">4</a>]
+</td>
+<td class="bibtexitem">
+Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
+  Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
+  Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
+  Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
+ An architecture for online affordance-based perception and whole-body
+  planning.
+ <em>Journal of Field Robotics</em>, 2014.
+[&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
+<blockquote><font size="-1">
+The DARPA Robotics Challenge Trials held in December 2013 provided a landmark demonstration of dexterous mobile robots executing a variety of tasks aided by a remote human operator using only data from the robot's sensor suite transmitted over a constrained, field-realistic communications link. We describe the design considerations, architecture, implementation and performance of the software that Team MIT developed to command and control an Atlas humanoid robot. Our design emphasized human interaction with an efficient motion planner, where operators expressed desired robot actions in terms of affordances fit using perception and manipulated in a custom user interface. We highlight several important lessons we learned while developing our system on a highly compressed schedule.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="deits_computing_2014">5</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits and Russ Tedrake.
@@ -81,7 +100,7 @@ This paper presents IRIS (Iterative Regional Inflation by Semi-definite programm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_radial_2014">5</a>]
+[<a name="deits_radial_2014">6</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits and Matthias Lang.
@@ -97,7 +116,7 @@ A radial magnetic bearing for magnetic bearing of a rotor has a stator which inc
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_critical_2013">6</a>]
+[<a name="winter_critical_2013">7</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Daniel&nbsp;S Dorsch.
@@ -117,7 +136,7 @@ The Atlantic razor clam (Ensis directus) burrows into underwater soil by using m
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_clarifying_2013">7</a>]
+[<a name="deits_clarifying_2013">8</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits, Stefanie Tellex, Pratiksha Thaker, Dimitar Simeonov, Thomas
@@ -135,7 +154,7 @@ Our goal is to improve the efficiency and effectiveness of natural language comm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_localized_2012">8</a>]
+[<a name="winter_localized_2012">9</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Anette&nbsp;E Hosoi.
@@ -154,7 +173,7 @@ that scales linearly with depth rather than with depth squared.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="lang_radial_2012">9</a>]
+[<a name="lang_radial_2012">10</a>]
 </td>
 <td class="bibtexitem">
 Matthias Lang and Robin Deits.
@@ -170,7 +189,7 @@ The invention relates to a radial magnetic bearing for magnetic bearing of a rot
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tellex_toward_2012">10</a>]
+[<a name="tellex_toward_2012">11</a>]
 </td>
 <td class="bibtexitem">
 Stefanie Tellex, Pratiksha Thaker, Robin Deits, Dimitar Simeonov, Thomas
@@ -188,7 +207,7 @@ Our goal is to build robots that can robustly interact with humans using natural
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_multi-substrate_2010">11</a>]
+[<a name="winter_multi-substrate_2010">12</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, and Anette&nbsp;E Hosoi.
@@ -207,7 +226,7 @@ The Atlantic razor clam (Ensis directus) reduces burrowing drag by using motions
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_teaching_2010">12</a>]
+[<a name="winter_teaching_2010">13</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin Deits, Daniel&nbsp;S Dorsch, Anette&nbsp;E Hosoi, and Alexander&nbsp;H.
@@ -227,7 +246,7 @@ Razor clams (Ensis directus) are one of nature’s most adept burrowing organism
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_design_2009">13</a>]
+[<a name="winter_design_2009">14</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Anette&nbsp;E Hosoi, Alexander&nbsp;H. Slocum, and Robin L&nbsp;H Deits.
