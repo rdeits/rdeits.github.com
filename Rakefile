@@ -73,6 +73,13 @@ file "_includes/posts/2014-07-08-coasters2/graphs2.html" => "/Users/rdeits/Proje
   mv "graphs2.html", "_includes/posts/2014-07-08-coasters2/graphs2.html"
 end
 
+file "_includes/posts/2015-02-01-micronauts/micronauts.html" => "/Users/rdeits/Puzzles/MysteryHunt2009/micronauts/micronauts.ipynb" do
+  sh "ipython nbconvert --to html --template basic /Users/rdeits/Puzzles/MysteryHunt2009/micronauts/micronauts.ipynb"
+  mv "micronauts.html", "_includes/posts/2015-02-01-micronauts/micronauts.html"
+end
+
+task :micronauts => ["_includes/posts/2015-02-01-micronauts/micronauts.html"]
+
 desc "More roller coasters"
 task :coasters2 => ["_includes/posts/2014-07-08-coasters2/graphs2.html"] do
   f = FileList["/Users/rdeits/Projects/RollerCoasters/data/2009-05-08-Roger-Meike-Sun-SPOT/**/accel_polar.*", "/Users/rdeits/Projects/RollerCoasters/data/2014-05-02-Gulf-Coast-Data-Concepts/**/accel_polar.*", "/Users/rdeits/Projects/RollerCoasters/data/2014-06-22-Ann-Marie-Pendrill/**/accel_polar.*"]
