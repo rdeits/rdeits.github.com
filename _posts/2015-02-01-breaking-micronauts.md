@@ -3,6 +3,7 @@ layout: post
 title: "Breaking Micronauts"
 category: 
 tags: []
+nofeed: true
 ---
 {% include JB/setup %}
 
