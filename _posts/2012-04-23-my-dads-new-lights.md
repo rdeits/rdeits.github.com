@@ -14,7 +14,11 @@ The finished product.
 
 Last January, my crazy MIT (East Campus, 1E) friends and I designed and built a 1,300 LED programmable lighting display for our hallway. That's a post for another day, but my friend Ciuffo (of [ch00ftech.com](http://ch00ftech.com/) fame) put together a fantastic video of the construction:
 
-<object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/HtlVxP_jHCM?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/HtlVxP_jHCM?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+<div class="narrow-video">
+<div class="fluid-width-video-wrapper">
+<iframe src="https://www.youtube.com/embed/HtlVxP_jHCM" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
 
 Naturally, I wanted my own system for my apartment. But, since the original cost about $1000 and took the combined force of a dozen MIT students to produce, I figured re-implementing the hardware wasn't a good idea. Fortunately, darco of [deepdarc.com](http://www.deepdarc.com/) reverse-engineered the communication protocol for the GE Color Effects LED Christmas lights, which provided me with a reasonably cheap set of hackable hardware. I took some of his software and adapted it to be compatible with the control code for our hallway lights. The result is a fully-programmable LED light string with easily customized, animated patterns for my very own room, all for less than $150. Software and hardware links are [at the end](#building_your_own).
 
