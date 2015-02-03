@@ -22,8 +22,10 @@ title : Atom Feed for Search
 		   <updated>{{ post.date | date_to_xmlschema }}</updated>
 		   <id>h{{ site.production_url }}{{ post.id }}</id>
 		   <content type="html">
-		   	{% if post.nofeed != true %}
-		   	{{ post.content | xml_escape }}
+		   	{% if post.feed_summary %}
+		   	{{ post.feed_summary | xml_escape }}
+		   	{% else %}
+		   	{{ post.content |  xml_escape }}
 		   	{% endif %}
 		   </content>
 		 </entry>

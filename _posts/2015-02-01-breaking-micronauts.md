@@ -3,7 +3,7 @@ layout: post
 title: "Breaking Micronauts"
 category: 
 tags: []
-nofeed: true
+feed_summary: Cracking a puzzle by decoding a PDF with IPython
 ---
 {% include JB/setup %}
 
