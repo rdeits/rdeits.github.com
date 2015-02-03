@@ -23,3 +23,8 @@ figcaption {
 img {
 	max-width: 100%;
 }
+
+.MathJax_Display {
+	overflow-y: hidden;
+	overflow-x: auto;
+}
