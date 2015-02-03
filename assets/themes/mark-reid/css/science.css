@@ -19,3 +19,7 @@ figcaption {
 .output_display_data img {
 	max-width: 100%;
 }
+
+img {
+	max-width: 100%;
+}
