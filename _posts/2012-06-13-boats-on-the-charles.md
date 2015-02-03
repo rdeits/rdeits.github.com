@@ -8,19 +8,19 @@ tags: []
 
 As it turns out, this Sunday was the day of the [Boston Dragon Boat Festival](http://www.bostondragonboat.org/) on the Charles. I took a few pictures. 
 
-<div id="slideshow" style="height:500px">
-    <p>Please enable Javascript to view this slideshow</p>
+<script src="/assets/jquery-plugin/jquery-1.11.2.min.js"></script>
+<script src="/assets/js/galleria/galleria-1.4.2.min.js"></script>
+<script src="/assets/js/galleria/galleria.flickr.min.js"></script>
+
+<div class="galleria" style="height:500px">
 </div>
-<script src="/assets/flickrshow-7.2.min.js">
-</script>
 
 <script>
-    var slideshow = new flickrshow('slideshow', {
-        autoplay:false,
-        set:'72157630097442076',
-        interval:5000,
-        license:null,
-        page:1,
-        per_page:100,
-    });
+Galleria.loadTheme('/assets/js/galleria/galleria.classic.min.js');
+Galleria.run('.galleria', {
+    flickr: 'set:72157630097442076',
+    flickrOptions: {
+        sort: 'date-taken-asc'
+    }
+});
 </script>
