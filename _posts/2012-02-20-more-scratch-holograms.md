@@ -11,7 +11,11 @@ This is a continuation of the work I started in my earlier post on
 holograms" by etching arcs into pieces of plastic, as shown in [William
 Beaty's video](http://www.eskimo.com/~billb/amateur/holo1.html) here:
 
-<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/XUy8lELWhJg?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/XUy8lELWhJg?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+<div class="narrow-video">
+<div class="fluid-width-video-wrapper">
+<iframe src="https://www.youtube.com/embed/XUy8lELWhJg" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
 
 I can now render holograms of "solid" object models, with transparency
 and opacity, and I can even reproduce those holograms using
@@ -105,7 +109,11 @@ from the other side.
 Using a center drill bit on a Lexan sheet, I was able to produce a
 physical hologram from this same model, complete with simulated opacity:
 
-<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/Rv5KIT7IYO0?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/Rv5KIT7IYO0?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+<div class="narrow-video">
+<div class="fluid-width-video-wrapper">
+<iframe src="https://www.youtube.com/embed/Rv5KIT7IYO0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
 
 # Conclusions
 I'm definitely not finished with this project, but I've also made a lot

@@ -17,4 +17,9 @@ Here's an example:
 * The scratch pattern generated from the 3D model, ready to be printed and traced. The blue arcs are for points below the plastic; the red ones are for points above it.
 <img src="/img/2011-09-26/cube_tilted.png" width="75%"/>
 * The final result, scratched into polyester film by hand:
-<p><object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/0RP-PyvZ4eE?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/0RP-PyvZ4eE?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object></p>
+
+<div class="narrow-video">
+<div class="fluid-width-video-wrapper">
+<iframe src="https://www.youtube.com/embed/0RP-PyvZ4eE" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>

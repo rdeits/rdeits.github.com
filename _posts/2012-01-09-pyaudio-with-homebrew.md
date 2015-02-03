@@ -54,10 +54,9 @@ This fails with
 		-fno-strict-aliasing
 	src/_portaudiomodule.c:35:25: error: pa_mac_core.h: No such file or directory
 
-I found that missing file at:<br>
-[http://www.portaudio.com/trac/browser/portaudio/branches/v19-devel/include/pa_mac_core.h?rev=1074](http://www.portaudio.com/trac/browser/portaudio/branches/v19-devel/include/pa_mac_core.h?rev=1074) and downloaded it to the same folder as setup.py. This didn't work, so I copied it to /usr/bin. Also didn't work. Sigh.
+I found that missing file [in the portaudio source](http://www.portaudio.com/trac/browser/portaudio/branches/v19-devel/include/pa_mac_core.h?rev=1074) and downloaded it to the same folder as setup.py. This didn't work, so I copied it to /usr/bin. Also didn't work. Sigh.
 
-Next step, based on [https://github.com/mxcl/homebrew/pull/3926](https://github.com/mxcl/homebrew/pull/3926):
+Next step, based on [a homebrew pull request](https://github.com/mxcl/homebrew/pull/3926):
 
 	brew install portaudio
 	sudo brew link portaudio
