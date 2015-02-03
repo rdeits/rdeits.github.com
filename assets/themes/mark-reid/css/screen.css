@@ -404,10 +404,11 @@ pre {
 	-webkit-box-shadow: 1px 1px 6px #ccc;
 	-moz-box-shadow: 1px 1px 6px #ccc;
 }
-pre:hover {
+/*pre:hover {
 	border-right: none;
 	overflow: auto;
 }
+*/
 code {
 	font-size: 1em;
 	background-color: #f7f7ff;
