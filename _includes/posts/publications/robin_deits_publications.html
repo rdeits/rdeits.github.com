@@ -3,17 +3,17 @@
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_footstep_2014">1</a>]
+[<a name="deits_efficient_2015">1</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits and Russ Tedrake.
- Footstep planning on uneven terrain with mixed-integer convex
-  optimization.
- <em>IEEE-RAS International Conference on Humanoid Robots</em>,
-  November 2014.
-[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14a.pdf">.pdf</a>&nbsp;]
+ Efficient Mixed-Integer Planning for UAVs in Cluttered
+  Environments.
+ In <em>IEEE International Conference on Robotics and
+  Automation (ICRA)</em>, Seattle, WA, May 2015.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits15.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
-We present a new method for planning footstep placements for a robot walking on uneven terrain with obstacles, using a mixed-integer quadratically-constrained quadratic program (MIQCQP). Our approach is unique in that it handles obstacle avoidance, kinematic reachability, and rotation of footstep placements, which typically have required non-convex constraints, in a single mixed-integer optimization that can be efficiently solved to its global optimum. Reachability is enforced through a convex inner approximation of the reachable space for the robot’s feet. Rotation of the footsteps is handled by a piecewise linear approximation of sine and cosine, designed to ensure that the approximation never overestimates the robot’s reachability. Obstacle avoidance is ensured by decomposing the environment into convex regions of obstacle-free configuration space and assigning each footstep to one such safe region. We demonstrate this technique in simple 2D and 3D environments and with real environments sensed by a humanoid robot. We also discuss computational performance of the algorithm, which is currently capable of planning short sequences of a few steps in under one second or longer sequences of 10-30 footsteps in tens of seconds to minutes on common laptop computer hardware. Our implementation is available within the Drake MATLAB toolbox.
+We present a new approach to the design of smooth trajectories for quadrotor unmanned aerial vehicles (UAVs), which are free of collisions with obstacles along their entire length. To avoid the non-convex constraints normally required for obstacle-avoidance, we perform a mixed-integer optimization in which polynomial trajectories are assigned to convex regions which are known to be obstacle-free. Prior approaches have used the faces of the obstacles themselves to define these convex regions. We instead use IRIS, a recently developed technique for greedy convex segmentation, to pre-compute convex regions of safe space. This results in a substantially reduced number of integer variables, which improves the speed with which the optimization can be solved to its global optimum, even for tens or hundreds of obstacle faces. In addition, prior approaches have typically enforced obstacle avoidance at a finite set of sample or knot points. We introduce a technique based on sums-of-squares (SOS) programming that allows us to ensure that the entire piecewise polynomial trajectory is free of collisions using convex constraints. We demonstrate this technique in 2D and in 3D using a dynamical model in the Drake toolbox for MATLAB.
 </font></blockquote>
 <p>
 </td>
@@ -22,7 +22,63 @@ We present a new method for planning footstep placements for a robot walking on 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_razor_2014">2</a>]
+[<a name="kuindersma_optimization-based_2015">2</a>]
+</td>
+<td class="bibtexitem">
+Scott Kuindersma, Robin Deits, Maurice Fallon, Andrés Valenzuela, Hongkai Dai,
+  Frank Permenter, Twan Koolen, Pat Marion, and Russ Tedrake.
+ Optimization-based locomotion planning, estimation, and control
+  design for the Atlas humanoid robot.
+ <em>Autonomous Robots (accepted)</em>, 2015.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Kuindersma14.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+This paper describes a collection of optimization algorithms for achieving dynamic planning, control, and state estimation for a bipedal robot designed to operate reliably in complex environments. To make challenging locomotion tasks tractable, we describe several novel applications of convex, mixed-integer, and sparse nonlinear optimization to problems ranging from footstep placement to whole-body planning and control. We also present a state estimator formulation that, when combined with our walking controller, permits highly precise execution of extended walking plans over non-flat ter- rain. We describe our complete system integration and experiments carried out on Atlas, a full-size hydraulic humanoid robot built by Boston Dynamics, Inc.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="tedrake_closed-form_2015">3</a>]
+</td>
+<td class="bibtexitem">
+Russ Tedrake, Scott Kuindersma, Robin Deits, and Kanako Miura.
+ A closed-form solution for real-time ZMP gait generation and
+  feedback stabilization.
+ <em>Under review</em>, 2015.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Tedrake15.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Here we present a closed-form solution solution to the continuous time-varying linear quadratic regulator (LQR) problem for the zero-moment point (ZMP) tracking controller. This generalizes previous analytical solutions for gait generation by allowing “soft” tracking (with a quadratic cost) of the desired ZMP, and by providing the feedback gains for the resulting time-varying optimal controller. This enables extremely fast computation, with the number of operations linear in the number of spline segments representing the desired ZMP. Results are presented using the Atlas humanoid robot where dynamic walking is achieved by recomputing the optimal controller online.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="deits_footstep_2014">4</a>]
+</td>
+<td class="bibtexitem">
+Robin Deits and Russ Tedrake.
+ Footstep Planning on Uneven Terrain with Mixed-Integer
+  Convex Optimization.
+ <em>IEEE-RAS International Conference on Humanoid Robots</em>, November
+  2014.
+[&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14a.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+We present a new method for planning footstep placements for a robot walking on uneven terrain with obstacles, using a mixed-integer quadratically-constrained quadratic program (MIQCQP). Our approach is unique in that it handles obstacle avoidance, kinematic reachability, and rotation of footstep placements, which typically have required non-convex constraints, in a single mixed-integer optimization that can be efficiently solved to its global optimum. Reachability is enforced through a convex inner approximation of the reachable space for the robot's feet. Rotation of the footsteps is handled by a piecewise linear approximation of sine and cosine, designed to ensure that the approximation never overestimates the robot's reachability. Obstacle avoidance is ensured by decomposing the environment into convex regions of obstacle-free configuration space and assigning each footstep to one such safe region. We demonstrate this technique in simple 2D and 3D environments and with real environments sensed by a humanoid robot. We also discuss computational performance of the algorithm, which is currently capable of planning short sequences of a few steps in under one second or longer sequences of 10-30 footsteps in tens of seconds to minutes on common laptop computer hardware. Our implementation is available within the Drake MATLAB toolbox.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="winter_razor_2014">5</a>]
 </td>
 <td class="bibtexitem">
 A.&nbsp;G. Winter, V, R.&nbsp;L.&nbsp;H. Deits, D.&nbsp;S. Dorsch, A.&nbsp;H. Slocum, and A.&nbsp;E. Hosoi.
@@ -41,12 +97,12 @@ Estimates based on the strength, size, and shape of the Atlantic razor clam (Ens
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_convex_2014">3</a>]
+[<a name="deits_convex_2014">6</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits.
- <em>Convex Segmentation and Mixed-Integer Footstep Planning for a
-  Walking Robot</em>.
+ <em>Convex Segmentation and Mixed-Integer Footstep
+  Planning for a Walking Robot</em>.
  Science master's thesis, Massachusetts Institute of Technology,
   Cambridge, MA, September 2014.
 [&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14b.pdf">.pdf</a>&nbsp;]
@@ -60,15 +116,15 @@ This work presents a novel formulation of the footstep planning problem as a mix
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="fallon_architecture_2014">4</a>]
+[<a name="fallon_architecture_2014">7</a>]
 </td>
 <td class="bibtexitem">
 Maurice Fallon, Scott Kuindersma, Sisir Karumanchi, Matthew Antone, Toby
   Schneider, Hongkai Dai, Claudia Perez&nbsp;D'Arpino, Robin Deits, Matt DiCicco,
   Dehann Fourie, Twan Koolen, Pat Marion, Michael Posa, Andres Valenzuela,
   Kuan-Ting Yu, Julie Shah, Karl Iagnemma, Russ Tedrake, and Seth Teller.
- An architecture for online affordance-based perception and whole-body
-  planning.
+ An Architecture for Online Affordance-based Perception and
+  Whole-body Planning.
  <em>Journal of Field Robotics</em>, 2014.
 [&nbsp;<a href="http://dspace.mit.edu/handle/1721.1/85690">http</a>&nbsp;]
 <blockquote><font size="-1">
@@ -81,12 +137,12 @@ The DARPA Robotics Challenge Trials held in December 2013 provided a landmark de
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_computing_2014">5</a>]
+[<a name="deits_computing_2014">8</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits and Russ Tedrake.
- Computing large convex regions of obstacle-free space through
-  semidefinite programming.
+ Computing Large Convex Regions of Obstacle-Free Space
+  through Semidefinite Programming.
  In <em>Workshop on the Algorithmic Foundations of Robotics</em>,
   Istanbul, Turkey, 2014.
 [&nbsp;<a href="http://groups.csail.mit.edu/robotics-center/public_papers/Deits14.pdf">.pdf</a>&nbsp;]
@@ -100,11 +156,12 @@ This paper presents IRIS (Iterative Regional Inflation by Semi-definite programm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_radial_2014">6</a>]
+[<a name="deits_radial_2014">9</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits and Matthias Lang.
- Radial magnetic bearing for magnetic support of a rotor, 2014.
+ Radial Magnetic Bearing for Magnetic Support of a Rotor,
+  2014.
 [&nbsp;<a href="http://www.freepatentsonline.com/20130293051.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 A radial magnetic bearing for magnetic bearing of a rotor has a stator which includes a magnetically conductive stator element, arranged circulating around a rotor. The stator element has recesses running in the axial direction of the stator element in which electrical lines from coils are arranged, wherein magnetic fields can be generated by the coils which hold the rotor suspended in an air gap arranged between the rotor and stator. A softer progression of the components of magnetic flow density in the radial direction is achieved by design measures on the transition from one magnetic pole to the next magnetic pole, which results in a reduction of the eddy currents induced in the rotor.
@@ -116,15 +173,16 @@ A radial magnetic bearing for magnetic bearing of a rotor has a stator which inc
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_critical_2013">7</a>]
+[<a name="winter_critical_2013">10</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Daniel&nbsp;S Dorsch.
- Critical timescales for burrowing in undersea substrates via
-  localized fluidization, demonstrated by RoboClam: a robot inspired by
-  atlantic razor clams.
- In <em>ASME 2013 International Design Engineering Technical
-  Conferences &amp; Computers and Information in Engineering Conference</em>, 2013.
+ Critical Timescales for Burrowing in Undersea Substrates via
+  Localized Fluidization, Demonstrated by RoboClam: a Robot
+  Inspired by Atlantic Razor Clams.
+ In <em>ASME 2013 International Design Engineering
+  Technical Conferences &amp; Computers and Information in Engineering
+  Conference</em>, 2013.
 [&nbsp;<a href="http://gear.mit.edu/Publications/RoboClam/2013_RoboClam_ASME_IDETC_Final.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 The Atlantic razor clam (Ensis directus) burrows into underwater soil by using motions of its shell to locally fluidize the surrounding substrate. The energy associated with movement through fluidized soil – characterized by a depth-independent density and viscosity – scales linearly with depth. In contrast, moving through static soil requires energy that scales with depth squared. For E. directus, this translates to a 10X reduction in the energy required to reach observed burrow depths. For engineers, localized fluidization offers a mechanically simple and purely kinematic method to dramatically reduce burrowing energy. This concept is demonstrated with RoboClam, an E. directus-inspired robot. Using a genetic algorithm to generate digging kinematics, RoboClam has achieved localized fluidization and burrowing performance comparable to that of the animal, with a linear energy-depth relationship. In this paper, we present the critical timescales and associated kinematics necessary for achieving localized fluidization, which are calculated from soil parameters and validated via RoboClam and E. directus testing.
@@ -136,12 +194,13 @@ The Atlantic razor clam (Ensis directus) burrows into underwater soil by using m
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="deits_clarifying_2013">8</a>]
+[<a name="deits_clarifying_2013">11</a>]
 </td>
 <td class="bibtexitem">
 Robin Deits, Stefanie Tellex, Pratiksha Thaker, Dimitar Simeonov, Thomas
   Kollar, and Nicholas Roy.
- Clarifying commands with information-theoretic human-robot dialog.
+ Clarifying Commands with Information-Theoretic Human-Robot
+  Dialog.
  <em>Journal of Human-Robot Interaction</em>, 2(2):58&ndash;79, 2013.
 [&nbsp;<a href="http://humanrobotinteraction.org/journal/index.php/HRI/article/view/112">http</a>&nbsp;]
 <blockquote><font size="-1">
@@ -154,11 +213,11 @@ Our goal is to improve the efficiency and effectiveness of natural language comm
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_localized_2012">9</a>]
+[<a name="winter_localized_2012">12</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, and Anette&nbsp;E Hosoi.
- Localized fluidization burrowing mechanics of ensis directus.
+ Localized fluidization burrowing mechanics of Ensis directus.
  <em>Journal of Experimental Biology</em>, 215(12):2072&ndash;2080, 2012.
 [&nbsp;<a href="http://dx.doi.org/10.1242/jeb.058172">DOI</a>&nbsp;| 
 <a href="http://jeb.biologists.org/cgi/doi/10.1242/jeb.058172">http</a>&nbsp;]
@@ -173,11 +232,12 @@ that scales linearly with depth rather than with depth squared.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="lang_radial_2012">10</a>]
+[<a name="lang_radial_2012">13</a>]
 </td>
 <td class="bibtexitem">
 Matthias Lang and Robin Deits.
- Radial magnetic bearing for the magnetic bearing of a rotor, 2012.
+ Radial Magnetic Bearing for the Magnetic Bearing of a
+  Rotor, 2012.
 [&nbsp;<a href="http://patentscope.wipo.int/search/en/WO2012084590">http</a>&nbsp;]
 <blockquote><font size="-1">
 The invention relates to a radial magnetic bearing for magnetic bearing of a rotor, wherein the radial magnetic bearing has a stator, wherein the stator has a magnetically conductive stator element, arranged circulating around the rotor, wherein the stator element has recesses running in the axial direction of the stator element in which electrical lines from coils are arranged, wherein magnetic fields can be generated by the coils which hold the rotor suspended in an air gap arranged between the rotor and stator, wherein a softer progression of the components of magnetic flow density in the radial direction is achieved by design measures on the transitions from one magnetic pole to the next magnetic pole, which results in a reduction of the eddy currents induced in the rotor.
@@ -189,12 +249,12 @@ The invention relates to a radial magnetic bearing for magnetic bearing of a rot
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tellex_toward_2012">11</a>]
+[<a name="tellex_toward_2012">14</a>]
 </td>
 <td class="bibtexitem">
 Stefanie Tellex, Pratiksha Thaker, Robin Deits, Dimitar Simeonov, Thomas
   Kollar, and Nicholas Roy.
- Toward information theoretic human-robot dialog.
+ Toward Information Theoretic Human-Robot Dialog.
  In <em>Robotics: Science and Systems Conference</em>, 2012.
 [&nbsp;<a href="http://www.roboticsproceedings.org/rss08/p52.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
@@ -207,14 +267,16 @@ Our goal is to build robots that can robustly interact with humans using natural
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_multi-substrate_2010">12</a>]
+[<a name="winter_multi-substrate_2010">15</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin L&nbsp;H Deits, Daniel&nbsp;S Dorsch, and Anette&nbsp;E Hosoi.
- Multi-substrate burrowing performance and constitutive modeling of
-  RoboClam: A biomimetic robot based on razor clams.
- In <em>ASME 2010 International Design Engineering Technical
-  Conferences &amp; Computers and Information in Engineering Conference</em>, 2010.
+ Multi-Substrate Burrowing Performance and Constitutive
+  Modeling of RoboClam: A Biomimetic Robot Based on Razor
+  Clams.
+ In <em>ASME 2010 International Design Engineering
+  Technical Conferences &amp; Computers and Information in Engineering
+  Conference</em>, 2010.
 [&nbsp;<a href="http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5654364">http</a>&nbsp;]
 <blockquote><font size="-1">
 The Atlantic razor clam (Ensis directus) reduces burrowing drag by using motions of its shell to fluidize a thin layer of substrate around its body. We have developed RoboClam, a robot that digs using the same mechanisms as Ensis, to explore how localized fluidization burrowing can be extended to engineering applications. In this work we present burrowing performance results of RoboClam in two distinctly different substrates: ideally granular 1mm soda lime glass beads and cohesive ocean mudflat soil. Using a genetic algorithm to optimize RoboClam’s kinematics, the machine was able to burrow in both substrates with a power law relationship between digging energy and depth of n = 1.17. Pushing through static soil has a theoretical energy-depth power law of n = 2, which means that Ensis-inspired burrowing motions can provide exponentially higher energy efficiency. We propose a theoretical constitutive model that describes how a fluidized region should form around a contracting body in virtually any type of saturated soil. The model predicts fluidization to be a relatively local effect, extending only two to three characteristic lengths away from the body, depending on friction angle and coefficient of lateral earth pressure, two commonly measured soil parameters.
@@ -226,15 +288,15 @@ The Atlantic razor clam (Ensis directus) reduces burrowing drag by using motions
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_teaching_2010">13</a>]
+[<a name="winter_teaching_2010">16</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Robin Deits, Daniel&nbsp;S Dorsch, Anette&nbsp;E Hosoi, and Alexander&nbsp;H.
   Slocum.
- Teaching RoboClam to dig: The design, testing, and genetic
+ Teaching RoboClam to Dig: The design, testing, and genetic
   algorithm optimization of a biomimetic robot.
- In <em>International Conference on Intelligent Robots and Systems
-  (IROS), 2010 IEEE/RSJ</em>, pages 4231&ndash;4235. IEEE, 2010.
+ In <em>International Conference on Intelligent Robots and
+  Systems (IROS), 2010 IEEE/RSJ</em>, pages 4231&ndash;4235. IEEE, 2010.
 [&nbsp;<a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5654364">http</a>&nbsp;]
 <blockquote><font size="-1">
 Razor clams (Ensis directus) are one of nature’s most adept burrowing organisms, able to dig to 70cm at nearly 1cm/s using only 0.21J/cm. We discovered that Ensis reduces burrowing drag by using motions of its shell to fluidize a thin layer of substrate around its body. We have developed RoboClam, a robot that digs using the same mechanisms as Ensis, to explore how localized fluidization burrowing can be extended to engineering applications. In this work we present burrowing performance results of RoboClam in Ensis’ habitat. Using a genetic algorithm to optimize RoboClam’s kinematics, the machine was able to burrow at speeds comparable to Ensis, with a power law relationship between digging energy and depth of n = 1.17, close to the n = 1 achieved by the animal. Pushing through static soil has a theoretical energy-depth power law of n = 2, which means that Ensis-inspired digging motions can provide exponential energetic savings over existing burrowing methods.
@@ -246,16 +308,16 @@ Razor clams (Ensis directus) are one of nature’s most adept burrowing organism
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="winter_design_2009">14</a>]
+[<a name="winter_design_2009">17</a>]
 </td>
 <td class="bibtexitem">
 Amos&nbsp;G. Winter, Anette&nbsp;E Hosoi, Alexander&nbsp;H. Slocum, and Robin L&nbsp;H Deits.
- The design and testing of RoboClam: A machine used to investigate
-  and optimize razor clam-inspired burrowing mechanisms for engineering
-  applications.
- In <em>ASME 2009 International Design Engineering Technical
-  Conferences &amp; Computers and Information in Engineering Conference
-  IDETC/CIE 2009</em>, pages 1&ndash;6, 2009.
+ The Design and Testing of RoboClam: A Machine Used to
+  Investigate and Optimize Razor Clam-Inspired Burrowing
+  Mechanisms for Engineering Applications.
+ In <em>ASME 2009 International Design Engineering
+  Technical Conferences &amp; Computers and Information in Engineering
+  Conference IDETC/CIE 2009</em>, pages 1&ndash;6, 2009.
 <blockquote><font size="-1">
 Razor clams (Ensis directus) are one of nature’s most adept burrowing organisms, able to dig to 70cm at nearly 1cm/s using only 0.21J/cm. Ensis reduces burrowing drag by using motions of its shell to fluidize a thin layer of substrate around its body. Although these shell motions have an energetic cost, moving through fluidized rather than packed soil results in exponentially lower overall energy consumption. This paper describes the design and testing of RoboClam, a device that mimics Ensis digging methods to understand the limits of razor clam-inspired burrowing, how they scale for different environments and conditions, and how they can be transferred into engineering applications. Using a genetic optimization solver, we found that RoboClam’s most efficient digging motion mimicked Ensis shell kinematics and yielded a power law relationship between digging energy and depth of n = 1.17, very close to the ideal value of n = 1. Pushing through static soil has a theoretical energy-depth power law of n = 2, which means that Ensis-inspired burrowing motions can provide exponentially higher energy efficiency and nearly depth- independent drag resistance.
 </font></blockquote>
