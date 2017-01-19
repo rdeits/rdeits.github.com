@@ -62,4 +62,6 @@ table tr th, table tr td
 }
 </style>
 
+Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form at [nbviewer.org](http://nbviewer.jupyter.org/github/rdeits/rdeits.github.com/blob/master/img/2017-01-18-chromesthesia/chromesthesia.ipynb). 
+
 {% include posts/2017-01-18-chromesthesia/chromesthesia.html %}
