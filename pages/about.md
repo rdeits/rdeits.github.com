@@ -17,10 +17,13 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf). You can contact me at mail at robind
 * Software: [Github](https://github.com/rdeits)
 * Science: [Publications](#publications)
 * Projects: [Blog](../..)
-	* Cryptic crossword solver | [blog](/2013/02/11/a-cryptic-crossword-clue-solver/) | [code](https://github.com/rdeits/cryptics)
-	* Adaptive particle image velocimetry | [report](http://csg.csail.mit.edu/6.375/6_375_2013_www/handouts/finals/group2_report.pdf) | [code](https://github.com/rdeits/adaptive-PIV)
-	* Roller coaster visualizations | [blog](/2013/11/11/roller-coaster-visualizations/) | [code](https://github.com/rdeits/coasters)
-	* Scratch holograms (specular holography) | [blog](/2012/02/20/more-scratch-holograms/) | [code](https://github.com/rdeits/ScratchHolograms)
+
+## Some Side Projects
+
+* Cryptic crossword solver ([blog](/2013/02/11/a-cryptic-crossword-clue-solver/)\|[code](https://github.com/rdeits/cryptics))
+* Adaptive particle image velocimetry ([report](http://csg.csail.mit.edu/6.375/6_375_2013_www/handouts/finals/group2_report.pdf)\|[code](https://github.com/rdeits/adaptive-PIV))
+* Roller coaster visualizations ([blog](/2013/11/11/roller-coaster-visualizations/)\|[code](https://github.com/rdeits/coasters))
+* Scratch holograms (specular holography) ([blog](/2012/02/20/more-scratch-holograms/)\|[code](https://github.com/rdeits/ScratchHolograms))
 
 <div id="publications">
 
@@ -29,7 +32,3 @@ Here's my [CV](/assets/Robin_Deits_CV.pdf). You can contact me at mail at robind
 {% include posts/publications/robin_deits_publications.html %}
 
 </div>
-
-
-## This Site
-This site was built using the instructions at [Jekyll Bootstrap](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
