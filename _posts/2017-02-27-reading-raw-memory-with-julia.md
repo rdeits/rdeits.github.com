@@ -60,6 +60,6 @@ table tr th, table tr td
 }
 </style>
 
-Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form at [nbviewer.org](http://nbviewer.jupyter.org/github/rdeits/rdeits.github.com/blob/master/img/2017-02-27-memory/memory.ipynb). 
+Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form on github [here](https://github.com/rdeits/rdeits.github.com/blob/master/img/2017-02-27-memory/memory.ipynb). 
 
 {% include posts/2017-02-27-memory/memory.html %}
