@@ -13,7 +13,7 @@
 	{% if page.keywords %}
 	<meta name="keywords" content="{{ page.keywords }}">
 	{% endif %}
-	
+
 	{% if site.author.feedburner %}
   	<link rel="alternate" type="application/atom+xml" href="http://feeds.feedburner.com/{{ site.author.feedburner }}" title="RSS feed" />
 	{% endif %}
@@ -31,7 +31,7 @@
 
    <!-- MathJax for LaTeX rendering -->
   <script type="text/javascript"
-    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
   <script type="text/javascript">
   // Instructions from http://cwoebker.com/posts/latex-math-magic/
@@ -51,7 +51,7 @@
 </head>
 <body id="{{ page.section }}">
 <div id="site">
-  
+
   <div id="header">
     <div class="header-title">
       <h1>
@@ -83,20 +83,20 @@
   <div id="footer">
   	<address>
   		<span class="copyright">
-  			Content by <a href="/pages/about.html">{{ site.author.name }}</a>. Design by 
+  			Content by <a href="/pages/about.html">{{ site.author.name }}</a>. Design by
   			<a href="http://mark.reid.name/">Mark Reid</a>
   			<br/>
-  			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+  			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)
   		</span>
   		<span class="engine">
   			Powered by <a href="http://github.com/mojombo/jekyll/" title="A static, minimalist CMS">Jekyll</a>
   		</span>
   	</address>
   </div>
-  
+
 <!--[if IE 6]>
-<script type="text/javascript"> 
-	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+<script type="text/javascript">
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; }
 	var IE6UPDATE_OPTIONS = {
 		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
 	}
