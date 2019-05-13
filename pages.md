@@ -1,15 +1,15 @@
 ---
 layout: page
-title: Pages 
+title: Pages
 header: Pages
 group: navigation
 ---
 {% include JB/setup %}
 
 * [Home](index.html)
-* [About](pages/about.html)
-* [Archive](archive.html)
-* [Yak Shaving](pages/yak_shaving.html)
+* [About](pages/about/)
+* [Archive](archive/)
+* [Yak Shaving](pages/yak_shaving/)
 
 <h2>All Pages</h2>
 <ul>
