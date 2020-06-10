@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Breaking Micronauts"
-category:
+category: Puzzles
 tags: []
 feed_summary: Cracking a puzzle by decoding a PDF with IPython
 ---

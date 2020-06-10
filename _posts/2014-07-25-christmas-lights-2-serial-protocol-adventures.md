@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Christmas Lights 2: Serial Protocol Adventures"
-category: 
+category: Projects
 tags: []
 ---
 {% include JB/setup %}
@@ -33,7 +33,7 @@ Each frame is 26 bits long and has the following format:
 </ul>
 </blockquote>
 
-The key is the timing for the 0 and 1 bits: we have to be able to create accurate pulses of 10 and 20µs, which is actually quite difficult to do with a normal computer. That's because a normal operating system is easily distracted: any task your program asks it to do will get done...eventually. So, to send a 0 to the lights, you might set some output value to Low and then ask the operating system to wait for 10µs, but meanwhile the operating system will have wandered off to think about where you've moved the mouse or what your music player is doing or what the next packet from the internet is and by the time it gets back to you, it will be several milliseconds too late. There are so-called *real-time* operating systems which will let you say things like "wait 10µs and no more", but I wasn't quite ready to wipe out my entire computer just for this project. 
+The key is the timing for the 0 and 1 bits: we have to be able to create accurate pulses of 10 and 20µs, which is actually quite difficult to do with a normal computer. That's because a normal operating system is easily distracted: any task your program asks it to do will get done...eventually. So, to send a 0 to the lights, you might set some output value to Low and then ask the operating system to wait for 10µs, but meanwhile the operating system will have wandered off to think about where you've moved the mouse or what your music player is doing or what the next packet from the internet is and by the time it gets back to you, it will be several milliseconds too late. There are so-called *real-time* operating systems which will let you say things like "wait 10µs and no more", but I wasn't quite ready to wipe out my entire computer just for this project.
 
 Instead, when people need accurate timing they often just use a microcontroller. Microcontrollers are extremely simple, and generally run exactly one program at a time. That means that you can easily write commands like "set this pin low for 10µs and then high for 20µs" and expect them to work every time. This is exactly what I originally did for the lights, and it worked. The problem is simply that adding another computer (the microcontroller) adds a lot of complication, since we now have to write the software for the microcontroller and the protocol for it to communicate with the laptop, and this adds a lot of new opportunities for error. For example, I would routinely see garbage output on the lights (flickering, displaying the wrong colors, etc.) until I realized that the laptop was sending data faster than the microcontroller could translate it, which would eventually overflow its memory and cause all kinds of problems. I fixed that problem, but it meant reducing the throughput of the whole system, which lowered the framerate of the lights.
 
@@ -44,10 +44,10 @@ As a result, I was highly motivated to try to get the microcontroller out of the
 	<figcaption>Wiring diagram for the connection between the Raspberry Pi and the ColorEffects lights. The 74HC14N is a 5 Volt logic inverter, which I'm using here just to raise the output voltage of the Raspberry Pi's signal from 3.3V to 5V and to isolate the Pi in case there is a short circuit in the lights. MOSI (for "master out slave in") is the output of the SPI port.</figcaption>
 </figure>
 
-If you want to build this yourself, you'll need a way to wire up to the Pi's IO pins. The easiest way to do that is with a ["Pi Cobbler" from Adafruit](http://www.adafruit.com/products/914), but you can also do it yourself with a piece of ribbon cable. You'll also need a 74HC14 or similar, like [this one](http://www.digikey.com/product-detail/en/SN74HC14N/296-1577-5-ND/277223) on digikey ([datasheet](http://www.ti.com/lit/ds/symlink/sn74hc14.pdf)) and a small breadboard to hold everything. 
+If you want to build this yourself, you'll need a way to wire up to the Pi's IO pins. The easiest way to do that is with a ["Pi Cobbler" from Adafruit](http://www.adafruit.com/products/914), but you can also do it yourself with a piece of ribbon cable. You'll also need a 74HC14 or similar, like [this one](http://www.digikey.com/product-detail/en/SN74HC14N/296-1577-5-ND/277223) on digikey ([datasheet](http://www.ti.com/lit/ds/symlink/sn74hc14.pdf)) and a small breadboard to hold everything.
 
 
-The SPI interface on the Pi is very cool, but it doesn't solve our problem right away. It can't be directly configured to send data in the format that the lights want (with a 0 as 10µs low, 20µs high, etc.); instead, it can only send a byte consisting of 8 high or low values, at a bit rate of 125kHz or 250kHz or 500kHz or 1MHz or 2MHz and so on. In addition, in between every byte, the output of the SPI line goes low for exactly one clock cycle. 
+The SPI interface on the Pi is very cool, but it doesn't solve our problem right away. It can't be directly configured to send data in the format that the lights want (with a 0 as 10µs low, 20µs high, etc.); instead, it can only send a byte consisting of 8 high or low values, at a bit rate of 125kHz or 250kHz or 500kHz or 1MHz or 2MHz and so on. In addition, in between every byte, the output of the SPI line goes low for exactly one clock cycle.
 
 Fortunately, we can work with this. I first tried to use the SPI port by setting it to a bit rate of 250kHz, which meant that every byte took `\((1 + 8) \times \frac{1}{250000} = 36\)`µs, which is quite close to 10µs low + 20µs high = 30µs total we want. I couldn't control the exact amount of time that the output stayed high or low, but I could keep it low or high for several clock cycles by sending a byte with several 0s or 1s in a row. To send a 0 to the lights, I would write 00111111 to the SPI port, and to send a 1 to the lights I would write 00001111. This worked...almost. You can see the timing I used in the figure below:
 
@@ -65,7 +65,7 @@ I decided to try a different bit rate. Decreasing the rate from 250kHz to 125kHz
 	<figcaption>Better SPI timing, which worked perfectly. This setup uses a 125kHz SPI data rate with 3 GE bits per SPI byte. As before, the labels on bottom of the figure show the 8-bit bytes written to SPI, along with the 8.1µs pause between each byte. A 0 is now 8.2µs low, 16.4µs high.</figcaption>
 </figure>
 
- This worked perfectly. I can now control my lights directly from the Raspberry Pi with no flickering or errors, and I've successfully cut the complexity of the whole system in half. Hooray! 
+ This worked perfectly. I can now control my lights directly from the Raspberry Pi with no flickering or errors, and I've successfully cut the complexity of the whole system in half. Hooray!
 
 ## Source Code
-All the code for this project lives on GitHub in the [Bemis100](https://github.com/rdeits/Bemis-100) repository. You can see the SPI driver for the GE lights in [ge_spi.py](https://github.com/rdeits/Bemis-100/blob/master/led/ge_spi.py). 
+All the code for this project lives on GitHub in the [Bemis100](https://github.com/rdeits/Bemis-100) repository. You can see the SPI driver for the GE lights in [ge_spi.py](https://github.com/rdeits/Bemis-100/blob/master/led/ge_spi.py).

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Chromesthesia"
-category:
+category: Puzzles
 tags: []
 feed_summary: Solving a Mystery Hunt puzzle in Julia
 ---

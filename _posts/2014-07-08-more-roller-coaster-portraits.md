@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "More Roller Coaster Portraits"
-category:
+category: Projects
 tags: []
 ---
 {% include JB/setup %}

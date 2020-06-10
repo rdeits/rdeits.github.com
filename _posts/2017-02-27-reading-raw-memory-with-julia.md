@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reading Raw Memory with Julia"
-category:
+category: Projects
 tags: []
 ---
 {% include JB/setup %}

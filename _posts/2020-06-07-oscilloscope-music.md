@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Oscilloscope Music"
-category:
+category: Projects
 tags: []
 ---
 {% include JB/setup %}
