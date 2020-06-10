@@ -41,7 +41,7 @@ a.pdf:before {
 	content: url(/files/css/icon_pdf.gif); }
 
 h1,h2,h3,h4 {
-	line-height:1em;
+	line-height:1.0em;
 	font-size:1.5em;
 	font-weight: normal;
 	clear: left;
@@ -54,6 +54,7 @@ h2 {
 	margin:1.5em 0 1.5em 0;
 	font-weight:bold;
 }
+h3 { margin-bottom: 1em; }
 
 hr {
 	border-top: 1px solid silver;
