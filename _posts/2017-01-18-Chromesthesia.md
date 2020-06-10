@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Chromesthesia"
-category: 
+category:
 tags: []
 feed_summary: Solving a Mystery Hunt puzzle in Julia
 ---
@@ -9,22 +9,6 @@ feed_summary: Solving a Mystery Hunt puzzle in Julia
 
 
 <style>
-.anchor-link {
-	opacity: 0;
-}
-
-h1:hover > .anchor-link {
-	opacity: 0.8;
-}
-
-h2:hover > .anchor-link {
-	opacity: 0.8;
-}
-
-h3:hover > .anchor-link {
-	opacity: 0.8;
-}
-
 .output_stdout pre {
     max-height: 400px;
     overflow-wrap: break-word;
@@ -62,6 +46,6 @@ table tr th, table tr td
 }
 </style>
 
-Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form at [nbviewer.org](http://nbviewer.jupyter.org/github/rdeits/rdeits.github.com/blob/master/img/2017-01-18-chromesthesia/chromesthesia.ipynb). 
+Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form at [nbviewer.org](http://nbviewer.jupyter.org/github/rdeits/rdeits.github.com/blob/master/img/2017-01-18-chromesthesia/chromesthesia.ipynb).
 
-{% include posts/2017-01-18-chromesthesia/chromesthesia.html %}
+{% include notebooks/2017-01-18-chromesthesia/chromesthesia.html %}

@@ -1,0 +1,1511 @@
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Warning:</strong> This puzzle contains total spoilers for the 2017 MIT Mystery Hunt Puzzle "Chromesthesia"!</p>
+<p>This year's <a href="mit mystery hunt">MIT Mystery Hunt</a> was a fun one (and my team won, too!). But it was also the shortest Hunt in at least a decade, and with our team's large size, that meant that most of us saw only a fraction of the Hunt's puzzles. Fortunately, all the puzzles from this year's Hunt (and every past year, too) are available in the <a href="http://www.mit.edu/~puzzle/huntsbyyear.html">hunt archives</a>. What follows is one of my favorite puzzles from this year's Mystery Hunt, one which my girlfriend Michele and I only got to work on several days after Hunt ended. This puzzle is a great example of the kind of complex, technical, detailed puzzles that make Mystery Hunt great, and it was also a fun opportunity to practice solving puzzles in Julia, my favorite new programming language.</p>
+<h3 id="Aside:-What's-Julia?">Aside: What's Julia?<a class="anchor-link" href="#Aside:-What's-Julia?">&#182;</a></h3><p>For the past year or so, I've been doing at least some of my research using <a href="http://julialang.org">Julia</a>, a relatively new programming language with a lot to offer. Julia is fast (it can be as fast as C or Fortran), but also has a lot of the expressiveness and simplicity of Python. It's also been designed to be a good language for scientific computing (which means things like multidimensional arrays and linear algebra baked-in) but also a nice tool for general programming (which means a great ecosystem of packages for all kinds of purposes). Here, I'm going to use Julia's excellent <a href="https://github.com/timholy/Images.jl">Images.jl</a> image library.</p>
+<h1 id="Anyway,-the-puzzle...">Anyway, the puzzle...<a class="anchor-link" href="#Anyway,-the-puzzle...">&#182;</a></h1><p>This puzzle was titled <a href="http://solutions.monsters-et-manus.com/hunt/puzzle/chromesthesia.html">"Chromesthesia"</a>, and it consisted of a single image:</p>
+<p><img src="http://blog.robindeits.com/img/2017-01-18-chromesthesia/image01.png" alt=""></p>
+<p>also included in the puzzle was a message:</p>
+<blockquote><p>One of the minstrels tells you that he was born with the unusual abilities to see things in total darkness and to hear colors as sounds.</p>
+</blockquote>
+<p>That's all. With those two pieces of information, we have all we need to solve the puzzle. Let's go through the process of figuring it all out...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Identifying-the-names">Identifying the names<a class="anchor-link" href="#Identifying-the-names">&#182;</a></h1><p>The image clearly consists of people's names, written in a variety of colors. It's not clear what the colors indicate yet (that's coming later), but at least we can identify the people. Some basic googling will tell you that these are all actors, and that the names listed are their <em>birth</em> names, not necessarily the names by which they're commonly known. For example, Colin Lewes Dillingham is now named Colin Hanks (after his dad, actor Tom).</p>
+<p>But identifying these people doesn't really tell us much. There must be something more to this puzzle. Time to start looking more carefully at that image...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Puzzling-with-Julia">Puzzling with Julia<a class="anchor-link" href="#Puzzling-with-Julia">&#182;</a></h1><p>The first thing we need to do is import a few packages. If you don't have these installed, you can get them by running (in Julia):</p>
+
+<pre><code>Pkg.add("Images")
+Pkg.add("ColorTypes")</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Images</span>
+<span class="k">using</span> <span class="n">ColorTypes</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can load the image:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;image01.png&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_5_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The image is automatically displayed inside this Jupyter notebook. That happens because an Image in Julia is actually represented by an array of some kind of <code>Color</code> type (from the <code>ColorTypes</code> package). Julia knows how to draw a single Color type (for example, RGB):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">RGB</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+<div class="output_svg output_subarea output_execute_result">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     width="25mm" height="25mm" viewBox="0 0 1 1">
+     <rect width="1" height="1"
+           fill="#FF0000" stroke="none"/>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And Julia knows how to draw a matrix of color types:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="p">[</span><span class="n">RGB</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+ <span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_9_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An <code>Image</code> in Julia is just a matrix of colors with some additional metadata:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">show</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>RGB Images.Image with:
+  data: 600×336 Array{ColorTypes.RGB{FixedPointNumbers.UFixed{UInt16,16}},2}
+  properties:
+    colorspace: RGB
+    imagedescription: &lt;suppressed&gt;
+    spatialorder:  x y
+    pixelspacing:  1 1</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using actual data types to represent colors makes it easy to avoid the kind of indexing mistakes that I've often made in Matlab or Python. For example, an RGB image in Python's PIL library is represented as a 3-dimensional array. But what's the shape of that array? I'm pretty sure color is the third dimension, but is the order of that dimension [red, green, blue] or [blue, green, red]? I actually don't remember.</p>
+<p>In Julia, you don't have to remember. If you have a pixel, you can get its red value with the <code>red()</code> function:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">pixel</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">red</span><span class="p">(</span><span class="n">pixel</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And if you have an image, you can get a copy of its entire red channel with the same function, applied elementwise:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">red</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>600×336 Array{FixedPointNumbers.UFixed{UInt16,16},2}:
+ UFixed{UInt16,16}(0.0)  …  UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.00391)
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.00391)
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.00391)
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.00391)
+ UFixed{UInt16,16}(0.0)  …  UFixed{UInt16,16}(0.00391)
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)  …  UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+    ⋮                    ⋱     ⋮                      
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)  …  UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)  …  UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    
+ UFixed{UInt16,16}(0.0)     UFixed{UInt16,16}(0.0)    </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to view that red channel as an image, we just have to tell Julia to use each red value as a grayscale color:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">red</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_17_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have the basic tools, we can start exploring this image to see if there's more to it than meets the eye. First, let's look at the three color channels individually. The red channel (above) wasn't too surprising, but let's check blue and green:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">green</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_19_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">blue</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_20_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I don't see anything out of the ordinary. Let's try another representation  of the image.</p>
+<p>This image is currently encoded as RGB, meaning that each pixel specifies its color as an amount of red, green, and blue. Another common way of specifiying colors is hue, saturation, value (HSV). The <em>hue</em> component roughly tells us the kind of color (red or green or blue or yellow, etc.), the <em>saturation</em> tells us how strong that color is, and the <em>value</em> tells us how bright the color is.</p>
+<p>Julia's Images package knows how to convert an image to HSV:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">img_hsv</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">Image</span><span class="p">{</span><span class="n">HSV</span><span class="p">},</span> <span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_22_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That doesn't look any different. That's not surprising: HSV and RGB are just two different ways of encoding the same colors, and Julia knows how to draw an HSV pixel just like it knows how to draw an RGB pixel.</p>
+<p>But now that we've converted the image, we can look at the H, S, and V channels individually.</p>
+<p>First, let's define some helper functions:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">hue</span><span class="p">(</span><span class="n">pixel</span><span class="o">::</span><span class="n">ColorTypes</span><span class="o">.</span><span class="n">HSV</span><span class="p">)</span> <span class="o">=</span> <span class="n">pixel</span><span class="o">.</span><span class="n">h</span>
+<span class="n">saturation</span><span class="p">(</span><span class="n">pixel</span><span class="o">::</span><span class="n">ColorTypes</span><span class="o">.</span><span class="n">HSV</span><span class="p">)</span> <span class="o">=</span> <span class="n">pixel</span><span class="o">.</span><span class="n">s</span>
+<span class="n">value</span><span class="p">(</span><span class="n">pixel</span><span class="o">::</span><span class="n">ColorTypes</span><span class="o">.</span><span class="n">HSV</span><span class="p">)</span> <span class="o">=</span> <span class="n">pixel</span><span class="o">.</span><span class="n">v</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>value (generic function with 1 method)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We only need to define our hue, saturation, and value functions for individual pixels, not for an entire image. That's because Julia's native broadcasting abilities, which we invoke by using the <code>.()</code> syntax, will magically do the right thing and apply our pixel-by-pixel functions efficiently to the entire image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">hue</span><span class="o">.</span><span class="p">(</span><span class="n">img_hsv</span><span class="p">)</span> <span class="o">./</span> <span class="mi">360</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_26_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Whoa! When I first saw this, I assumed that I had screwed something up, or that I'd found a bug in Julia or in Images.jl. But no, there really is something visible in the hue channel that we couldn't see in the RGB image. Cool!</p>
+<p>In the above image, I can see some enumerations like <code>(17/17)</code> and <code>(2/16)</code>. Those are probably going to be used as indexes later on. But there's also something written below the names. It's hard to read, but I can clearly see <code>CODEC2</code> and <code>MILLISECOND FRAMES</code>. That sounds like an instruction of some kind.</p>
+<p>But it also looks like there's another message on top of that one. We need to clean up the signal...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So far, we've just looked at the hue. What can we see in the saturation?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">saturation</span><span class="o">.</span><span class="p">(</span><span class="n">img_hsv</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_29_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That's different, but not realy any better. What about subtracting out the value component?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">max</span><span class="o">.</span><span class="p">(</span><span class="n">saturation</span><span class="o">.</span><span class="p">(</span><span class="n">img_hsv</span><span class="p">)</span> <span class="o">.-</span> <span class="n">value</span><span class="o">.</span><span class="p">(</span><span class="n">img_hsv</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_31_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again, different but not any better.</p>
+<p>The two messages still seem to be on top of each other. Maybe we can try splitting out just one of the color channels? We've already tried viewing the red, green, and blue channels as gray, but what if we just strip out those channels while keeping the image as RGB?</p>
+<p>We'll need some more helpers:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">splitred</span><span class="p">(</span><span class="n">px</span><span class="o">::</span><span class="n">RGB</span><span class="p">)</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="n">px</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">splitgreen</span><span class="p">(</span><span class="n">px</span><span class="o">::</span><span class="n">RGB</span><span class="p">)</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">green</span><span class="p">(</span><span class="n">px</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">splitblue</span><span class="p">(</span><span class="n">px</span><span class="o">::</span><span class="n">RGB</span><span class="p">)</span> <span class="o">=</span> <span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">blue</span><span class="p">(</span><span class="n">px</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>splitblue (generic function with 1 method)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each of these helpers just returns a new image with only one color channel left:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">splitred</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_35_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can play around with just one channel at a time. Let's try the HSV trick again:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">hue</span><span class="o">.</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">Image</span><span class="p">{</span><span class="n">HSV</span><span class="p">},</span> <span class="n">splitred</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">)))</span> <span class="o">./</span> <span class="mi">360</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_37_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Woohoo! We've finally split apart the secret message. This part says:</p>
+<blockquote><p>colors may be deeper than they appear</p>
+</blockquote>
+<p>I'm not sure what that means yet, but let's continue. How about the greens?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">hue</span><span class="o">.</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">Image</span><span class="p">{</span><span class="n">HSV</span><span class="p">},</span> <span class="n">splitgreen</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">)))</span> <span class="o">./</span> <span class="mi">360</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_39_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another message:</p>
+<blockquote><p>rowetel codec2
+input:
+40 millisecond frames
+1200 bits per second
+output:
+raw-samples
+8KHz 16-bit signed</p>
+</blockquote>
+<p>More googling will reveal that this is a precise description of the inputs and outputs of a particular audio codec, one which is designed specifically to encode human speech with very small amounts of data.</p>
+<p>It's clear that the puzzle is telling us how to use that codec, but what is the input data?</p>
+<p>Well, the most obvious thing to try is: what if we just feed this image file directly into that audio codec? Maybe it'll sound like something?</p>
+<p>To do that, we'll need a few tools. I installed the <code>codec2</code> and <code>sox</code> packages from homebrew with:</p>
+
+<pre><code>brew install codec2
+brew install sox</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can pass the image file into the <code>c2dec</code> program, which decodes <code>codec2</code> data, and then listen to the result with the <code>play</code> program (which was installed with <code>sox</code>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll use the Julia <code>pipeline()</code> command, which makes it easy to run external programs and pass the output of one to the input of the next:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="n">pipeline</span><span class="p">(</span>
+    <span class="sb">`cat image01.png`</span><span class="p">,</span>
+    <span class="sb">`c2dec 1200 - -`</span><span class="p">,</span> 
+    <span class="sb">`play -t raw -r 8000 -e signed -b 16 -`</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Doing that results in audio that sounds like this:</p>
+<audio src="http://blog.robindeits.com/img/2017-01-18-chromesthesia/image01.mp3" controls preload></audio>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To my ears that sounds a <em>lot</em> like speech, but it's impossible to understand. Michele and I spent a <em>long</em> time trying different settings and decoder programs, but could never get this audio to sound any better.</p>
+<p>After a while, we tried running the same conversion process on another image file (one that was definitely not a puzzle), and that result also sounded kind of like speech. It turns out that we should have expected that: <code>codec2</code> is designed to only encode human speech, so it throws out all kinds of information (for example, it discards the phase of the audio signal entirely). When a <code>codec2</code> file is played back, most of that information is reconstructed based on the <em>assumption</em> that the data is speech, so even random input will sound kind of like talking.</p>
+<p>That means we're not on the right track quite yet. What else can we try?</p>
+<p>Let's go back to that first message about the colors being "deeper than they appear". Deep color is a <a href="https://en.wikipedia.org/wiki/Color_depth#Deep_color_.2830.2F36.2F48-bit.29">thing</a> and refers to colors with more than 8 bits per channel. This image file actually has 16 bits of data for each of the red, green, and blue values. We can see that in the image summary:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">show</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>RGB Images.Image with:
+  data: 600×336 Array{ColorTypes.RGB{FixedPointNumbers.UFixed{UInt16,16}},2}
+  properties:
+    colorspace: RGB
+    imagedescription: &lt;suppressed&gt;
+    spatialorder:  x y
+    pixelspacing:  1 1</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the pixel type is <code>RGB{UFixed{UInt16}}</code>.</p>
+<p>16 bits per color means that each pixel consists of exactly 16 * 3 = 48 bits. Now let's go back to the codec message. It said "40 millisecond frames" at "1200 bits per second". Multiplying those out gives 48 bits per frame, exactly the amount of data in a single color pixel. That's very suspicious!</p>
+<p>It looks like each letter in the image is all one color, but that each letter is different from every other letter. So let's gather up all of the  colors from one line of the image and then try to interpret them as audio.  This step might seem crazy, but the text that came with the puzzle mentioned hearing colors as sounds, so we're probably on the right track.</p>
+<p>To do this, we need to iterate through a single row of the image. Each pixel we see will either be black (in which case can ignore it) or part of a letter. If it's part of a letter, and it's not a color we've seen before, then we'll pull out the 48 bits of data from the red, green, and blue channels. Otherwise we'll just move on to the next pixel.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll feed the pixels into this pipeline, which will decode them and then play the result:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">decoder</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="sb">`c2dec 1200 - -`</span><span class="p">,</span> 
+    <span class="sb">`play -t raw -r 8000 -e signed -b 16 -`</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>pipeline(`c2dec 1200 - -`, stdout=`play -t raw -r 8000 -e signed -b 16 -`)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But how do we actually represent the 48 bits of data? Is it red, green, blue or blue, green, red? And each color is 16 bits, so do we write the higher 8 bits or the lower 8 bits first?</p>
+<p>It's probably possible to make a good guess, but there's really not that many options. Let's just try them all until something cool happens.</p>
+<p>First up: red, green, blue, writing the lower bits first:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">open</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+    <span class="c"># row 10 is the first row that includes visible letters</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="kp">in</span> <span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">lastcolor</span> <span class="o">||</span> <span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">green</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">blue</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">end</span>
+        <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="k">for</span> <span class="n">color</span> <span class="kp">in</span> <span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nope, that sounds like garbage:</p>
+<audio src="http://blog.robindeits.com/img/2017-01-18-chromesthesia/lowfirst.mp3" controls preload></audio><p>Next up: red, green, blue, writing the higher bits first:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">open</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="kp">in</span> <span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">lastcolor</span> <span class="o">||</span> <span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">green</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">blue</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">end</span>
+        <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="k">for</span> <span class="n">color</span> <span class="kp">in</span> <span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And here's the result:</p>
+<audio src="http://blog.robindeits.com/img/2017-01-18-chromesthesia/highfirst.mp3" controls preload></audio><p>It works!!! That's definitely speech, and it's definitely saying "soda". I can't overstate how excited I was when I finally got this result for the first time. That's the joy of puzzling in a nutshell.</p>
+<h3 id="Getting-the-Rest-of-the-Message">Getting the Rest of the Message<a class="anchor-link" href="#Getting-the-Rest-of-the-Message">&#182;</a></h3><p>Now we need to decode the rest of the letters. Each row of letters is separated by 48 pixels, and we just have to repeat our code for each row:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">open</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="kp">in</span> <span class="mi">10</span><span class="o">:</span><span class="mi">48</span><span class="o">:</span><span class="n">size</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="kp">in</span> <span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">row</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">lastcolor</span> <span class="o">||</span> <span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">green</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">blue</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">end</span>
+            <span class="n">lastcolor</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="k">for</span> <span class="n">color</span> <span class="kp">in</span> <span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+                <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+                <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt16</span><span class="p">,</span> <span class="n">color</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">%</span> <span class="kt">UInt8</span><span class="p">)</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That produces a single audio stream with all of the color-to-audio results:</p>
+<audio src="http://blog.robindeits.com/img/2017-01-18-chromesthesia/combined.mp3" controls preload></audio><p>That's it!! We've pulled actual speech out of just the colors of a few letters. The words are:</p>
+
+<pre><code>soda
+raincoat
+umbrella
+pangea
+bandana
+affair
+children</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Solving-the-Puzzle">Solving the Puzzle<a class="anchor-link" href="#Solving-the-Puzzle">&#182;</a></h1><p>Now what? The next step involves some less technical puzzle-solving skills. Let's go back to those actors in the image and look at their IMDB pages. This puzzle is clearly about color, so maybe those actors have movies that involve colors?</p>
+<p>It turns out that every actor listed in the image has exactly one movie on his or her IMDB page with a color in the title. For example, Colin is in "Orange County", and Richard is in "Yellow Submarine". That give us:</p>
+<table>
+<thead><tr>
+<th>Movie</th>
+<th>Color</th>
+<th>Word from audio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orange County</td>
+<td>Orange</td>
+<td>Soda</td>
+</tr>
+<tr>
+<td>Yellow Submarine</td>
+<td>Yellow</td>
+<td>Raincoat</td>
+</tr>
+<tr>
+<td>Red Dawn</td>
+<td>Red</td>
+<td>Umbrella</td>
+</tr>
+<tr>
+<td>The Green Mile</td>
+<td>Green</td>
+<td>Pangea</td>
+</tr>
+<tr>
+<td>Blue Velvet</td>
+<td>Blue</td>
+<td>Bandana</td>
+</tr>
+<tr>
+<td>Violet &amp; Daisy</td>
+<td>Violet</td>
+<td>Affair</td>
+</tr>
+<tr>
+<td>Mood Indigo</td>
+<td>Indigo</td>
+<td>Children</td>
+</tr>
+</tbody>
+</table>
+<p>Each of the colors is one of the standard ROYGBIV rainbow colors, but there's more to notice. If you're a pop culture whiz (nope) or good with Google (yup), you might notice that each color + word combination is actually the title of a song, like "Orange Soda" by Vic Mensa or "Yellow Raincoat" by Justin Bieber. That seems pretty interesting...</p>
+<p>It's finally time to look at the very last piece of information we got out of the image: the enumerations. Those are easiest to say if we apply the hue trick to the blue channel:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">Gray</span><span class="o">.</span><span class="p">(</span><span class="n">hue</span><span class="o">.</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">Image</span><span class="p">{</span><span class="n">HSV</span><span class="p">},</span> <span class="n">splitblue</span><span class="o">.</span><span class="p">(</span><span class="n">img</span><span class="p">)))</span> <span class="o">./</span> <span class="mi">360</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-01-18-chromesthesia/chromesthesia_58_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These numbers don't match the lengths of the songs or of the singers. But here's a question: why did the puzzle use the <em>birth</em> names of the actors? It's not hard to figure out that Colin Dillingham is Colin Hanks. Maybe it's a clue?</p>
+<p>It turns out that, for each song, if we take the <em>birth</em> name of the singer, it fits the corresponding enumeration exactly. For example, Vic Mensa was born Victor Kewsi Mensah (17 letters) and Justin Bieber is Justin Drew Bieber (16 letters). In each enumeration, the second number is the total length, so we can use the first number to take the corresponding letter from that full name. That gives:</p>
+<table>
+<thead><tr>
+<th>Movie</th>
+<th>Color</th>
+<th>Word from audio</th>
+<th>Singer birth name</th>
+<th>Index</th>
+<th>Index into birth name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orange County</td>
+<td>Orange</td>
+<td>Soda</td>
+<td>victorkewsimensah</td>
+<td>17</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Yellow Submarine</td>
+<td>Yellow</td>
+<td>Raincoat</td>
+<td>justindrewbieber</td>
+<td>2</td>
+<td>U</td>
+</tr>
+<tr>
+<td>Red Dawn</td>
+<td>Red</td>
+<td>Umbrella</td>
+<td>audreyfaithperry</td>
+<td>10</td>
+<td>T</td>
+</tr>
+<tr>
+<td>The Green Mile</td>
+<td>Green</td>
+<td>Pangea</td>
+<td>martenlaciny</td>
+<td>6</td>
+<td>N</td>
+</tr>
+<tr>
+<td>Blue Velvet</td>
+<td>Blue</td>
+<td>Bandana</td>
+<td>jerrodleeniemann</td>
+<td>6</td>
+<td>D</td>
+</tr>
+<tr>
+<td>Violet &amp; Daisy</td>
+<td>Violet</td>
+<td>Affair</td>
+<td>helenmarnie</td>
+<td>8</td>
+<td>R</td>
+</tr>
+<tr>
+<td>Mood Indigo</td>
+<td>Indigo</td>
+<td>Children</td>
+<td>maynardjameskeenan</td>
+<td>14</td>
+<td>E</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, we just have to put those letters in some better order. We have 7 songs with 7 rainbow colors, so let's try putting them in the order of the colors of the rainbow:</p>
+<table>
+<thead><tr>
+<th>Color</th>
+<th>Letter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>red</td>
+<td>T</td>
+</tr>
+<tr>
+<td>orange</td>
+<td>H</td>
+</tr>
+<tr>
+<td>yellow</td>
+<td>U</td>
+</tr>
+<tr>
+<td>green</td>
+<td>N</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>D</td>
+</tr>
+<tr>
+<td>indigo</td>
+<td>E</td>
+</tr>
+<tr>
+<td>violet</td>
+<td>R</td>
+</tr>
+</tbody>
+</table>
+<p>Now the letters spell out THUNDER. And that's the answer!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This was a great puzzle. I learned a lot about audio encoding and image manipulation from solving it, and it had just enough clues to keep pushing me in the right direction. I hope you enjoyed the ride.</p>
+<p>For more puzzles, check out the Mystery Hunt archives at <a href="http://www.mit.edu/~puzzle/huntsbyyear.html">http://www.mit.edu/~puzzle/huntsbyyear.html</a></p>
+
+</div>
+</div>
+</div>
+
+

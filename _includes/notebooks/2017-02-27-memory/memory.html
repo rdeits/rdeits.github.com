@@ -1,0 +1,759 @@
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>My girlfriend Michele recently started a new project over at <a href="http://learningjulia.com">http://learningjulia.com</a>. You should check it out! I'll be here when you get back...</p>
+<p>Okay, welcome back. In a <a href="http://learningjulia.com/2017/02/23/image-tiling-and-arrays.html">recent post</a>, Michele tried constructing an array of Julia color types:</p>
+<p><img src="/img/2017-02-27-memory/memory_cell.png" alt="constructing an uninitialized array"></p>
+<p>So where did the cool pattern come from? Why isn't that image just black?</p>
+<p>The reason is that constructing an array in Julia does not (currently) set the values contained in that array to anything. Instead, those values correspond to whatever happened to be in the chunk of memory that was allocated for that array. The image is <em>mostly</em> black, because when the Julia process receives a new block of memory from the operating system, that block is initially set to zero (to avoid exposing leftover data from other programs). But it looks like in this case, some of the memory that was allocated for that array had already been used in Julia for something. Maybe we can find out what...</p>
+<h2 id="Disclaimer">Disclaimer<a class="anchor-link" href="#Disclaimer">&#182;</a></h2><p>Please note: exposing your raw memory data to the internet is a terrible, terrible idea. I'm only posting this with Michele's permission, and because we've both looked through the data for anything that we don't want saved on the internet forever. Even then, we've probably missed something and might eventually come to regret this. Don't put random memory dumps from your computer on the internet.</p>
+<p>Whew. Okay. Back to the fun.</p>
+<h2 id="Reading-the-Raw-Data">Reading the Raw Data<a class="anchor-link" href="#Reading-the-Raw-Data">&#182;</a></h2><p>First, we need to turn that image back into raw memory data. The first thing to do is to load up the image. The <a href="https://github.com/JuliaImages/Images.jl"><code>Images.jl</code></a> package makes that easy:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Images</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;raw.png&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_2_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is, indeed, a pretty cool pattern. There is a lot of structure in this data, and I don't understand all of it. I do see a stripe with a lot of entropy (randomness) that looks interesting, though. Let's try to extract it:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">stripe</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">42</span><span class="o">:</span><span class="mi">47</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_4_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's easy to extract that stripe as an image, but we want to reconstruct the raw bytes that were in that chunk of memory. To do that, we need to look at how this image is being stored:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Array{ColorTypes.RGB4{FixedPointNumbers.Normed{UInt8,8}},2}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As I discussed in a <a href="http://blog.robindeits.com/2017/01/18/Chromesthesia">previous post</a>, an image in Julia is just a 2-dimensional Array of pixels, where each pixel is some kind of ColorType. The type of this particular image is <code>ColorTypes.RGB4{FixedPointNumbers.Normed{UInt8,8}}</code>. Let's unpack that:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="o">?</span><span class="n">ColorTypes</span><span class="o">.</span><span class="n">RGB4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+<div class="output_markdown rendered_html output_subarea output_execute_result">
+<p><code>RGB4</code> is a variant of <code>RGB</code> which has a padding element inserted at the end. In some applications it may have useful memory-alignment properties.</p>
+<p>Like all other AbstractRGB objects, the constructor is still called <code>RGB4(r, g, b)</code>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># The RGB4 type has a dummy element inserted after the red, </span>
+<span class="c"># green, and blue values. That means that this image has no</span>
+<span class="c"># transparency (alpha) data. We can see the actual fields </span>
+<span class="c"># of a single pixel to confirm:</span>
+<span class="n">dump</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ColorTypes.RGB4{FixedPointNumbers.Normed{UInt8,8}}
+  r: FixedPointNumbers.Normed{UInt8,8}
+    i: UInt8 72
+  g: FixedPointNumbers.Normed{UInt8,8}
+    i: UInt8 50
+  b: FixedPointNumbers.Normed{UInt8,8}
+    i: UInt8 228
+  alphadummy: FixedPointNumbers.Normed{UInt8,8}
+    i: UInt8 255
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>FixedPointNumbers.Normed{UInt8, 8}</code> type indicates that each of the red, green, and blue values is stored as a single byte (a <code>UInt8</code>) which is being used to represent 256 evenly spaced values between 0 and 1.</p>
+<p>That's all the information we need: assuming that the Julia image corresponds to the available data in the raw image that we got from Michele's blog, we now know that each pixel in the image gives us exactly three bytes of data (from the red, green, and blue channels). Let's extract that data:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">open</span><span class="p">(</span><span class="s">&quot;stripe_data&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="n">f</span>
+    <span class="k">for</span> <span class="n">pixel</span> <span class="kp">in</span> <span class="n">stripe</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">,</span> <span class="n">red</span><span class="p">(</span><span class="n">pixel</span><span class="p">)))</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">,</span> <span class="n">green</span><span class="p">(</span><span class="n">pixel</span><span class="p">)))</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">,</span> <span class="n">blue</span><span class="p">(</span><span class="n">pixel</span><span class="p">)))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>strings</code> program is shipped with most Unix variants (like Linux and macOS). It's a simple tool that knows how to do one thing: look through a big blob of memory for things that look like readable strings. Let's try it out on our data:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">stripe_strings</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">readstring</span><span class="p">(</span><span class="sb">`strings stripe_data`</span><span class="p">))</span>
+<span class="n">stripe_strings</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">25</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>25-element Array{SubString{String},1}:
+ &#34;[A\\A]A^A_]&#34;
+ &#34;AWAVAUATSH&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;AWAVAUATSP&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;[A\\A]A^A_]&#34;
+ &#34;[A\\A]A^A_]&#34;
+ &#34;[A\\A]A^A_]&#34;
+ &#34;[A\\A]A^A_]&#34;
+ &#34;fffff.&#34;     
+ &#34;AWAVAUATSH&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;ffffff.&#34;    
+ &#34;AWAVAUATSH&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;AWAVATSH&#34;   
+ &#34;[A\\A^A_]&#34;  
+ &#34;ffffff.&#34;    
+ &#34;AWAVAUATSH&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;fffff.&#34;     
+ &#34;AWAVAUATSH&#34; 
+ &#34;[A\\A]A^A_]&#34;
+ &#34;fffff.&#34;     
+ &#34;AWAVATSH&#34;   </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Those first few strings are interesting. There are several instances of <code>AWAVAUATSH</code> and <code>AWAVATSH</code>. What's up with that? Fortunately, Google knows: <a href="http://stackoverflow.com/a/39335836/641846">http://stackoverflow.com/a/39335836/641846</a>. The short answer is that certain executable instructions happen to result in values which are all ASCII, and these are a few common examples. Google found 9,820 hits for <code>AWAVAUATSH</code> at the time of this writing.</p>
+<p>The rest of the strings in that stripe are all related to Julia:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">stripe_strings</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">25</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>26-element Array{SubString{String},1}:
+ &#34;julia_write_71320&#34;          
+ &#34;sizeof&#34;                     
+ &#34;sizeof;&#34;                    
+ &#34;elsize&#34;                     
+ &#34;elsize;&#34;                    
+ &#34;julia_print_71321&#34;          
+ &#34;julia_escape_string_71318&#34;  
+ &#34;escape_string&#34;              
+ &#34;julia_limitstringmime_71312&#34;
+ &#34;limitstringmime&#34;            
+ &#34;julia_limitstringmime_71322&#34;
+ &#34;julia_limitstringmime_71324&#34;
+ &#34;julia_limitstringmime_71326&#34;
+ &#34;julia_limitstringmime_71328&#34;
+ &#34;julia_limitstringmime_71330&#34;
+ &#34;julia_limitstringmime_71332&#34;
+ &#34;julia_limitstringmime_71334&#34;
+ &#34;Int64&#34;                      
+ &#34;data&#34;                       
+ &#34;#self#&#34;                     
+ &#34;#temp#&#34;                     
+ &#34;kws...&#34;                     
+ &#34;Char&#34;                       
+ &#34;UInt32&#34;                     
+ &#34;UInt8&#34;                      
+ &#34;mime&#34;                       </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see some Julia data types (like <code>Int64</code>, and <code>UInt8</code>), some internal Julia names (like <code>#self#</code>, and some C functions which are part of Julia itself (like <code>julia_print_...</code>). That all makes sense: this is memory that has been used by Julia, so it's full of Julia-related data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Rest-of-the-Image">The Rest of the Image<a class="anchor-link" href="#The-Rest-of-the-Image">&#182;</a></h1><p>We've gotten some interesting strings out of that high-entropy stripe in the image. Is there anything else to find in the rest? Let's take a look:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">41</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_18_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Reshaping this image shows some interesting patterns:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">reshaped</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">41</span><span class="p">],</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">656</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_20_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">reshaped</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">370</span><span class="o">:</span><span class="mi">402</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_21_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">reshaped</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">570</span><span class="o">:</span><span class="mi">602</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_22_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">reshaped</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">256</span><span class="o">:</span><span class="mi">288</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_23_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you look carefully at the last image above, you might see an interesting pattern: there is a graident pattern that occurs across several rows, occurring in either the red, green, or blue color channel. Seeing the same pattern occur in different color channels makes me wonder if maybe there's an alignment issue. The <code>RGB4</code> data type uses three bytes of data per pixel, so our pixels are aligned with a spacing of three bytes. But essentially everything in a computer is aligned in powers of two. What if we were to reorganize the data so that pixels are aligned to 4-byte boundaries?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">block</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">64</span><span class="p">]</span>
+
+<span class="c"># Extract the raw data bytes from the image block</span>
+<span class="n">data</span> <span class="o">=</span> <span class="kt">UInt8</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">px</span> <span class="kp">in</span> <span class="n">block</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="kp">in</span> <span class="p">(</span><span class="n">red</span><span class="p">(</span><span class="n">px</span><span class="p">),</span> <span class="n">green</span><span class="p">(</span><span class="n">px</span><span class="p">),</span> <span class="n">blue</span><span class="p">(</span><span class="n">px</span><span class="p">))</span>
+        <span class="n">push!</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">reinterpret</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Then create a new image using 4-byte aligned sections</span>
+<span class="c"># of that data. This means we actually skip every fourth</span>
+<span class="c"># data byte. Interestingly, those bytes, outside of the </span>
+<span class="c"># stripe we looked at before, are almost all zero anyway. </span>
+<span class="n">new_block</span> <span class="o">=</span> <span class="n">RGBA</span><span class="p">{</span><span class="n">N0f8</span><span class="p">}[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">new_block</span><span class="p">,</span> <span class="n">RGBA</span><span class="p">{</span><span class="n">N0f8</span><span class="p">}(</span>
+            <span class="n">reinterpret</span><span class="p">(</span><span class="n">N0f8</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="n">reinterpret</span><span class="p">(</span><span class="n">N0f8</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">reinterpret</span><span class="p">(</span><span class="n">N0f8</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]),</span>
+            <span class="n">reinterpret</span><span class="p">(</span><span class="n">N0f8</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">)))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">4</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Doing that re-alignment gives a much clearer picture of the structure of our data:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">new_block</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">new_block</span><span class="p">,</span> <span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">new_block</span><span class="p">)</span> <span class="o">÷</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">
+Out:
+</div>
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="/img/notebooks/2017-02-27-memory/memory_27_0.png"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There's so much more to learn about what this data represents, but I'm afraid it will have to wait until another time.</p>
+<p>Until then, here's one more cool result. What happens if I try allocating an uninitialized image of my own?</p>
+<p>I tried running <code>Array{RGB{N0f8}, 2}(size(img))</code> a few times. Most of the time I got all zeros, but eventually I found something more interesting:</p>
+<p><img src="/img/2017-02-27-memory/my_raw_data.png" alt="my raw memory data"></p>
+<p>Yup, that's Michele's image, recovered from the used memory data of my Julia process. Cool!</p>
+
+</div>
+</div>
+</div>
+
+

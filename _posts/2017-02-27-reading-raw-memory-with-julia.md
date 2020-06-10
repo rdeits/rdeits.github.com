@@ -1,28 +1,12 @@
 ---
 layout: post
 title: "Reading Raw Memory with Julia"
-category: 
+category:
 tags: []
 ---
 {% include JB/setup %}
 
 <style>
-.anchor-link {
-	opacity: 0;
-}
-
-h1:hover > .anchor-link {
-	opacity: 0.8;
-}
-
-h2:hover > .anchor-link {
-	opacity: 0.8;
-}
-
-h3:hover > .anchor-link {
-	opacity: 0.8;
-}
-
 .output_stdout pre {
     max-height: 400px;
     overflow-wrap: break-word;
@@ -60,6 +44,6 @@ table tr th, table tr td
 }
 </style>
 
-Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form on github [here](https://github.com/rdeits/rdeits.github.com/blob/master/img/2017-02-27-memory/memory.ipynb). 
+Note: This post was written as a Jupyter notebook file. You can view it here, or you can see its original notebook form on github [here](https://github.com/rdeits/rdeits.github.com/blob/master/notebooks/2017-02-27-memory/memory.ipynb).
 
-{% include posts/2017-02-27-memory/memory.html %}
+{% include notebooks/2017-02-27-memory/memory.html %}

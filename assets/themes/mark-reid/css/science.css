@@ -1,3 +1,46 @@
+@media (min-width: 800px) {
+ .input_prompt,
+ .output_prompt {
+  width:0px;
+  position:relative;
+  float:left;
+  margin-top:3px
+ }
+
+ .output_prompt {
+  left:-3em;
+ }
+
+ .input_prompt {
+  left:-2em;
+ }
+ #page {
+    padding: 2em 4.5em 1.5em 4.5em;
+}
+}
+.output_prompt {
+ color:rgba(0,63,255,0.92)
+}
+.input_prompt {
+    color: #a00;
+}
+.anchor-link {
+    opacity: 0;
+}
+
+h1:hover > .anchor-link {
+    opacity: 0.8;
+}
+
+h2:hover > .anchor-link {
+    opacity: 0.8;
+}
+
+h3:hover > .anchor-link {
+    opacity: 0.8;
+}
+
+
 .onecol-figure {
 	width: 75%;
 }
