@@ -54,7 +54,7 @@ class RelativeImagesPreprocessor(Preprocessor):
         elif url.startswith('attachment'):
             return match.group(0)
         else:
-            return '![' + match.group(1) + '](' + os.path.join(notebook_folder, match.group(2)) + ')'
+            return '![' + match.group(1) + '](/' + os.path.join(notebook_folder, match.group(2)) + ')'
 
     def preprocess_cell(self, cell, resources, index):
         self.path = resources['metadata']['path']
